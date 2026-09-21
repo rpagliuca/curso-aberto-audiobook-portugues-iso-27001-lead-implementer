@@ -1,0 +1,174 @@
+{
+ "slug": "p03-riscos-soa",
+ "duracao": 478.9,
+ "cues": [
+  {
+   "id": "etapas",
+   "revisao": false,
+   "t_pergunta": 13.91,
+   "t_pausa": 19.19,
+   "pausa": 7.1,
+   "t_resposta": 25.52
+  },
+  {
+   "id": "criterios",
+   "revisao": false,
+   "t_pergunta": 39.86,
+   "t_pausa": 46.78,
+   "pausa": 9.5,
+   "t_resposta": 55.56
+  },
+  {
+   "id": "consistentes",
+   "revisao": false,
+   "t_pergunta": 69.95,
+   "t_pausa": 76.77,
+   "pausa": 7.4,
+   "t_resposta": 83.4
+  },
+  {
+   "id": "meca",
+   "revisao": false,
+   "t_pergunta": 94.31,
+   "t_pausa": 99.57,
+   "pausa": 7.9,
+   "t_resposta": 106.74
+  },
+  {
+   "id": "etapas",
+   "revisao": true,
+   "t_pergunta": 123.65,
+   "t_pausa": 128.93,
+   "pausa": 5.6,
+   "t_resposta": 133.76
+  },
+  {
+   "id": "seguro",
+   "revisao": false,
+   "t_pergunta": 138.31,
+   "t_pausa": 143.86,
+   "pausa": 5.6,
+   "t_resposta": 148.68
+  },
+  {
+   "id": "evitar",
+   "revisao": false,
+   "t_pergunta": 159.97,
+   "t_pausa": 166.95,
+   "pausa": 5.6,
+   "t_resposta": 171.77
+  },
+  {
+   "id": "proprietario",
+   "revisao": false,
+   "t_pergunta": 179.1,
+   "t_pausa": 183.66,
+   "pausa": 6.3,
+   "t_resposta": 189.22
+  },
+  {
+   "id": "meca",
+   "revisao": true,
+   "t_pergunta": 203.73,
+   "t_pausa": 208.99,
+   "pausa": 6.4,
+   "t_resposta": 214.66
+  },
+  {
+   "id": "residual",
+   "revisao": false,
+   "t_pergunta": 219.81,
+   "t_pausa": 223.51,
+   "pausa": 5.6,
+   "t_resposta": 228.4
+  },
+  {
+   "id": "soa-o-que",
+   "revisao": false,
+   "t_pergunta": 238.63,
+   "t_pausa": 241.06,
+   "pausa": 6.6,
+   "t_resposta": 246.92
+  },
+  {
+   "id": "soa-conteudo",
+   "revisao": false,
+   "t_pergunta": 258.84,
+   "t_pausa": 268.53,
+   "pausa": 9.5,
+   "t_resposta": 277.28
+  },
+  {
+   "id": "proprietario",
+   "revisao": true,
+   "t_pergunta": 290.33,
+   "t_pausa": 294.89,
+   "pausa": 5.5,
+   "t_resposta": 299.64
+  },
+  {
+   "id": "exclusao",
+   "revisao": false,
+   "t_pergunta": 303.64,
+   "t_pausa": 308.44,
+   "pausa": 5.6,
+   "t_resposta": 313.26
+  },
+  {
+   "id": "anexo-obrigatorio",
+   "revisao": false,
+   "t_pergunta": 326.83,
+   "t_pausa": 333.38,
+   "pausa": 5.6,
+   "t_resposta": 338.2
+  },
+  {
+   "id": "soa-conteudo",
+   "revisao": true,
+   "t_pergunta": 351.49,
+   "t_pausa": 361.18,
+   "pausa": 8.0,
+   "t_resposta": 368.44
+  },
+  {
+   "id": "objetivos",
+   "revisao": false,
+   "t_pergunta": 374.72,
+   "t_pausa": 379.16,
+   "pausa": 6.5,
+   "t_resposta": 384.88
+  },
+  {
+   "id": "objetivos-plano",
+   "revisao": false,
+   "t_pergunta": 398.34,
+   "t_pausa": 408.97,
+   "pausa": 8.2,
+   "t_resposta": 416.38
+  },
+  {
+   "id": "mudancas",
+   "revisao": false,
+   "t_pergunta": 427.6,
+   "t_pausa": 433.62,
+   "pausa": 6.4,
+   "t_resposta": 439.31
+  },
+  {
+   "id": "residual",
+   "revisao": true,
+   "t_pergunta": 448.11,
+   "t_pausa": 451.81,
+   "pausa": 5.5,
+   "t_resposta": 456.56
+  },
+  {
+   "id": "exclusao",
+   "revisao": true,
+   "t_pergunta": 460.08,
+   "t_pausa": 464.88,
+   "pausa": 5.5,
+   "t_resposta": 469.63
+  }
+ ]
+}

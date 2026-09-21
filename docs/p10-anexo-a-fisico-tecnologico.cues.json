@@ -1,0 +1,182 @@
+{
+ "slug": "p10-anexo-a-fisico-tecnologico",
+ "duracao": 468.8,
+ "cues": [
+  {
+   "id": "fisico-total",
+   "revisao": false,
+   "t_pergunta": 7.7,
+   "t_pausa": 10.48,
+   "pausa": 5.6,
+   "t_resposta": 15.3
+  },
+  {
+   "id": "mesa-limpa",
+   "revisao": false,
+   "t_pergunta": 26.5,
+   "t_pausa": 29.74,
+   "pausa": 5.6,
+   "t_resposta": 34.56
+  },
+  {
+   "id": "novo-fisico",
+   "revisao": false,
+   "t_pergunta": 44.72,
+   "t_pausa": 49.95,
+   "pausa": 6.9,
+   "t_resposta": 56.08
+  },
+  {
+   "id": "midias",
+   "revisao": false,
+   "t_pergunta": 67.06,
+   "t_pausa": 71.34,
+   "pausa": 5.9,
+   "t_resposta": 76.49
+  },
+  {
+   "id": "mesa-limpa",
+   "revisao": true,
+   "t_pergunta": 87.67,
+   "t_pausa": 90.91,
+   "pausa": 5.5,
+   "t_resposta": 95.66
+  },
+  {
+   "id": "descarte",
+   "revisao": false,
+   "t_pergunta": 99.13,
+   "t_pausa": 103.98,
+   "pausa": 9.8,
+   "t_resposta": 113.03
+  },
+  {
+   "id": "fora-instalacoes",
+   "revisao": false,
+   "t_pergunta": 125.23,
+   "t_pausa": 129.46,
+   "pausa": 7.7,
+   "t_resposta": 136.36
+  },
+  {
+   "id": "tec-total",
+   "revisao": false,
+   "t_pergunta": 148.4,
+   "t_pausa": 151.42,
+   "pausa": 5.6,
+   "t_resposta": 156.24
+  },
+  {
+   "id": "novo-fisico",
+   "revisao": true,
+   "t_pergunta": 165.06,
+   "t_pausa": 170.29,
+   "pausa": 5.5,
+   "t_resposta": 175.04
+  },
+  {
+   "id": "privilegiado",
+   "revisao": false,
+   "t_pergunta": 179.45,
+   "t_pausa": 184.04,
+   "pausa": 6.8,
+   "t_resposta": 190.1
+  },
+  {
+   "id": "novos-tec",
+   "revisao": false,
+   "t_pergunta": 202.57,
+   "t_pausa": 207.73,
+   "pausa": 10.0,
+   "t_resposta": 216.98
+  },
+  {
+   "id": "mascaramento",
+   "revisao": false,
+   "t_pergunta": 231.25,
+   "t_pausa": 236.36,
+   "pausa": 6.1,
+   "t_resposta": 241.68
+  },
+  {
+   "id": "descarte",
+   "revisao": true,
+   "t_pergunta": 252.33,
+   "t_pausa": 257.18,
+   "pausa": 8.3,
+   "t_resposta": 264.73
+  },
+  {
+   "id": "dlp",
+   "revisao": false,
+   "t_pergunta": 271.23,
+   "t_pausa": 273.51,
+   "pausa": 6.7,
+   "t_resposta": 279.47
+  },
+  {
+   "id": "log-vs-monitor",
+   "revisao": false,
+   "t_pergunta": 291.67,
+   "t_pausa": 296.86,
+   "pausa": 10.0,
+   "t_resposta": 306.11
+  },
+  {
+   "id": "relogio",
+   "revisao": false,
+   "t_pergunta": 321.12,
+   "t_pausa": 324.89,
+   "pausa": 8.8,
+   "t_resposta": 332.9
+  },
+  {
+   "id": "novos-tec",
+   "revisao": true,
+   "t_pergunta": 346.16,
+   "t_pausa": 351.32,
+   "pausa": 8.7,
+   "t_resposta": 359.24
+  },
+  {
+   "id": "ambientes",
+   "revisao": false,
+   "t_pergunta": 366.0,
+   "t_pausa": 369.72,
+   "pausa": 5.6,
+   "t_resposta": 374.54
+  },
+  {
+   "id": "vulnerabilidades",
+   "revisao": false,
+   "t_pergunta": 386.08,
+   "t_pausa": 390.2,
+   "pausa": 7.0,
+   "t_resposta": 396.5
+  },
+  {
+   "id": "cripto",
+   "revisao": false,
+   "t_pergunta": 409.09,
+   "t_pausa": 413.41,
+   "pausa": 5.6,
+   "t_resposta": 418.23
+  },
+  {
+   "id": "log-vs-monitor",
+   "revisao": true,
+   "t_pergunta": 429.21,
+   "t_pausa": 434.4,
+   "pausa": 9.1,
+   "t_resposta": 442.76
+  },
+  {
+   "id": "privilegiado",
+   "revisao": true,
+   "t_pergunta": 449.83,
+   "t_pausa": 454.41,
+   "pausa": 5.5,
+   "t_resposta": 459.16
+  }
+ ]
+}

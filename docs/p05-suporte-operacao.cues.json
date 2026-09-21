@@ -1,0 +1,166 @@
+{
+ "slug": "p05-suporte-operacao",
+ "duracao": 495.7,
+ "cues": [
+  {
+   "id": "c7-subclausulas",
+   "revisao": false,
+   "t_pergunta": 9.02,
+   "t_pausa": 18.26,
+   "pausa": 8.7,
+   "t_resposta": 26.24
+  },
+  {
+   "id": "competencia-evidencia",
+   "revisao": false,
+   "t_pergunta": 43.41,
+   "t_pausa": 47.87,
+   "pausa": 8.2,
+   "t_resposta": 55.28
+  },
+  {
+   "id": "conscientizacao",
+   "revisao": false,
+   "t_pergunta": 69.24,
+   "t_pausa": 79.27,
+   "pausa": 10.0,
+   "t_resposta": 88.52
+  },
+  {
+   "id": "competencia-vs-consc",
+   "revisao": false,
+   "t_pergunta": 101.42,
+   "t_pausa": 105.14,
+   "pausa": 10.0,
+   "t_resposta": 114.39
+  },
+  {
+   "id": "c7-subclausulas",
+   "revisao": true,
+   "t_pergunta": 130.36,
+   "t_pausa": 139.6,
+   "pausa": 7.2,
+   "t_resposta": 146.08
+  },
+  {
+   "id": "comunicacao",
+   "revisao": false,
+   "t_pergunta": 151.81,
+   "t_pausa": 159.61,
+   "pausa": 5.6,
+   "t_resposta": 164.43
+  },
+  {
+   "id": "doc-termo",
+   "revisao": false,
+   "t_pergunta": 173.87,
+   "t_pausa": 178.77,
+   "pausa": 6.2,
+   "t_resposta": 184.19
+  },
+  {
+   "id": "doc-controle",
+   "revisao": false,
+   "t_pergunta": 197.12,
+   "t_pausa": 204.03,
+   "pausa": 10.0,
+   "t_resposta": 213.28
+  },
+  {
+   "id": "conscientizacao",
+   "revisao": true,
+   "t_pergunta": 227.11,
+   "t_pausa": 237.15,
+   "pausa": 8.7,
+   "t_resposta": 245.14
+  },
+  {
+   "id": "doc-externa",
+   "revisao": false,
+   "t_pergunta": 251.95,
+   "t_pausa": 258.14,
+   "pausa": 7.7,
+   "t_resposta": 265.04
+  },
+  {
+   "id": "c8-o-que",
+   "revisao": false,
+   "t_pergunta": 274.73,
+   "t_pausa": 278.06,
+   "pausa": 7.7,
+   "t_resposta": 285.03
+  },
+  {
+   "id": "c8-quando-riscos",
+   "revisao": false,
+   "t_pergunta": 297.65,
+   "t_pausa": 304.46,
+   "pausa": 9.1,
+   "t_resposta": 312.81
+  },
+  {
+   "id": "doc-termo",
+   "revisao": true,
+   "t_pergunta": 324.63,
+   "t_pausa": 329.53,
+   "pausa": 5.5,
+   "t_resposta": 334.28
+  },
+  {
+   "id": "terceirizados",
+   "revisao": false,
+   "t_pergunta": 338.18,
+   "t_pausa": 344.42,
+   "pausa": 5.9,
+   "t_resposta": 349.61
+  },
+  {
+   "id": "mudancas-nao-planejadas",
+   "revisao": false,
+   "t_pergunta": 360.71,
+   "t_pausa": 365.29,
+   "pausa": 8.5,
+   "t_resposta": 373.07
+  },
+  {
+   "id": "c8-quando-riscos",
+   "revisao": true,
+   "t_pergunta": 386.31,
+   "t_pausa": 393.12,
+   "pausa": 7.6,
+   "t_resposta": 399.97
+  },
+  {
+   "id": "recursos",
+   "revisao": false,
+   "t_pergunta": 405.96,
+   "t_pausa": 409.85,
+   "pausa": 9.7,
+   "t_resposta": 418.81
+  },
+  {
+   "id": "treinamento-eficacia",
+   "revisao": false,
+   "t_pergunta": 432.47,
+   "t_pausa": 437.18,
+   "pausa": 7.3,
+   "t_resposta": 443.75
+  },
+  {
+   "id": "terceirizados",
+   "revisao": true,
+   "t_pergunta": 455.18,
+   "t_pausa": 461.42,
+   "pausa": 5.5,
+   "t_resposta": 466.17
+  },
+  {
+   "id": "competencia-vs-consc",
+   "revisao": true,
+   "t_pergunta": 469.91,
+   "t_pausa": 473.63,
+   "pausa": 8.7,
+   "t_resposta": 481.55
+  }
+ ]
+}

@@ -1,0 +1,166 @@
+{
+ "slug": "p06-monitoramento-auditoria",
+ "duracao": 464.5,
+ "cues": [
+  {
+   "id": "c9-partes",
+   "revisao": false,
+   "t_pergunta": 8.63,
+   "t_pausa": 12.69,
+   "pausa": 9.8,
+   "t_resposta": 21.78
+  },
+  {
+   "id": "c91-definir",
+   "revisao": false,
+   "t_pergunta": 35.9,
+   "t_pausa": 46.44,
+   "pausa": 7.3,
+   "t_resposta": 53.0
+  },
+  {
+   "id": "c91-metodos",
+   "revisao": false,
+   "t_pergunta": 64.42,
+   "t_pausa": 70.37,
+   "pausa": 6.5,
+   "t_resposta": 76.1
+  },
+  {
+   "id": "mttd",
+   "revisao": false,
+   "t_pergunta": 84.44,
+   "t_pausa": 87.0,
+   "pausa": 7.2,
+   "t_resposta": 93.44
+  },
+  {
+   "id": "c9-partes",
+   "revisao": true,
+   "t_pergunta": 103.0,
+   "t_pausa": 107.06,
+   "pausa": 8.3,
+   "t_resposta": 114.65
+  },
+  {
+   "id": "auditoria-objetivo",
+   "revisao": false,
+   "t_pergunta": 121.17,
+   "t_pausa": 129.64,
+   "pausa": 7.4,
+   "t_resposta": 136.31
+  },
+  {
+   "id": "auditoria-imparcial",
+   "revisao": false,
+   "t_pergunta": 145.58,
+   "t_pausa": 152.78,
+   "pausa": 7.4,
+   "t_resposta": 159.38
+  },
+  {
+   "id": "auditoria-frequencia",
+   "revisao": false,
+   "t_pergunta": 172.16,
+   "t_pausa": 175.86,
+   "pausa": 9.0,
+   "t_resposta": 184.11
+  },
+  {
+   "id": "c91-definir",
+   "revisao": true,
+   "t_pergunta": 198.59,
+   "t_pausa": 209.13,
+   "pausa": 5.8,
+   "t_resposta": 214.2
+  },
+  {
+   "id": "programa",
+   "revisao": false,
+   "t_pergunta": 218.92,
+   "t_pausa": 227.1,
+   "pausa": 7.2,
+   "t_resposta": 233.57
+  },
+  {
+   "id": "primeira-segunda-terceira",
+   "revisao": false,
+   "t_pergunta": 243.66,
+   "t_pausa": 249.35,
+   "pausa": 8.2,
+   "t_resposta": 256.82
+  },
+  {
+   "id": "analise-quem",
+   "revisao": false,
+   "t_pergunta": 266.94,
+   "t_pausa": 272.19,
+   "pausa": 5.6,
+   "t_resposta": 277.05
+  },
+  {
+   "id": "auditoria-imparcial",
+   "revisao": true,
+   "t_pergunta": 287.6,
+   "t_pausa": 294.8,
+   "pausa": 5.9,
+   "t_resposta": 299.9
+  },
+  {
+   "id": "analise-entradas",
+   "revisao": false,
+   "t_pergunta": 304.64,
+   "t_pausa": 308.94,
+   "pausa": 10.0,
+   "t_resposta": 318.19
+  },
+  {
+   "id": "analise-saidas",
+   "revisao": false,
+   "t_pergunta": 336.73,
+   "t_pausa": 339.68,
+   "pausa": 9.4,
+   "t_resposta": 348.33
+  },
+  {
+   "id": "programa",
+   "revisao": true,
+   "t_pergunta": 361.52,
+   "t_pausa": 369.7,
+   "pausa": 5.7,
+   "t_resposta": 374.67
+  },
+  {
+   "id": "evidencias-c9",
+   "revisao": false,
+   "t_pergunta": 379.32,
+   "t_pausa": 387.33,
+   "pausa": 5.6,
+   "t_resposta": 392.16
+  },
+  {
+   "id": "auditor-competencia",
+   "revisao": false,
+   "t_pergunta": 400.26,
+   "t_pausa": 404.07,
+   "pausa": 8.5,
+   "t_resposta": 411.78
+  },
+  {
+   "id": "analise-quem",
+   "revisao": true,
+   "t_pergunta": 422.4,
+   "t_pausa": 427.66,
+   "pausa": 5.5,
+   "t_resposta": 432.41
+  },
+  {
+   "id": "analise-entradas",
+   "revisao": true,
+   "t_pergunta": 435.9,
+   "t_pausa": 440.2,
+   "pausa": 9.9,
+   "t_resposta": 449.33
+  }
+ ]
+}

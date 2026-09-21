@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISO 27001 Lead Implementer — Simulado diagnóstico</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh;padding:24px 16px 60px}
+  header{text-align:center;margin-bottom:24px}
+  header h1{font-size:1.4rem;font-weight:700;color:#f8fafc;letter-spacing:-.02em}
+  header p{margin-top:6px;font-size:.85rem;color:#94a3b8;line-height:1.5}
+  a{color:#60a5fa}
+  .card{background:#1e2130;border:1px solid #2d3448;border-radius:14px;padding:20px;margin:0 auto 16px;max-width:680px}
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:.75rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+  .tag{padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:600;background:#172554;color:#93c5fd;border:1px solid #1e3a8a;text-transform:none;letter-spacing:0}
+  .bar{height:4px;background:#161b27;border-radius:2px;margin-bottom:16px;overflow:hidden}
+  .bar div{height:100%;background:#3b82f6;transition:width .2s}
+  .qtext{font-size:.92rem;line-height:1.6;margin-bottom:14px;font-weight:500}
+  .options{display:flex;flex-direction:column;gap:7px}
+  .option{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border:1px solid #2d3448;border-radius:8px;cursor:pointer;font-size:.85rem;color:#94a3b8;line-height:1.5;transition:all .15s}
+  .option:hover{border-color:#3d4d6a;color:#cbd5e1;background:#1a2133}
+  .option.sel{border-color:#3b82f6;color:#e2e8f0;background:#172554}
+  .option.correct{border-color:#22c55e;color:#86efac;background:#0f2a1a}
+  .option.wrong{border-color:#ef4444;color:#fca5a5;background:#2a0f0f}
+  .letter{flex-shrink:0;width:20px;height:20px;border-radius:50%;border:1px solid #3d4d6a;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#64748b}
+  .nav{display:flex;justify-content:space-between;gap:8px;margin-top:16px}
+  button{padding:10px 18px;background:#1e3a5f;border:1px solid #3b82f6;border-radius:8px;color:#60a5fa;font-size:.82rem;font-weight:600;cursor:pointer}
+  button.ghost{background:#161b27;border-color:#2d3448;color:#94a3b8}
+  button:disabled{opacity:.35;cursor:default}
+  .score{text-align:center;padding:18px;border-radius:10px;font-weight:600;margin-bottom:16px}
+  .score.pass{background:#0f2a1a;border:1px solid #22c55e;color:#86efac}
+  .score.fail{background:#2a0f0f;border:1px solid #ef4444;color:#fca5a5}
+  .score b{font-size:2rem;display:block}
+  table{width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:16px}
+  td,th{padding:7px 6px;border-bottom:1px solid #2d3448;text-align:left}
+  th{color:#64748b;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}
+  td.n{text-align:right;font-variant-numeric:tabular-nums}
+  .low{color:#fca5a5}.ok{color:#86efac}
+  .code{font-family:ui-monospace,monospace;background:#0f1a2e;border:1px solid #1e3a5f;border-radius:8px;padding:12px;font-size:.85rem;color:#93c5fd;word-break:break-all;margin:8px 0 12px}
+  h2{font-size:.78rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin:18px 0 10px}
+  .rev{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #2d3448}
+  .exp{margin-top:10px;padding:10px 12px;background:#0f1a2e;border:1px solid #1e3a5f;border-radius:8px;font-size:.8rem;color:#93c5fd;line-height:1.6}
+  .hint{font-size:.78rem;color:#64748b;line-height:1.5}
+</style>
+</head>
+<body>
+<header>
+  <h1>Simulado diagnóstico</h1>
+  <p>20 questões · 7 domínios · sem gabarito durante a prova<br><a href="index.html">← voltar ao audiobook</a></p>
+</header>
+<div class="card" id="app"></div>
+<script>
+const D={D1:"Fundamentos",D2:"Iniciação do SGSI",D3:"Planejamento (cl. 4–6)",D4:"Implementação (cl. 7–8)",D5:"Monitoramento (cl. 9)",D6:"Melhoria (cl. 10)",D7:"Anexo A"};
+const Q=[
+{d:"D1",q:"Um analista de RH altera, sem autorização, o valor do salário de um colega na planilha de folha de pagamento. Nenhum dado vazou e o sistema continuou no ar. Qual propriedade da informação foi comprometida?",o:["Confidencialidade","Disponibilidade","Integridade","Não repúdio"],a:2,e:"Alteração não autorizada afeta a exatidão e completude da informação: integridade. Não houve divulgação (confidencialidade) nem indisponibilidade."},
+{d:"D1",q:"Um servidor web está há oito meses sem atualizações de segurança. Um grupo criminoso varre a internet procurando exatamente essa versão. Nesse cenário, o servidor desatualizado e o grupo criminoso são, respectivamente:",o:["Ameaça e vulnerabilidade","Vulnerabilidade e ameaça","Risco e ameaça","Vulnerabilidade e risco"],a:1,e:"Vulnerabilidade é a fraqueza de um ativo ou controle; ameaça é a causa potencial de um incidente. O risco é a combinação da probabilidade com a consequência de a ameaça explorar a vulnerabilidade."},
+{d:"D1",q:"Uma empresa quer obter um certificado emitido por organismo acreditado para o seu SGSI. Contra qual norma a auditoria de certificação é conduzida?",o:["ISO/IEC 27002, pois contém os controles","ISO/IEC 27005, pois trata de riscos","ISO/IEC 27000, pois define o vocabulário","ISO/IEC 27001, pois contém os requisitos"],a:3,e:"Só a ISO/IEC 27001 traz requisitos («shall») e é certificável. 27002 é orientação para controles, 27005 orientação para gestão de riscos e 27000 vocabulário."},
+{d:"D2",q:"No início do projeto de implementação, o Lead Implementer conduz uma gap analysis. Qual é o objetivo principal dessa atividade?",o:["Determinar a distância entre o estado atual da organização e os requisitos da norma","Identificar e avaliar os riscos de segurança dos ativos","Substituir a auditoria interna exigida pela cláusula 9.2","Definir quais controles do Anexo A serão excluídos"],a:0,e:"A gap analysis compara a situação atual com os requisitos da ISO 27001 e alimenta o plano do projeto. Ela não é avaliação de riscos nem substitui auditoria interna."},
+{d:"D2",q:"Ao determinar o escopo do SGSI (cláusula 4.3), a organização deve considerar as questões internas e externas, os requisitos das partes interessadas e:",o:["O orçamento anual aprovado para segurança","As interfaces e dependências entre atividades realizadas pela organização e as realizadas por outras organizações","A lista de controles do Anexo A já implementados","O parecer prévio do organismo certificador"],a:1,e:"A 4.3 exige considerar 4.1, 4.2 e as interfaces e dependências com atividades de outras organizações. O escopo deve estar disponível como informação documentada."},
+{d:"D3",q:"Segundo a cláusula 6.1.3, quem deve aprovar o plano de tratamento de riscos e aceitar os riscos residuais?",o:["O auditor interno","O CISO, obrigatoriamente","Os proprietários dos riscos","O organismo certificador"],a:2,e:"A 6.1.3 f) exige a aprovação do plano e a aceitação dos riscos residuais pelos proprietários dos riscos (risk owners)."},
+{d:"D3",q:"Qual alternativa descreve corretamente o conteúdo obrigatório da Declaração de Aplicabilidade (SoA)?",o:["Apenas os controles do Anexo A que foram implementados","Os controles necessários, a justificativa de inclusão, se estão implementados e a justificativa para exclusão de controles do Anexo A","A lista de ativos, ameaças e vulnerabilidades com seus níveis de risco","Os resultados das auditorias internas por controle"],a:1,e:"A 6.1.3 d) define os quatro elementos da SoA. O inventário de riscos pertence à avaliação de riscos, não à SoA."},
+{d:"D3",q:"Após a avaliação de riscos, a direção decide contratar um seguro cibernético para cobrir perdas financeiras de um eventual ataque de ransomware. Que opção de tratamento é essa?",o:["Evitar o risco","Modificar o risco","Reter o risco","Compartilhar o risco"],a:3,e:"Seguro e terceirização compartilham (transferem) parte do risco com outra parte. A responsabilidade final, porém, continua sendo da organização."},
+{d:"D3",q:"Qual das alternativas NÃO é um requisito da cláusula 6.2 para os objetivos de segurança da informação?",o:["Ser consistentes com a política de segurança da informação","Ser mensuráveis, quando praticável","Ser aprovados previamente pelo organismo certificador","Ser monitorados, comunicados e atualizados conforme apropriado"],a:2,e:"O certificador não aprova objetivos. A 6.2 exige que sejam consistentes com a política, mensuráveis se praticável, monitorados, comunicados, atualizados e documentados."},
+{d:"D4",q:"Durante a implementação, o auditor pede evidência de que o administrador de firewall é competente para a função. O que a cláusula 7.2 exige da organização?",o:["Que o profissional tenha certificação de fabricante","Que retenha informação documentada como evidência da competência","Que o profissional tenha ao menos cinco anos de experiência","Que a competência seja avaliada por entidade externa"],a:1,e:"A 7.2 exige determinar a competência necessária, agir para obtê-la, avaliar a eficácia e reter informação documentada como evidência. Ela não prescreve certificações nem tempo de experiência."},
+{d:"D4",q:"Numa filial, a equipe segue uma versão antiga do procedimento de backup, enquanto a matriz já publicou uma nova. Esse achado indica falha principalmente em qual requisito?",o:["7.4 Comunicação","7.5.3 Controle de informação documentada","6.2 Objetivos de segurança da informação","9.3 Análise crítica pela direção"],a:1,e:"A 7.5.3 exige controlar distribuição, acesso, armazenamento e controle de alterações (versões), garantindo que a informação documentada esteja disponível e adequada onde e quando necessária."},
+{d:"D4",q:"A empresa terceiriza a operação do seu data center. O que a cláusula 8.1 exige em relação a esse processo?",o:["Que o fornecedor seja certificado ISO 27001","Que o processo seja excluído do escopo do SGSI","Que processos, produtos ou serviços providos externamente e relevantes para o SGSI sejam controlados","Que o contrato seja aprovado pelo organismo certificador"],a:2,e:"A 8.1 exige que a organização assegure o controle do que é provido externamente e é relevante para o SGSI. Terceirizar não transfere a responsabilidade nem obriga a certificação do fornecedor."},
+{d:"D5",q:"O gerente de infraestrutura foi escalado para auditar internamente o processo de gestão de backups, do qual ele mesmo é o responsável. Qual requisito da cláusula 9.2 é violado?",o:["A auditoria interna deve ser feita por empresa externa","Os auditores devem ser selecionados de modo a assegurar objetividade e imparcialidade","A auditoria interna deve ocorrer a cada seis meses","O auditor interno deve ser Lead Auditor certificado"],a:1,e:"A 9.2 exige objetividade e imparcialidade: ninguém audita o próprio trabalho. A norma não exige auditor externo, certificação nem periodicidade fixa, apenas intervalos planejados."},
+{d:"D5",q:"Qual item NÃO é uma entrada obrigatória da análise crítica pela direção (cláusula 9.3)?",o:["Situação das ações de análises críticas anteriores","Resultados da avaliação de riscos e situação do plano de tratamento","Mudanças nas necessidades e expectativas das partes interessadas","Comparativo de preços das ferramentas de segurança do mercado"],a:3,e:"As entradas incluem ações anteriores, mudanças em questões internas e externas e em partes interessadas, desempenho (não conformidades, medições, auditorias, objetivos), feedback, riscos e oportunidades de melhoria."},
+{d:"D5",q:"Na auditoria de certificação inicial, qual é o foco do Estágio 1 (Stage 1)?",o:["Testar por amostragem a eficácia operacional dos controles","Revisar a documentação do SGSI e avaliar a prontidão para o Estágio 2","Verificar a manutenção do SGSI um ano após a certificação","Renovar o certificado ao fim do ciclo de três anos"],a:1,e:"O Estágio 1 avalia documentação, escopo e prontidão. O Estágio 2 avalia implementação e eficácia. Auditorias de supervisão são anuais e a recertificação ocorre a cada três anos."},
+{d:"D6",q:"Descobre-se que um ex-funcionário ainda tinha conta ativa. A equipe desativa a conta imediatamente e, depois, altera o processo de desligamento para integrar RH e TI. Essas duas ações são, respectivamente:",o:["Ação corretiva e ação preventiva","Correção e ação corretiva","Ação corretiva e correção","Contenção e melhoria contínua"],a:1,e:"Correção elimina a não conformidade detectada. Ação corretiva elimina a causa para evitar recorrência. A ISO 27001 atual não usa mais o termo «ação preventiva»."},
+{d:"D6",q:"Depois de implementar uma ação corretiva, qual passo a cláusula 10.2 ainda exige?",o:["Comunicar a não conformidade ao organismo certificador","Analisar criticamente a eficácia da ação corretiva tomada","Refazer integralmente a avaliação de riscos","Registrar o responsável em ata de sanção disciplinar"],a:1,e:"A sequência é reagir, avaliar a necessidade de eliminar as causas, implementar, analisar a eficácia e, se necessário, mudar o SGSI. Deve-se reter informação documentada da não conformidade e dos resultados."},
+{d:"D7",q:"Na ISO/IEC 27001:2022, o Anexo A tem 93 controles em quatro temas. Qual tema concentra o maior número de controles?",o:["Tecnológicos, com 34","Físicos, com 14","Organizacionais, com 37","Pessoas, com 8"],a:2,e:"Organizacionais 37, Pessoas 8, Físicos 14, Tecnológicos 34. Total 93."},
+{d:"D7",q:"Qual dos controles abaixo foi introduzido como novo na versão 2022 do Anexo A?",o:["Inteligência de ameaças (5.7)","Política de segurança da informação (5.1)","Backup das informações (8.13)","Segregação de funções (5.3)"],a:0,e:"Os 11 novos controles incluem inteligência de ameaças, segurança em nuvem, prontidão de TIC para continuidade, monitoramento de segurança física, gestão de configuração, exclusão de informações, mascaramento de dados, DLP, monitoramento de atividades, filtragem web e codificação segura."},
+{d:"D7",q:"Pelo atributo «tipo de controle» da ISO/IEC 27002:2022, o controle 8.13 Backup das informações é classificado como:",o:["Preventivo","Detectivo","Corretivo","Dissuasório"],a:2,e:"Backup atua depois do incidente, restaurando a informação: é corretivo. A 27002:2022 usa apenas três tipos: preventivo, detectivo e corretivo."}
+];
+const KEY="iso27001_diag1";let st={i:0,ans:Array(Q.length).fill(-1),done:false};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.ans&&s.ans.length===Q.length)st=s}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const L="ABCD",app=document.getElementById("app");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function render(){st.done?result():question()}
+function question(){
+  const q=Q[st.i],n=st.ans.filter(a=>a>=0).length;
+  app.innerHTML=`<div class="top"><span>Questão ${st.i+1} de ${Q.length}</span><span class="tag">${q.d} ${D[q.d]}</span></div>
+  <div class="bar"><div style="width:${n/Q.length*100}%"></div></div>
+  <div class="qtext">${esc(q.q)}</div>
+  <div class="options">${q.o.map((o,k)=>`<div class="option ${st.ans[st.i]===k?"sel":""}" onclick="pick(${k})"><span class="letter">${L[k]}</span><span>${esc(o)}</span></div>`).join("")}</div>
+  <div class="nav"><button class="ghost" onclick="go(-1)" ${st.i===0?"disabled":""}>← Anterior</button>
+  ${st.i<Q.length-1?`<button onclick="go(1)">Próxima →</button>`:`<button onclick="finish()">Finalizar</button>`}</div>
+  <p class="hint" style="margin-top:14px">Responda sem consultar material. Se não souber, deixe em branco: chutar mascara a lacuna. O progresso fica salvo neste navegador.</p>`;
+}
+function pick(k){st.ans[st.i]=st.ans[st.i]===k?-1:k;save();question()}
+function go(d){st.i+=d;save();question();scrollTo(0,0)}
+function finish(){const b=st.ans.filter(a=>a<0).length;if(b&&!confirm(b+" questão(ões) em branco. Finalizar mesmo assim?"))return;st.done=true;save();render();scrollTo(0,0)}
+function result(){
+  const per={};Object.keys(D).forEach(d=>per[d]=[0,0]);let ok=0;
+  Q.forEach((q,i)=>{per[q.d][1]++;if(st.ans[i]===q.a){per[q.d][0]++;ok++}});
+  const pct=Math.round(ok/Q.length*100),code="DIAG1-"+st.ans.map(a=>a<0?"-":L[a]).join("");
+  const wrong=Q.map((q,i)=>({q,i})).filter(x=>st.ans[x.i]!==x.q.a);
+  app.innerHTML=`<div class="score ${pct>=70?"pass":"fail"}"><b>${ok}/${Q.length} · ${pct}%</b>${pct>=70?"Acima da nota de corte de 70%":"Abaixo da nota de corte de 70%"}</div>
+  <table><tr><th>Domínio</th><th class="n">Acertos</th><th class="n">%</th></tr>${Object.keys(D).map(d=>{const p=Math.round(per[d][0]/per[d][1]*100);return`<tr><td>${d} ${D[d]}</td><td class="n">${per[d][0]}/${per[d][1]}</td><td class="n ${p<60?"low":"ok"}">${p}%</td></tr>`}).join("")}</table>
+  <h2>Código do resultado</h2><p class="hint">Registro compacto das suas respostas. Guarde para comparar com uma tentativa futura.</p>
+  <div class="code" id="code">${code}</div><button onclick="navigator.clipboard&&navigator.clipboard.writeText('${code}').then(()=>this.textContent='Copiado ✓')">Copiar código</button>
+  <h2>Revisão das questões erradas ou em branco (${wrong.length})</h2>
+  ${wrong.map(({q,i})=>`<div class="rev"><div class="top"><span>Questão ${i+1}</span><span class="tag">${q.d}</span></div><div class="qtext">${esc(q.q)}</div>
+  <div class="options">${q.o.map((o,k)=>`<div class="option ${k===q.a?"correct":st.ans[i]===k?"wrong":""}" style="cursor:default"><span class="letter">${L[k]}</span><span>${esc(o)}</span></div>`).join("")}</div><div class="exp">${esc(q.e)}</div></div>`).join("")||'<p class="hint">Nenhuma. 🎯</p>'}
+  <div class="nav"><button class="ghost" onclick="if(confirm('Apagar respostas e refazer?')){localStorage.removeItem(KEY);location.reload()}">Refazer do zero</button><a href="index.html"><button>Voltar ao audiobook</button></a></div>`;
+}
+render();
+</script>
+</body>
+</html>

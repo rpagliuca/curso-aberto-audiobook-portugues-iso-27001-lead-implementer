@@ -1,0 +1,174 @@
+{
+ "slug": "p07-melhoria-certificacao",
+ "duracao": 444.2,
+ "cues": [
+  {
+   "id": "nc",
+   "revisao": false,
+   "t_pergunta": 10.14,
+   "t_pausa": 12.62,
+   "pausa": 6.6,
+   "t_resposta": 18.48
+  },
+  {
+   "id": "correcao-vs-corretiva",
+   "revisao": false,
+   "t_pergunta": 28.71,
+   "t_pausa": 32.36,
+   "pausa": 10.0,
+   "t_resposta": 41.61
+  },
+  {
+   "id": "preventiva",
+   "revisao": false,
+   "t_pergunta": 56.77,
+   "t_pausa": 61.18,
+   "pausa": 5.6,
+   "t_resposta": 66.01
+  },
+  {
+   "id": "sequencia",
+   "revisao": false,
+   "t_pergunta": 75.86,
+   "t_pausa": 81.21,
+   "pausa": 7.5,
+   "t_resposta": 87.91
+  },
+  {
+   "id": "correcao-vs-corretiva",
+   "revisao": true,
+   "t_pergunta": 99.54,
+   "t_pausa": 103.19,
+   "pausa": 9.0,
+   "t_resposta": 111.41
+  },
+  {
+   "id": "eficacia",
+   "revisao": false,
+   "t_pergunta": 118.39,
+   "t_pausa": 122.73,
+   "pausa": 7.5,
+   "t_resposta": 129.47
+  },
+  {
+   "id": "proporcional",
+   "revisao": false,
+   "t_pergunta": 142.44,
+   "t_pausa": 145.85,
+   "pausa": 7.7,
+   "t_resposta": 152.79
+  },
+  {
+   "id": "cinco-porques",
+   "revisao": false,
+   "t_pergunta": 161.63,
+   "t_pausa": 165.35,
+   "pausa": 5.7,
+   "t_resposta": 170.34
+  },
+  {
+   "id": "nc",
+   "revisao": true,
+   "t_pergunta": 178.78,
+   "t_pausa": 181.25,
+   "pausa": 5.5,
+   "t_resposta": 186.0
+  },
+  {
+   "id": "melhoria-continua",
+   "revisao": false,
+   "t_pergunta": 190.21,
+   "t_pausa": 196.33,
+   "pausa": 7.3,
+   "t_resposta": 202.84
+  },
+  {
+   "id": "estagio1",
+   "revisao": false,
+   "t_pergunta": 211.66,
+   "t_pausa": 215.76,
+   "pausa": 7.8,
+   "t_resposta": 222.8
+  },
+  {
+   "id": "estagio2",
+   "revisao": false,
+   "t_pergunta": 236.25,
+   "t_pausa": 238.63,
+   "pausa": 7.9,
+   "t_resposta": 245.8
+  },
+  {
+   "id": "eficacia",
+   "revisao": true,
+   "t_pergunta": 257.11,
+   "t_pausa": 261.46,
+   "pausa": 6.0,
+   "t_resposta": 266.69
+  },
+  {
+   "id": "nc-maior",
+   "revisao": false,
+   "t_pergunta": 271.53,
+   "t_pausa": 274.73,
+   "pausa": 9.9,
+   "t_resposta": 283.92
+  },
+  {
+   "id": "nc-menor",
+   "revisao": false,
+   "t_pergunta": 298.76,
+   "t_pausa": 302.34,
+   "pausa": 8.3,
+   "t_resposta": 309.91
+  },
+  {
+   "id": "validade",
+   "revisao": false,
+   "t_pergunta": 322.69,
+   "t_pausa": 326.77,
+   "pausa": 5.6,
+   "t_resposta": 331.59
+  },
+  {
+   "id": "estagio1",
+   "revisao": true,
+   "t_pergunta": 341.25,
+   "t_pausa": 345.36,
+   "pausa": 6.3,
+   "t_resposta": 350.89
+  },
+  {
+   "id": "supervisao",
+   "revisao": false,
+   "t_pergunta": 355.95,
+   "t_pausa": 360.41,
+   "pausa": 7.8,
+   "t_resposta": 367.42
+  },
+  {
+   "id": "transicao",
+   "revisao": false,
+   "t_pergunta": 380.08,
+   "t_pausa": 385.86,
+   "pausa": 7.7,
+   "t_resposta": 392.77
+  },
+  {
+   "id": "nc-maior",
+   "revisao": true,
+   "t_pergunta": 404.32,
+   "t_pausa": 407.51,
+   "pausa": 8.4,
+   "t_resposta": 415.2
+  },
+  {
+   "id": "melhoria-continua",
+   "revisao": true,
+   "t_pergunta": 421.8,
+   "t_pausa": 427.92,
+   "pausa": 5.8,
+   "t_resposta": 432.92
+  }
+ ]
+}

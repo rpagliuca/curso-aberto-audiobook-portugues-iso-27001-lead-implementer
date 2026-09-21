@@ -1,0 +1,182 @@
+{
+ "slug": "p08-misto-2",
+ "duracao": 506.9,
+ "cues": [
+  {
+   "id": "x-lista-presenca",
+   "revisao": false,
+   "t_pergunta": 12.38,
+   "t_pausa": 20.22,
+   "pausa": 8.2,
+   "t_resposta": 27.7
+  },
+  {
+   "id": "x-auditoria-nunca",
+   "revisao": false,
+   "t_pergunta": 40.72,
+   "t_pausa": 48.5,
+   "pausa": 5.6,
+   "t_resposta": 53.32
+  },
+  {
+   "id": "x-ata",
+   "revisao": false,
+   "t_pergunta": 61.37,
+   "t_pausa": 69.38,
+   "pausa": 8.2,
+   "t_resposta": 76.86
+  },
+  {
+   "id": "x-conta-ativa",
+   "revisao": false,
+   "t_pergunta": 87.55,
+   "t_pausa": 95.5,
+   "pausa": 5.6,
+   "t_resposta": 100.32
+  },
+  {
+   "id": "x-mesma-nc",
+   "revisao": false,
+   "t_pergunta": 109.66,
+   "t_pausa": 116.0,
+   "pausa": 6.7,
+   "t_resposta": 121.93
+  },
+  {
+   "id": "x-auditoria-nunca",
+   "revisao": true,
+   "t_pergunta": 133.56,
+   "t_pausa": 141.33,
+   "pausa": 5.5,
+   "t_resposta": 146.08
+  },
+  {
+   "id": "x-fornecedor",
+   "revisao": false,
+   "t_pergunta": 149.56,
+   "t_pausa": 157.72,
+   "pausa": 9.2,
+   "t_resposta": 166.13
+  },
+  {
+   "id": "x-indicador",
+   "revisao": false,
+   "t_pergunta": 178.17,
+   "t_pausa": 185.61,
+   "pausa": 7.2,
+   "t_resposta": 192.04
+  },
+  {
+   "id": "x-auditor-ti",
+   "revisao": false,
+   "t_pergunta": 201.37,
+   "t_pausa": 209.07,
+   "pausa": 8.8,
+   "t_resposta": 217.08
+  },
+  {
+   "id": "x-conta-ativa",
+   "revisao": true,
+   "t_pergunta": 227.17,
+   "t_pausa": 235.12,
+   "pausa": 5.5,
+   "t_resposta": 239.87
+  },
+  {
+   "id": "x-riscos-velhos",
+   "revisao": false,
+   "t_pergunta": 243.34,
+   "t_pausa": 251.79,
+   "pausa": 8.2,
+   "t_resposta": 259.26
+  },
+  {
+   "id": "x-estagio",
+   "revisao": false,
+   "t_pergunta": 270.72,
+   "t_pausa": 280.11,
+   "pausa": 5.6,
+   "t_resposta": 284.93
+  },
+  {
+   "id": "x-competencia",
+   "revisao": false,
+   "t_pergunta": 295.6,
+   "t_pausa": 303.08,
+   "pausa": 7.1,
+   "t_resposta": 309.42
+  },
+  {
+   "id": "x-mesma-nc",
+   "revisao": true,
+   "t_pergunta": 321.16,
+   "t_pausa": 327.5,
+   "pausa": 5.5,
+   "t_resposta": 332.25
+  },
+  {
+   "id": "x-versao",
+   "revisao": false,
+   "t_pergunta": 336.51,
+   "t_pausa": 343.02,
+   "pausa": 9.3,
+   "t_resposta": 351.57
+  },
+  {
+   "id": "x-pdca-acao",
+   "revisao": false,
+   "t_pergunta": 361.64,
+   "t_pausa": 365.17,
+   "pausa": 5.6,
+   "t_resposta": 369.99
+  },
+  {
+   "id": "x-entrada-analise",
+   "revisao": false,
+   "t_pergunta": 378.23,
+   "t_pausa": 382.48,
+   "pausa": 6.6,
+   "t_resposta": 388.34
+  },
+  {
+   "id": "x-indicador",
+   "revisao": true,
+   "t_pergunta": 398.26,
+   "t_pausa": 405.7,
+   "pausa": 5.7,
+   "t_resposta": 410.64
+  },
+  {
+   "id": "x-menores",
+   "revisao": false,
+   "t_pergunta": 415.26,
+   "t_pausa": 422.49,
+   "pausa": 7.2,
+   "t_resposta": 428.92
+  },
+  {
+   "id": "x-supervisao",
+   "revisao": false,
+   "t_pergunta": 438.32,
+   "t_pausa": 445.66,
+   "pausa": 7.7,
+   "t_resposta": 452.6
+  },
+  {
+   "id": "x-riscos-velhos",
+   "revisao": true,
+   "t_pergunta": 464.1,
+   "t_pausa": 472.55,
+   "pausa": 6.7,
+   "t_resposta": 478.53
+  },
+  {
+   "id": "x-estagio",
+   "revisao": true,
+   "t_pergunta": 483.9,
+   "t_pausa": 493.28,
+   "pausa": 5.5,
+   "t_resposta": 498.03
+  }
+ ]
+}

@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISO 27001 Lead Implementer — Audiobook</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh;padding:24px 16px 60px}
+  header{text-align:center;margin-bottom:32px}
+  header h1{font-size:1.4rem;font-weight:700;color:#f8fafc;letter-spacing:-.02em}
+  header p{margin-top:6px;font-size:.85rem;color:#94a3b8}
+  .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+  .badge{display:inline-block;padding:4px 12px;background:#1e3a5f;color:#60a5fa;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+  .badge.green{background:#14532d;color:#86efac}
+  .card{background:#1e2130;border:1px solid #2d3448;border-radius:14px;padding:20px;margin-bottom:16px;max-width:680px;margin-left:auto;margin-right:auto}
+  .card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+  .ep-num{flex-shrink:0;width:36px;height:36px;background:#1e3a5f;color:#60a5fa;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+  .card-meta{flex:1;min-width:0}
+  .card-meta h2{font-size:.95rem;font-weight:600;color:#f1f5f9;line-height:1.3}
+  .card-meta .topics{margin-top:5px;font-size:.76rem;color:#64748b;line-height:1.5}
+  .duration{flex-shrink:0;font-size:.76rem;color:#475569;font-variant-numeric:tabular-nums;padding-top:2px}
+  audio{width:100%;height:44px;border-radius:8px;outline:none;margin-bottom:14px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tag{padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:600;background:#172554;color:#93c5fd;border:1px solid #1e3a8a}
+  .tag.green{background:#14532d;color:#86efac;border-color:#166534}
+  .tag.purple{background:#3b0764;color:#d8b4fe;border-color:#6b21a8}
+  .tag.amber{background:#451a03;color:#fcd34d;border-color:#78350f}
+
+  /* Toggle buttons */
+  .actions{display:flex;gap:8px;margin-bottom:0}
+  .btn-toggle{flex:1;padding:9px 12px;border:1px solid #2d3448;border-radius:8px;background:#161b27;color:#94a3b8;font-size:.8rem;font-weight:600;cursor:pointer;text-align:center;transition:all .15s;user-select:none}
+  .btn-toggle:hover{border-color:#3d4d6a;color:#cbd5e1}
+  .btn-toggle.active{border-color:#3b82f6;color:#60a5fa;background:#172554}
+
+  /* Collapsible panels */
+  .panel{overflow:hidden;max-height:0;transition:max-height .3s ease}
+  .panel.open{max-height:9999px}
+  .panel-inner{padding-top:14px}
+
+  /* Resumo */
+  .resumo-title{font-size:.75rem;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .resumo-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .resumo-list li{font-size:.83rem;color:#cbd5e1;line-height:1.5;padding-left:14px;position:relative}
+  .resumo-list li::before{content:"›";position:absolute;left:0;color:#3b82f6;font-weight:700}
+
+  /* Quiz */
+  .quiz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .quiz-title{font-size:.75rem;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.06em}
+  .quiz-progress{font-size:.72rem;color:#475569}
+  .question-block{display:none}
+  .question-block.active{display:block}
+  .question-text{font-size:.88rem;color:#e2e8f0;line-height:1.6;margin-bottom:14px;font-weight:500}
+  .options{display:flex;flex-direction:column;gap:7px}
+  .option{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid #2d3448;border-radius:8px;cursor:pointer;transition:all .15s;font-size:.83rem;color:#94a3b8;line-height:1.5}
+  .option:hover:not(.disabled){border-color:#3d4d6a;color:#cbd5e1;background:#1a2133}
+  .option .opt-letter{flex-shrink:0;width:20px;height:20px;border-radius:50%;border:1px solid #3d4d6a;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#64748b}
+  .option.correct{border-color:#22c55e;color:#86efac;background:#0f2a1a}
+  .option.correct .opt-letter{border-color:#22c55e;background:#14532d;color:#86efac}
+  .option.wrong{border-color:#ef4444;color:#fca5a5;background:#2a0f0f}
+  .option.wrong .opt-letter{border-color:#ef4444;background:#450a0a;color:#fca5a5}
+  .option.disabled{cursor:default;pointer-events:none}
+  .explanation{margin-top:12px;padding:10px 12px;background:#0f1a2e;border:1px solid #1e3a5f;border-radius:8px;font-size:.8rem;color:#93c5fd;line-height:1.6}
+  .explanation strong{color:#60a5fa}
+  .quiz-nav{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+  .btn-next{padding:8px 18px;background:#1e3a5f;border:1px solid #3b82f6;border-radius:8px;color:#60a5fa;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;display:none}
+  .btn-next:hover{background:#172554}
+  .quiz-result{text-align:center;padding:16px;border-radius:10px;font-size:.9rem;font-weight:600}
+  .quiz-result.pass{background:#0f2a1a;border:1px solid #22c55e;color:#86efac}
+  .quiz-result.fail{background:#2a0f0f;border:1px solid #ef4444;color:#fca5a5}
+  .quiz-result .score-big{font-size:1.8rem;font-weight:700;display:block;margin-bottom:6px}
+  .btn-retry{margin-top:12px;padding:8px 18px;background:#1e3a5f;border:1px solid #3b82f6;border-radius:8px;color:#60a5fa;font-size:.8rem;font-weight:600;cursor:pointer}
+
+  /* Skip buttons */
+  .skip-row{display:flex;gap:6px;margin-bottom:14px}
+  .btn-skip{flex:1;padding:8px 4px;border:1px solid #2d3448;border-radius:7px;background:#161b27;color:#94a3b8;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .15s;text-align:center}
+  .btn-skip:hover{border-color:#3d4d6a;color:#e2e8f0}
+  .btn-skip:active{background:#1e2a40}
+
+  /* Player único (motor de áudio compartilhado) */
+  .player{display:flex;align-items:center;gap:10px;margin-bottom:14px;background:#161b27;border:1px solid #2d3448;border-radius:10px;padding:8px 12px}
+  .player .pp{flex-shrink:0;width:44px;height:44px;border-radius:50%;border:1px solid #3b82f6;background:#1e3a5f;color:#60a5fa;font-size:1rem;cursor:pointer}
+  .player .seek{flex:1;min-width:0;accent-color:#3b82f6;height:28px}
+  .player .time{flex-shrink:0;font-size:.74rem;color:#94a3b8;font-variant-numeric:tabular-nums}
+  .card.current{border-color:#3b82f6}
+  .carhint{max-width:680px;margin:0 auto 16px;font-size:.76rem;color:#94a3b8;text-align:center;line-height:1.5}
+  #nowbar{position:fixed;left:0;right:0;bottom:0;background:#161b27;border-top:1px solid #2d3448;padding:8px 12px calc(8px + env(safe-area-inset-bottom));z-index:10}
+  #nowbar .nb-title{max-width:680px;margin:0 auto 6px;font-size:.76rem;color:#cbd5e1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+  #nowbar .nb-btns{max-width:680px;margin:0 auto;display:flex;gap:6px}
+  #nowbar button{flex:1;height:48px;border:1px solid #2d3448;border-radius:10px;background:#1e2130;color:#e2e8f0;font-size:1.05rem;font-weight:700;cursor:pointer}
+  #nowbar button.main{border-color:#3b82f6;background:#1e3a5f;color:#60a5fa;flex:1.4}
+  body{padding-bottom:150px}
+
+  .section-head{max-width:680px;margin:36px auto 16px;text-align:center}
+  .section-head h2{font-size:1.1rem;color:#f8fafc}
+  .section-head p{margin-top:6px;font-size:.8rem;color:#94a3b8;line-height:1.5}
+  .ep-num.qa{background:#3b0764;color:#d8b4fe;font-size:.78rem}
+  .qa-list details summary{cursor:pointer;list-style:none;color:#cbd5e1}
+  .qa-list details summary::-webkit-details-marker{display:none}
+  .qa-list details p{margin:6px 0 4px;padding:8px 10px;background:#0f1a2e;border:1px solid #1e3a5f;border-radius:8px;color:#93c5fd;font-size:.8rem;line-height:1.55}
+  .qa-list details p strong{color:#60a5fa}
+
+  footer{text-align:center;margin-top:40px;font-size:.7rem;color:#334155}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ISO 27001 Lead Implementer</h1>
+  <p>Audiobook de estudo · Voz pt-BR · Roteiro otimizado para escuta</p>
+  <div class="badges">
+    <span class="badge">6 episódios · ~58 min</span>
+    <span class="badge green">Quiz por episódio</span>
+    <span class="badge green">Repetição espaçada</span>
+  </div>
+  <p style="margin-top:14px"><a href="diagnostico.html" style="color:#60a5fa;font-weight:600;font-size:.9rem">🎯 Simulado diagnóstico — 20 questões →</a></p>
+</header>
+
+<p class="carhint">🚗 No carro ou no fone: ⏮ volta 10 s · ⏭ avança 10 s · atravessa os capítulos como faixa única</p>
+
+<!-- ═══════════════════════════════════════ EP 1 ═══ -->
+<div class="card" id="card-1">
+  <div class="card-header">
+    <div class="ep-num">1</div>
+    <div class="card-meta">
+      <h2>O que é Segurança da Informação e por que ela existe</h2>
+      <div class="topics">Tríade CIA · Ativo, ameaça, vulnerabilidade, risco · Família ISO 27000 · Ciclo PDCA · SI vs segurança de TI</div>
+    </div>
+    <div class="duration">9:30</div>
+  </div>
+  <div class="player" data-ep="1" data-src="01-epis-dio-1-o-que-seguran-a-da-informa-o-e-por-que-ela-existe.mp3">
+    <button class="pp" aria-label="Tocar ou pausar episódio 1">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no episódio 1">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-1',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-1',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-1',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-1',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag">D1 Fundamentos 12%</span>
+    <span class="tag amber">3 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-1',this)">📋 Resumo</button>
+    <button class="btn-toggle" onclick="togglePanel('quiz-1',this)">🧠 Quiz — 6 questões</button>
+  </div>
+  <div class="panel" id="resumo-1">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste episódio</div>
+      <ul class="resumo-list">
+        <li><strong>Tríade CIA:</strong> Confidencialidade (acesso apenas por autorizados), Integridade (informação exata e não alterada), Disponibilidade (acessível quando necessário).</li>
+        <li><strong>Propriedades complementares:</strong> autenticidade (identidade verificável), não-repúdio (não pode negar autoria), confiabilidade (comportamento consistente).</li>
+        <li><strong>Conceitos-chave:</strong> ativo → ameaça → vulnerabilidade → risco → impacto → controle. Risco = probabilidade × impacto.</li>
+        <li><strong>Família ISO 27000:</strong> 27001 = requisitos (certificável); 27002 = guia; 27005 = riscos; 27017 = nuvem; 27701 = privacidade.</li>
+        <li><strong>Ciclo PDCA:</strong> Planejar (cláusulas 4–6) → Executar (7–8) → Verificar (9) → Agir (10). Ciclo contínuo, nunca finalizado.</li>
+        <li><strong>SI vs segurança de TI:</strong> SI é mais ampla — abrange informação em qualquer formato (digital, papel, falada). TI foca em sistemas e redes.</li>
+        <li><strong>Por que implementar SGSI:</strong> ameaças crescentes, LGPD/GDPR, exigência de clientes/contratos, redução de danos financeiros e reputacionais.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel" id="quiz-1">
+    <div class="panel-inner">
+      <div id="quiz-1-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EP 2 ═══ -->
+<div class="card" id="card-2">
+  <div class="card-header">
+    <div class="ep-num">2</div>
+    <div class="card-meta">
+      <h2>Contexto, Liderança e Escopo</h2>
+      <div class="topics">Contexto interno e externo · Partes interessadas · Definição de escopo · Comprometimento da alta direção · Política de SI · Certificação vs conformidade</div>
+    </div>
+    <div class="duration">9:50</div>
+  </div>
+  <div class="player" data-ep="2" data-src="02-epis-dio-2-contexto-lideran-a-e-escopo.mp3">
+    <button class="pp" aria-label="Tocar ou pausar episódio 2">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no episódio 2">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-2',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-2',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-2',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-2',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag">D2 Iniciação 10%</span>
+    <span class="tag">D3 Planejamento 18%</span>
+    <span class="tag amber">3 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-2',this)">📋 Resumo</button>
+    <button class="btn-toggle" onclick="togglePanel('quiz-2',this)">🧠 Quiz — 6 questões</button>
+  </div>
+  <div class="panel" id="resumo-2">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste episódio</div>
+      <ul class="resumo-list">
+        <li><strong>Contexto externo:</strong> fatores políticos, econômicos, tecnológicos, legais e de mercado que afetam o perfil de risco. Ferramenta: análise PESTLE.</li>
+        <li><strong>Contexto interno:</strong> estrutura, cultura, capacidades, sistemas existentes, obrigações contratuais e objetivos estratégicos.</li>
+        <li><strong>Partes interessadas:</strong> clientes, reguladores, fornecedores, acionistas, funcionários — cada um com requisitos específicos que o SGSI deve considerar.</li>
+        <li><strong>Escopo do SGSI:</strong> deve ser específico (unidades, localizações, processos, ativos) e documentado. Escopo vago é inauditável.</li>
+        <li><strong>Liderança (cláusula 5):</strong> alta direção deve garantir política, recursos, integração na estratégia e comunicação a toda a organização.</li>
+        <li><strong>Política de SI:</strong> documentada, comunicada a todos, com comprometimento de atender requisitos e melhorar continuamente.</li>
+        <li><strong>Certificação vs conformidade:</strong> conformidade pode ser autodeclarada; certificação exige organismo acreditado. Certificado dura 3 anos com surveillance audits anuais.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel" id="quiz-2">
+    <div class="panel-inner">
+      <div id="quiz-2-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EP 3 ═══ -->
+<div class="card" id="card-3">
+  <div class="card-header">
+    <div class="ep-num">3</div>
+    <div class="card-meta">
+      <h2>Avaliação e Tratamento de Riscos</h2>
+      <div class="topics">Identificar · Analisar · Avaliar · Tratamento MECA · Apetite vs critério de aceitação · SoA · PTR</div>
+    </div>
+    <div class="duration">9:30</div>
+  </div>
+  <div class="player" data-ep="3" data-src="03-epis-dio-3-avalia-o-e-tratamento-de-riscos.mp3">
+    <button class="pp" aria-label="Tocar ou pausar episódio 3">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no episódio 3">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-3',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-3',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-3',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-3',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag">D3 Planejamento 18%</span>
+    <span class="tag amber">3 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-3',this)">📋 Resumo</button>
+    <button class="btn-toggle" onclick="togglePanel('quiz-3',this)">🧠 Quiz — 6 questões</button>
+  </div>
+  <div class="panel" id="resumo-3">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste episódio</div>
+      <ul class="resumo-list">
+        <li><strong>Processo de avaliação de riscos:</strong> Identificar → Analisar (probabilidade × impacto) → Avaliar (comparar com critério) → Tratar. Deve ser consistente e reproduzível.</li>
+        <li><strong>Identificação:</strong> para cada ativo, quais ameaças e vulnerabilidades afetam CIA? Exemplos: ransomware, phishing, sw desatualizado, senha fraca.</li>
+        <li><strong>MECA — 4 opções de tratamento:</strong> Modificar (mitigar com controles) · Evitar (eliminar a atividade) · Compartilhar (seguros, terceirização) · Aceitar (decisão formal).</li>
+        <li><strong>Apetite vs critério de aceitação:</strong> apetite = posicionamento estratégico; critério = nível específico por risco individual. Critério é definido ANTES da avaliação.</li>
+        <li><strong>SoA (Declaração de Aplicabilidade):</strong> lista TODOS os 93 controles com: aplicável/excluído, justificativa, status. Exclusão por conveniência não é válida.</li>
+        <li><strong>PTR (Plano de Tratamento de Riscos):</strong> o quê, quem, quando, com quais recursos — para cada risco que exige tratamento.</li>
+        <li><strong>Frequência:</strong> avaliação de riscos deve ser periódica e sempre que ocorram mudanças significativas.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel" id="quiz-3">
+    <div class="panel-inner">
+      <div id="quiz-3-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EP 4 ═══ -->
+<div class="card" id="card-4">
+  <div class="card-header">
+    <div class="ep-num">4</div>
+    <div class="card-meta">
+      <h2>Implementação: Suporte e Operação</h2>
+      <div class="topics">Recursos · Competência e evidências · Conscientização · Documentos vs registros · Documentos obrigatórios · Controle de mudanças · Terceiros</div>
+    </div>
+    <div class="duration">9:30</div>
+  </div>
+  <div class="player" data-ep="4" data-src="04-epis-dio-4-implementa-o-suporte-e-opera-o.mp3">
+    <button class="pp" aria-label="Tocar ou pausar episódio 4">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no episódio 4">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-4',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-4',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-4',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-4',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag green">D4 Implementação 18%</span>
+    <span class="tag amber">3 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-4',this)">📋 Resumo</button>
+    <button class="btn-toggle" onclick="togglePanel('quiz-4',this)">🧠 Quiz — 6 questões</button>
+  </div>
+  <div class="panel" id="resumo-4">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste episódio</div>
+      <ul class="resumo-list">
+        <li><strong>Cláusula 7 — Suporte:</strong> recursos (financeiro, pessoas, tempo), competência com evidências, conscientização de todos, comunicação planejada.</li>
+        <li><strong>Documentos vs registros:</strong> documentos = políticas e procedimentos que a org. mantém; registros = evidências de atividades realizadas (comprovantes de treinamento, relatórios de auditoria).</li>
+        <li><strong>Documentos obrigatórios (principais):</strong> escopo, política de SI, processo de avaliação e tratamento de riscos, SoA, PTR, objetivos de SI, evidências de competência, resultados de auditorias e revisões pela direção.</li>
+        <li><strong>Controle de acesso à documentação:</strong> o SGSI aplica segurança nos próprios documentos — o processo de avaliação de riscos pode ser confidencial.</li>
+        <li><strong>Cláusula 8 — Operação:</strong> implementar controles, executar avaliação periódica de riscos, controlar mudanças, gerenciar processos terceirizados.</li>
+        <li><strong>Controle de mudanças:</strong> toda mudança significativa deve ser avaliada quanto ao impacto na segurança antes de ser implementada.</li>
+        <li><strong>Terceiros:</strong> terceirizar execução não transfere responsabilidade pelo SGSI. Acordos formais de segurança são obrigatórios.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel" id="quiz-4">
+    <div class="panel-inner">
+      <div id="quiz-4-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EP 5 ═══ -->
+<div class="card" id="card-5">
+  <div class="card-header">
+    <div class="ep-num">5</div>
+    <div class="card-meta">
+      <h2>Monitoramento, Auditoria e Melhoria</h2>
+      <div class="topics">Métricas · MTTD e MTTR · Auditoria interna · 1ª 2ª 3ª parte · Revisão pela direção · Correção vs ação corretiva · Causa raiz</div>
+    </div>
+    <div class="duration">9:54</div>
+  </div>
+  <div class="player" data-ep="5" data-src="05-epis-dio-5-monitoramento-auditoria-e-melhoria.mp3">
+    <button class="pp" aria-label="Tocar ou pausar episódio 5">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no episódio 5">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-5',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-5',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-5',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-5',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag green">D5 Monitoramento 14%</span>
+    <span class="tag green">D6 Melhoria 10%</span>
+    <span class="tag amber">3 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-5',this)">📋 Resumo</button>
+    <button class="btn-toggle" onclick="togglePanel('quiz-5',this)">🧠 Quiz — 6 questões</button>
+  </div>
+  <div class="panel" id="resumo-5">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste episódio</div>
+      <ul class="resumo-list">
+        <li><strong>Monitoramento (cláusula 9.1):</strong> determinar o que medir, como, quando e quem analisa. Métricas objetivas e mensuráveis são obrigatórias.</li>
+        <li><strong>Métricas-chave:</strong> incidentes/mês, MTTD (tempo médio para detectar), MTTR (tempo médio para responder/recuperar), % treinados, vulnerabilidades em aberto por criticidade.</li>
+        <li><strong>Auditoria interna (cláusula 9.2):</strong> em intervalos planejados, imparcial (auditor não audita seu próprio trabalho). Resultado: relatório com conformidades, não conformidades e observações.</li>
+        <li><strong>Tipos de auditoria:</strong> 1ª parte = interna; 2ª parte = cliente audita fornecedor; 3ª parte = organismo independente (certificação).</li>
+        <li><strong>Revisão pela direção (cláusula 9.3):</strong> conduzida pela alta direção. Entradas: auditorias, métricas, feedback, status dos objetivos. Saídas obrigatórias: decisões de melhoria e necessidades de recursos.</li>
+        <li><strong>Correção vs ação corretiva:</strong> correção = trata o sintoma imediato; ação corretiva = elimina a causa raiz para que não se repita.</li>
+        <li><strong>Melhoria contínua (cláusula 10):</strong> o SGSI deve melhorar continuamente. Fontes: incidentes, auditorias, revisões pela direção, sugestões, tendências.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel" id="quiz-5">
+    <div class="panel-inner">
+      <div id="quiz-5-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EP 6 ═══ -->
+<div class="card" id="card-6">
+  <div class="card-header">
+    <div class="ep-num">6</div>
+    <div class="card-meta">
+      <h2>Anexo A: Os 93 Controles da ISO 27002:2022</h2>
+      <div class="topics">OPFT · Organizacional (37) · Pessoas (8) · Físico (14) · Tecnológico (34) · 11 controles novos · Menor privilégio · Revisão geral CIA, PDCA, MECA</div>
+    </div>
+    <div class="duration">10:00</div>
+  </div>
+  <div class="player" data-ep="6" data-src="06-epis-dio-6-anexo-a-os-93-controles-da-iso-27002-2022.mp3">
+    <button class="pp" aria-label="Tocar ou pausar episódio 6">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no episódio 6">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-6',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-6',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-6',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-6',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag purple">D7 Anexo A 18%</span>
+    <span class="tag purple">Revisão geral</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-6',this)">📋 Resumo</button>
+    <button class="btn-toggle" onclick="togglePanel('quiz-6',this)">🧠 Quiz — 6 questões</button>
+  </div>
+  <div class="panel" id="resumo-6">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste episódio</div>
+      <ul class="resumo-list">
+        <li><strong>Estrutura do Anexo A 2022:</strong> 4 temas (OPFT), 93 controles. Versão 2013 tinha 114 controles em 14 domínios.</li>
+        <li><strong>Organizacional (A.5, 37 controles):</strong> inventário de ativos com proprietários, classificação e rotulagem, controle de acesso (menor privilégio), cadeia de fornecimento, continuidade.</li>
+        <li><strong>Pessoas (A.6, 8 controles):</strong> triagem antes da contratação, termos de emprego com obrigações de SI, treinamento contínuo, processo disciplinar, revogação de acesso no desligamento, canal de reporte de incidentes.</li>
+        <li><strong>Físico (A.7, 14 controles):</strong> perímetros de segurança, controle de acesso físico, mesa e tela limpa, descarte seguro de equipamentos, monitoramento físico.</li>
+        <li><strong>Tecnológico (A.8, 34 controles):</strong> autenticação multifator, gestão de vulnerabilidades técnicas, logs e monitoramento, backup, criptografia, desenvolvimento seguro.</li>
+        <li><strong>11 controles novos (2022):</strong> inteligência de ameaças, SI para nuvem, preparação de TIC para continuidade, DLP, codificação segura, mascaramento de dados, monitoramento de atividades, entre outros.</li>
+        <li><strong>Revisão geral:</strong> CIA, PDCA, MECA, OPFT e os números 93 / 4 temas / 11 novos / 3 anos de certificado.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel" id="quiz-6">
+    <div class="panel-inner">
+      <div id="quiz-6-body"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-head">
+  <h2>🎙️ Perguntas e respostas</h2>
+  <p>Treino de recordação ativa: ouça a pergunta, <strong>responda em voz alta durante o silêncio</strong> e confira com a resposta. As perguntas difíceis voltam mais adiante no mesmo capítulo.</p>
+</div>
+<!-- QA:START -->
+<div class="card" id="card-101">
+  <div class="card-header">
+    <div class="ep-num qa">P1</div>
+    <div class="card-meta">
+      <h2>Fundamentos de segurança da informação</h2>
+      <div class="topics">Tríade CIA · Ativo, ameaça, vulnerabilidade, risco · Família ISO 27000 · PDCA · Tipos de controle</div>
+    </div>
+    <div class="duration">7:55</div>
+  </div>
+  <div class="player" data-ep="101" data-label="P1" data-src="p01-fundamentos.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P1">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P1">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-101',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-101',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-101',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-101',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag ">D1 Fundamentos 12%</span>
+    <span class="tag green">15 perguntas</span>
+    <span class="tag amber">7 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-101',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-101">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>Quais são as três propriedades da tríade CIA?</summary><p><strong>Confidencialidade, integridade e disponibilidade.</strong> Confidencialidade é só quem pode acessa. Integridade é a informação exata e completa. Disponibilidade é acessível quando necessário.</p></details></li>
+        <li><details><summary>Um analista altera, sem autorização, o valor de um salário na planilha da folha de pagamento. Nada vazou e o sistema não caiu. Qual propriedade foi comprometida?</summary><p><strong>Integridade.</strong> Alteração indevida afeta a exatidão da informação. Não houve divulgação, então não é confidencialidade.</p></details></li>
+        <li><details><summary>Como se chama a fraqueza de um ativo ou de um controle que pode ser explorada?</summary><p><strong>Vulnerabilidade.</strong> Um servidor sem atualização é uma vulnerabilidade. Quem pode explorá-la é a ameaça.</p></details></li>
+        <li><details><summary>E como se chama a causa potencial de um incidente indesejado?</summary><p><strong>Ameaça.</strong> Um grupo criminoso, um incêndio ou um funcionário descuidado são ameaças. A ameaça explora a vulnerabilidade.</p></details></li>
+        <li><details><summary>Pela ISO 27000, qual é a definição de risco?</summary><p><strong>O efeito da incerteza sobre os objetivos.</strong> Na prática, em segurança da informação, o risco é medido combinando a probabilidade de um evento com a sua consequência.</p></details></li>
+        <li><details><summary>Qual norma da família ISO 27000 é certificável?</summary><p><strong>A ISO 27001.</strong> Só ela traz requisitos obrigatórios. As outras são guias e orientações.</p></details></li>
+        <li><details><summary>Qual é o papel da ISO 27002?</summary><p><strong>Guia de implementação dos controles.</strong> Ela detalha os noventa e três controles do Anexo A, com orientações. Ninguém se certifica na 27002.</p></details></li>
+        <li><details><summary>E qual norma da família orienta a gestão de riscos de segurança da informação?</summary><p><strong>A ISO 27005.</strong> Ela é orientação, não requisito. A 27001 exige um processo de riscos, mas não obriga a usar a 27005.</p></details></li>
+        <li><details><summary>O que significa a sigla SGSI?</summary><p><strong>Sistema de gestão de segurança da informação.</strong> É o conjunto de políticas, processos, pessoas e controles que a organização usa para gerir os riscos à informação. Não é um software nem um departamento.</p></details></li>
+        <li><details><summary>Quais são as quatro fases do ciclo PDCA?</summary><p><strong>Planejar, fazer, verificar e agir.</strong> O SGSI é um ciclo de melhoria contínua, não um projeto com fim.</p></details></li>
+        <li><details><summary>Em qual fase do PDCA fica a auditoria interna?</summary><p><strong>Verificar.</strong> Auditoria, monitoramento e análise crítica pela direção são as atividades de verificação.</p></details></li>
+        <li><details><summary>Quanto ao tipo, a ISO 27002 classifica os controles em três categorias. Quais?</summary><p><strong>Preventivo, detectivo e corretivo.</strong> Preventivo evita o incidente. Detectivo percebe que ele aconteceu. Corretivo repara o dano.</p></details></li>
+        <li><details><summary>O backup é um controle preventivo, detectivo ou corretivo?</summary><p><strong>Corretivo.</strong> Ele atua depois do incidente, restaurando a informação perdida.</p></details></li>
+        <li><details><summary>Verdadeiro ou falso: segurança da informação é a mesma coisa que segurança de TI.</summary><p><strong>Falso.</strong> Segurança da informação cobre a informação em qualquer forma: papel, conversa, conhecimento das pessoas. Segurança de TI é só a parte tecnológica.</p></details></li>
+        <li><details><summary>Um ataque de ransomware cifra o servidor de arquivos e a equipe fica dois dias sem acessar os documentos. Qual propriedade foi a principal afetada?</summary><p><strong>Disponibilidade.</strong> A informação deixou de estar acessível quando necessária. Se os dados também tivessem sido roubados, haveria perda de confidencialidade.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-102">
+  <div class="card-header">
+    <div class="ep-num qa">P2</div>
+    <div class="card-meta">
+      <h2>Iniciação, contexto, liderança e escopo</h2>
+      <div class="topics">Gap analysis · Cláusula 4 contexto e partes interessadas · Escopo · Cláusula 5 liderança, política e papéis</div>
+    </div>
+    <div class="duration">7:28</div>
+  </div>
+  <div class="player" data-ep="102" data-label="P2" data-src="p02-contexto-lideranca-escopo.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P2">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P2">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-102',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-102',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-102',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-102',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag ">D2 Iniciação 10% · D3 cláusulas 4 e 5</span>
+    <span class="tag green">13 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-102',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-102">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>No começo do projeto, que atividade compara a situação atual da organização com os requisitos da norma?</summary><p><strong>A gap analysis, ou análise de lacunas.</strong> Ela mostra a distância até a conformidade e alimenta o plano do projeto. Não é avaliação de riscos nem auditoria.</p></details></li>
+        <li><details><summary>Qual é o fator crítico de sucesso número um de um projeto de SGSI?</summary><p><strong>O comprometimento da alta direção.</strong> Sem patrocínio da direção não há recursos, autoridade nem prioridade. A cláusula 5 inteira trata disso.</p></details></li>
+        <li><details><summary>O que a cláusula 4.1 manda a organização determinar?</summary><p><strong>As questões internas e externas relevantes.</strong> São os fatores que afetam a capacidade do SGSI de atingir seus resultados: mercado, leis, cultura, tecnologia, estrutura interna.</p></details></li>
+        <li><details><summary>E a cláusula 4.2 trata de quem?</summary><p><strong>Das partes interessadas e seus requisitos.</strong> Clientes, reguladores, fornecedores, funcionários, acionistas. Na versão 2022, a organização também decide quais desses requisitos serão tratados pelo SGSI.</p></details></li>
+        <li><details><summary>Ao definir o escopo, na cláusula 4.3, a organização considera o contexto, as partes interessadas e mais uma coisa. Qual?</summary><p><strong>As interfaces e dependências com outras organizações.</strong> Ou seja, o que entra e sai da fronteira do SGSI: fornecedores, nuvem, outras unidades do grupo.</p></details></li>
+        <li><details><summary>Verdadeiro ou falso: o escopo do SGSI precisa estar disponível como informação documentada.</summary><p><strong>Verdadeiro.</strong> O escopo aparece inclusive no certificado. Um escopo vago ou estreito demais é um achado clássico de auditoria.</p></details></li>
+        <li><details><summary>Como se chama a estrutura comum de cláusulas que a ISO 27001 compartilha com a 9001 e a 14001?</summary><p><strong>Estrutura de alto nível, do Annex SL.</strong> Por isso as cláusulas de quatro a dez têm os mesmos títulos nas normas de sistema de gestão, o que facilita sistemas integrados.</p></details></li>
+        <li><details><summary>Quem estabelece a política de segurança da informação?</summary><p><strong>A alta direção.</strong> Cláusula 5.2. O CISO pode redigir, mas a responsabilidade de estabelecer e aprovar é da alta direção.</p></details></li>
+        <li><details><summary>A política de segurança precisa conter dois comprometimentos. Um é satisfazer os requisitos aplicáveis. Qual é o outro?</summary><p><strong>A melhoria contínua do SGSI.</strong> Além disso, ela deve ser apropriada ao propósito da organização e dar uma estrutura para os objetivos de segurança.</p></details></li>
+        <li><details><summary>A direção decide que a política de segurança só precisa ser conhecida pela equipe de TI. Isso atende à norma?</summary><p><strong>Não atende.</strong> A política deve ser comunicada dentro de toda a organização e estar disponível às partes interessadas, conforme apropriado.</p></details></li>
+        <li><details><summary>O que a cláusula 5.3 exige da alta direção?</summary><p><strong>Atribuir e comunicar responsabilidades e autoridades.</strong> Em especial, alguém responsável por garantir a conformidade do SGSI com a norma e por relatar o desempenho à alta direção.</p></details></li>
+        <li><details><summary>A alta direção pode delegar a responsabilização final pelo SGSI ao CISO?</summary><p><strong>Não. Delega tarefas, não a responsabilização.</strong> A autoridade para executar pode ser delegada. A prestação de contas pelo SGSI continua sendo da alta direção.</p></details></li>
+        <li><details><summary>Qual é a diferença entre estar em conformidade e ser certificado?</summary><p><strong>Certificação é a conformidade atestada por um organismo independente acreditado.</strong> Uma organização pode seguir a norma sem se certificar. A certificação exige auditoria de terceira parte.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-103">
+  <div class="card-header">
+    <div class="ep-num qa">P3</div>
+    <div class="card-meta">
+      <h2>Avaliação e tratamento de riscos, SoA e objetivos</h2>
+      <div class="topics">Cláusula 6.1.2 avaliação · 6.1.3 tratamento · MECA · SoA · Plano de tratamento · Risco residual · Objetivos 6.2</div>
+    </div>
+    <div class="duration">7:58</div>
+  </div>
+  <div class="player" data-ep="103" data-label="P3" data-src="p03-riscos-soa.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P3">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P3">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-103',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-103',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-103',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-103',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag ">D3 Planejamento 18%</span>
+    <span class="tag green">15 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-103',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-103">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>Quais são as três etapas da avaliação de riscos na cláusula 6.1.2?</summary><p><strong>Identificar, analisar e avaliar.</strong> Identificar os riscos e seus proprietários. Analisar probabilidade e consequência. Avaliar comparando com os critérios e priorizar.</p></details></li>
+        <li><details><summary>Antes de avaliar qualquer risco, a organização precisa estabelecer dois tipos de critério. Quais?</summary><p><strong>Critérios de aceitação de risco e critérios para realizar as avaliações.</strong> Sem critérios definidos antes, a avaliação vira opinião. Eles garantem resultados consistentes e comparáveis.</p></details></li>
+        <li><details><summary>A norma exige que avaliações de risco repetidas produzam resultados com três qualidades. Quais?</summary><p><strong>Consistentes, válidos e comparáveis.</strong> É por isso que a metodologia precisa ser documentada e aplicada do mesmo jeito por todos.</p></details></li>
+        <li><details><summary>Quais são as quatro opções de tratamento de risco? Use a sigla MECA.</summary><p><strong>Modificar, evitar, compartilhar e aceitar.</strong> Modificar é aplicar controles. Evitar é abandonar a atividade. Compartilhar é seguro ou terceirização. Aceitar é reter o risco de forma consciente.</p></details></li>
+        <li><details><summary>A empresa contrata um seguro cibernético. Qual opção de tratamento é essa?</summary><p><strong>Compartilhar.</strong> Parte da consequência financeira passa para a seguradora. A responsabilidade pelo risco continua da organização.</p></details></li>
+        <li><details><summary>A empresa decide não lançar um serviço porque o risco de vazamento é alto demais. Qual opção é essa?</summary><p><strong>Evitar.</strong> Evitar é eliminar a atividade que gera o risco.</p></details></li>
+        <li><details><summary>Quem aprova o plano de tratamento de riscos e aceita os riscos residuais?</summary><p><strong>Os proprietários dos riscos.</strong> Cláusula 6.1.3. Não é o auditor, nem necessariamente o CISO. É quem tem autoridade e responsabilização sobre aquele risco.</p></details></li>
+        <li><details><summary>Como se chama o risco que permanece depois do tratamento?</summary><p><strong>Risco residual.</strong> Ele precisa ser aceito formalmente pelo proprietário do risco. Risco zero não existe.</p></details></li>
+        <li><details><summary>O que significa SoA?</summary><p><strong>Declaração de aplicabilidade.</strong> É o documento que liga a avaliação de riscos aos controles. É um dos documentos mais examinados na auditoria.</p></details></li>
+        <li><details><summary>A SoA tem quatro conteúdos obrigatórios. Os controles necessários e a justificativa de inclusão são dois. Quais são os outros dois?</summary><p><strong>Se estão implementados, e a justificativa das exclusões do Anexo A.</strong> Todo controle do Anexo A aparece na SoA, incluído ou excluído, sempre com justificativa.</p></details></li>
+        <li><details><summary>Falta de orçamento é justificativa válida para excluir um controle na SoA?</summary><p><strong>Não.</strong> A exclusão só se justifica quando o risco não existe no escopo. Se o controle é necessário mas ainda não foi implementado, ele entra na SoA como planejado.</p></details></li>
+        <li><details><summary>Verdadeiro ou falso: a organização é obrigada a implementar todos os noventa e três controles do Anexo A.</summary><p><strong>Falso.</strong> Ela é obrigada a comparar seus controles com o Anexo A para não esquecer nada, e a justificar as exclusões. Também pode usar controles de outras fontes.</p></details></li>
+        <li><details><summary>Os objetivos de segurança da informação devem ser mensuráveis sempre?</summary><p><strong>Mensuráveis quando praticável.</strong> Cláusula 6.2. Devem também ser coerentes com a política, monitorados, comunicados, atualizados e documentados.</p></details></li>
+        <li><details><summary>Ao planejar como atingir um objetivo, a norma pede cinco definições: o que será feito, com quais recursos, quem é o responsável, e mais duas. Quais?</summary><p><strong>Quando será concluído e como os resultados serão avaliados.</strong> É o básico de um plano de ação: o quê, recursos, quem, quando e como medir.</p></details></li>
+        <li><details><summary>Qual cláusula nova da versão 2022 trata do planejamento de mudanças no SGSI?</summary><p><strong>A cláusula 6.3.</strong> Mudanças no SGSI devem ser feitas de forma planejada.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-104">
+  <div class="card-header">
+    <div class="ep-num qa">P4</div>
+    <div class="card-meta">
+      <h2>Misto 1: fundamentos, contexto e riscos</h2>
+      <div class="topics">Cenários curtos misturando tríade CIA, família de normas, contexto, liderança, riscos e SoA</div>
+    </div>
+    <div class="duration">7:54</div>
+  </div>
+  <div class="player" data-ep="104" data-label="P4" data-src="p04-misto-1.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P4">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P4">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-104',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-104',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-104',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-104',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag purple">Temas misturados · D1 D2 D3</span>
+    <span class="tag green">15 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-104',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-104">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>Um notebook sem criptografia é furtado com dados de clientes. Qual propriedade foi comprometida em primeiro lugar?</summary><p><strong>Confidencialidade.</strong> Os dados ficaram expostos a quem não tem autorização. Se era a única cópia, houve também perda de disponibilidade.</p></details></li>
+        <li><details><summary>Nesse mesmo caso, a falta de criptografia no disco é ameaça, vulnerabilidade ou risco?</summary><p><strong>Vulnerabilidade.</strong> A ameaça é o ladrão. O risco é a combinação da chance do furto com o impacto do vazamento.</p></details></li>
+        <li><details><summary>O gerente de TI quer aceitar um risco alto no sistema financeiro, mas o proprietário desse risco é o diretor financeiro. Quem decide?</summary><p><strong>O diretor financeiro, que é o proprietário do risco.</strong> Aceitar o risco residual é atribuição do proprietário do risco, não da área técnica.</p></details></li>
+        <li><details><summary>Um consultor oferece certificar a empresa na ISO 27002. O que há de errado?</summary><p><strong>A 27002 não é certificável. Só a 27001.</strong> A 27002 é guia de controles, sem requisitos obrigatórios.</p></details></li>
+        <li><details><summary>A empresa usa um provedor de nuvem para hospedar o sistema que está no escopo. Onde isso deve aparecer ao definir o escopo?</summary><p><strong>Nas interfaces e dependências.</strong> Cláusula 4.3. O provedor fica fora da fronteira, mas a dependência precisa ser reconhecida e controlada.</p></details></li>
+        <li><details><summary>O CISO redigiu a política de segurança e ele mesmo aprovou e publicou. Qual é o problema?</summary><p><strong>A política deve ser estabelecida pela alta direção.</strong> Cláusula 5.2. Sem o envolvimento da direção, falta evidência de liderança e comprometimento.</p></details></li>
+        <li><details><summary>A empresa terceiriza o data center para reduzir sua exposição. Qual opção da MECA é essa?</summary><p><strong>Compartilhar.</strong> Terceirização e seguro são as formas típicas de compartilhar o risco.</p></details></li>
+        <li><details><summary>O que vem primeiro: a declaração de aplicabilidade ou a avaliação de riscos?</summary><p><strong>A avaliação de riscos.</strong> A SoA é consequência do tratamento de riscos. Escolher controles antes de avaliar riscos é um erro clássico.</p></details></li>
+        <li><details><summary>A avaliação de riscos pertence a qual fase do PDCA?</summary><p><strong>Planejar.</strong> As cláusulas 4, 5, 6 e 7 compõem o planejar. A 8 é o fazer, a 9 é o verificar e a 10 é o agir.</p></details></li>
+        <li><details><summary>Quais cláusulas da ISO 27001 contêm os requisitos auditáveis?</summary><p><strong>As cláusulas de quatro a dez.</strong> As cláusulas de zero a três são introdução, escopo da norma, referências e termos.</p></details></li>
+        <li><details><summary>Uma organização pode excluir alguma das cláusulas de quatro a dez para se certificar?</summary><p><strong>Não. Nenhuma.</strong> Exclusão só é possível para controles do Anexo A, e com justificativa. As cláusulas de quatro a dez são todas obrigatórias.</p></details></li>
+        <li><details><summary>Dois analistas avaliam o mesmo risco e chegam a níveis totalmente diferentes. Qual requisito provavelmente está falhando?</summary><p><strong>Os critérios e a metodologia de avaliação de riscos.</strong> A norma exige resultados consistentes, válidos e comparáveis. Isso depende de critérios definidos e documentados.</p></details></li>
+        <li><details><summary>Um novo regulamento de proteção de dados entra em vigor. Em qual cláusula isso entra primeiro no SGSI?</summary><p><strong>Na cláusula 4, contexto e partes interessadas.</strong> É uma questão externa e um requisito de parte interessada, o regulador. Depois pode gerar novos riscos e controles.</p></details></li>
+        <li><details><summary>Um sistema que alerta quando alguém tenta várias senhas erradas é um controle de que tipo?</summary><p><strong>Detectivo.</strong> Ele percebe o evento. Se bloqueasse a conta automaticamente, teria também um efeito preventivo.</p></details></li>
+        <li><details><summary>A empresa passa a usar assinatura digital nos contratos para garantir que não foram alterados. Qual propriedade ela está protegendo?</summary><p><strong>Integridade.</strong> A assinatura digital também dá autenticidade e não repúdio, mas a proteção contra alteração é integridade.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-105">
+  <div class="card-header">
+    <div class="ep-num qa">P5</div>
+    <div class="card-meta">
+      <h2>Suporte e operação</h2>
+      <div class="topics">Cláusula 7 recursos, competência, conscientização, comunicação, informação documentada · Cláusula 8 operação</div>
+    </div>
+    <div class="duration">8:15</div>
+  </div>
+  <div class="player" data-ep="105" data-label="P5" data-src="p05-suporte-operacao.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P5">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P5">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-105',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-105',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-105',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-105',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag ">D4 Implementação 18%</span>
+    <span class="tag green">14 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-105',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-105">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>A cláusula 7, suporte, tem cinco subcláusulas. Recursos e competência são duas. Quais são as outras três?</summary><p><strong>Conscientização, comunicação e informação documentada.</strong> Na ordem: 7.1 recursos, 7.2 competência, 7.3 conscientização, 7.4 comunicação e 7.5 informação documentada.</p></details></li>
+        <li><details><summary>O que a norma exige como prova de que uma pessoa é competente para a função?</summary><p><strong>Informação documentada como evidência da competência.</strong> Pode ser currículo, certificado, registro de treinamento ou avaliação. A norma não exige certificação específica.</p></details></li>
+        <li><details><summary>Pela cláusula 7.3, as pessoas precisam estar conscientes de três coisas. A política de segurança é uma. Quais são as outras duas?</summary><p><strong>A sua contribuição para o SGSI e as implicações de não cumprir os requisitos.</strong> Por isso o auditor entrevista funcionários comuns e pergunta sobre a política e sobre o papel deles.</p></details></li>
+        <li><details><summary>Qual é a diferença entre competência e conscientização?</summary><p><strong>Competência é saber fazer. Conscientização é saber por que importa.</strong> Competência vale para quem executa funções do SGSI. Conscientização vale para todos que trabalham sob o controle da organização.</p></details></li>
+        <li><details><summary>A cláusula 7.4 pede que a organização defina o que comunicar, quando, com quem e mais um elemento. Qual?</summary><p><strong>Como comunicar.</strong> Na versão 2022 são quatro perguntas: o quê, quando, com quem e como.</p></details></li>
+        <li><details><summary>Na norma, qual termo substituiu as antigas palavras documento e registro?</summary><p><strong>Informação documentada.</strong> Manter informação documentada equivale a documento. Reter informação documentada equivale a registro, ou seja, evidência.</p></details></li>
+        <li><details><summary>Uma filial usa a versão antiga de um procedimento enquanto a matriz já publicou outra. Qual requisito falhou?</summary><p><strong>O controle de informação documentada, cláusula 7.5.3.</strong> Ela cobre distribuição, acesso, armazenamento, controle de versões, retenção e descarte.</p></details></li>
+        <li><details><summary>Documentos de origem externa, como leis e manuais de fornecedores, precisam ser controlados?</summary><p><strong>Sim, quando necessários ao SGSI.</strong> A norma pede que sejam identificados e controlados como os demais.</p></details></li>
+        <li><details><summary>Em uma frase, o que a cláusula 8 exige?</summary><p><strong>Executar o que foi planejado na cláusula 6.</strong> Implementar os processos, realizar as avaliações de risco e executar o plano de tratamento, retendo evidências.</p></details></li>
+        <li><details><summary>Pela cláusula 8.2, em dois momentos a avaliação de riscos deve ser refeita. Quais?</summary><p><strong>Em intervalos planejados e quando ocorrerem mudanças significativas.</strong> Avaliação de riscos feita uma única vez, na implantação, é não conformidade.</p></details></li>
+        <li><details><summary>O que a cláusula 8.1 exige sobre processos, produtos e serviços fornecidos externamente?</summary><p><strong>Que sejam controlados.</strong> Terceirizar não transfere a responsabilidade. A norma não exige que o fornecedor seja certificado.</p></details></li>
+        <li><details><summary>E o que a organização deve fazer diante de mudanças não intencionais?</summary><p><strong>Analisar as consequências e mitigar os efeitos adversos.</strong> Mudanças planejadas são controladas. As não planejadas têm suas consequências analisadas criticamente.</p></details></li>
+        <li><details><summary>Quem deve prover os recursos necessários ao SGSI?</summary><p><strong>A organização, com a alta direção assegurando que estejam disponíveis.</strong> A cláusula 7.1 fala dos recursos e a 5.1 coloca a disponibilidade deles como prova de liderança.</p></details></li>
+        <li><details><summary>Depois de treinar a equipe, o que mais a cláusula 7.2 pede?</summary><p><strong>Avaliar a eficácia das ações tomadas.</strong> Não basta lista de presença. É preciso verificar se a competência foi de fato adquirida.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-106">
+  <div class="card-header">
+    <div class="ep-num qa">P6</div>
+    <div class="card-meta">
+      <h2>Monitoramento, auditoria interna e análise crítica</h2>
+      <div class="topics">Cláusula 9.1 medição · 9.2 auditoria interna · 9.3 análise crítica pela direção · Indicadores</div>
+    </div>
+    <div class="duration">7:44</div>
+  </div>
+  <div class="player" data-ep="106" data-label="P6" data-src="p06-monitoramento-auditoria.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P6">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P6">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-106',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-106',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-106',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-106',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag ">D5 Monitoramento 14%</span>
+    <span class="tag green">14 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-106',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-106">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>A cláusula 9 tem três partes. Quais?</summary><p><strong>Monitoramento e medição, auditoria interna e análise crítica pela direção.</strong> São a 9.1, a 9.2 e a 9.3. Juntas formam o verificar do PDCA.</p></details></li>
+        <li><details><summary>Na cláusula 9.1, a organização define o que monitorar e medir, os métodos, quando fazer e quem faz. Faltam dois elementos. Quais?</summary><p><strong>Quando analisar os resultados e quem analisa.</strong> Medir sem analisar não serve. A norma separa quem mede de quem avalia os resultados.</p></details></li>
+        <li><details><summary>Os métodos de medição devem produzir resultados com duas qualidades. Quais?</summary><p><strong>Comparáveis e reproduzíveis.</strong> Só assim dá para acompanhar a tendência ao longo do tempo.</p></details></li>
+        <li><details><summary>O que mede o indicador MTTD?</summary><p><strong>O tempo médio para detectar um incidente.</strong> Seu par é o MTTR, tempo médio para responder ou recuperar.</p></details></li>
+        <li><details><summary>A auditoria interna verifica duas coisas. Uma é se o SGSI está conforme os requisitos. Qual é a outra?</summary><p><strong>Se está eficazmente implementado e mantido.</strong> Os requisitos são os da norma e também os da própria organização.</p></details></li>
+        <li><details><summary>O responsável pelo processo de backup foi escalado para auditar o próprio processo. Qual requisito é violado?</summary><p><strong>Objetividade e imparcialidade do auditor.</strong> Ninguém audita o próprio trabalho. A norma não exige auditor externo, só independência em relação ao que é auditado.</p></details></li>
+        <li><details><summary>Com que frequência a norma manda fazer auditoria interna?</summary><p><strong>Em intervalos planejados. Não há prazo fixo.</strong> Na prática, o ciclo costuma cobrir todo o escopo em um ano, e a certificadora espera ao menos uma auditoria completa antes da certificação.</p></details></li>
+        <li><details><summary>O programa de auditoria deve levar em conta dois fatores. Um é a importância dos processos. Qual é o outro?</summary><p><strong>Os resultados das auditorias anteriores.</strong> Áreas críticas e áreas com histórico de problemas são auditadas com mais frequência.</p></details></li>
+        <li><details><summary>Auditoria de primeira parte é a interna. O que é uma auditoria de segunda parte?</summary><p><strong>A feita por um cliente ou parte interessada em um fornecedor.</strong> A de terceira parte é a do organismo de certificação independente.</p></details></li>
+        <li><details><summary>Quem conduz a análise crítica do SGSI prevista na cláusula 9.3?</summary><p><strong>A alta direção.</strong> Em intervalos planejados, para assegurar que o SGSI continua adequado, suficiente e eficaz.</p></details></li>
+        <li><details><summary>Cite três entradas obrigatórias da análise crítica pela direção.</summary><p><strong>Ações de análises anteriores, resultados de auditoria e resultados da avaliação de riscos.</strong> Também entram mudanças no contexto e nas partes interessadas, não conformidades, medições, objetivos, retorno das partes interessadas e oportunidades de melhoria.</p></details></li>
+        <li><details><summary>E quais são as saídas da análise crítica?</summary><p><strong>Decisões sobre melhoria contínua e sobre mudanças no SGSI.</strong> As saídas devem ficar como informação documentada. A ata da reunião é a evidência clássica.</p></details></li>
+        <li><details><summary>Verdadeiro ou falso: os resultados de monitoramento, das auditorias e da análise crítica precisam ser retidos como informação documentada.</summary><p><strong>Verdadeiro.</strong> As três subcláusulas da nove exigem evidência documentada.</p></details></li>
+        <li><details><summary>Um auditor interno precisa ser Lead Auditor certificado?</summary><p><strong>Não. Precisa ser competente e imparcial.</strong> A organização define a competência necessária e guarda evidência dela.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-107">
+  <div class="card-header">
+    <div class="ep-num qa">P7</div>
+    <div class="card-meta">
+      <h2>Melhoria e processo de certificação</h2>
+      <div class="topics">Cláusula 10 · Correção vs ação corretiva · Causa raiz · Estágios 1 e 2 · NC maior e menor · Ciclo de 3 anos</div>
+    </div>
+    <div class="duration">7:24</div>
+  </div>
+  <div class="player" data-ep="107" data-label="P7" data-src="p07-melhoria-certificacao.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P7">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P7">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-107',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-107',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-107',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-107',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag ">D6 Melhoria 10% · Certificação</span>
+    <span class="tag green">15 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-107',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-107">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>O que é uma não conformidade?</summary><p><strong>O não atendimento a um requisito.</strong> O requisito pode vir da norma, da lei, de contrato ou das regras da própria organização.</p></details></li>
+        <li><details><summary>Qual é a diferença entre correção e ação corretiva?</summary><p><strong>Correção elimina o problema detectado. Ação corretiva elimina a causa.</strong> Desativar a conta esquecida é correção. Mudar o processo de desligamento para não acontecer de novo é ação corretiva.</p></details></li>
+        <li><details><summary>A ISO 27001 atual ainda usa o termo ação preventiva?</summary><p><strong>Não.</strong> A prevenção passou a ser tratada pelo planejamento baseado em riscos, na cláusula 6.1.</p></details></li>
+        <li><details><summary>Depois de reagir a uma não conformidade e corrigi-la, qual é o próximo passo exigido?</summary><p><strong>Avaliar a necessidade de eliminar as causas.</strong> Isso inclui analisar a não conformidade, determinar suas causas e verificar se existem casos similares.</p></details></li>
+        <li><details><summary>Depois de implementar a ação corretiva, o que ainda falta fazer?</summary><p><strong>Analisar criticamente a eficácia da ação.</strong> Se o problema voltar, a causa raiz não foi eliminada. Se necessário, o SGSI também é alterado.</p></details></li>
+        <li><details><summary>As ações corretivas devem ser proporcionais a quê?</summary><p><strong>Aos efeitos das não conformidades encontradas.</strong> Um desvio pequeno não pede um projeto gigante.</p></details></li>
+        <li><details><summary>Cite uma técnica clássica de análise de causa raiz.</summary><p><strong>Os cinco porquês.</strong> Outra muito usada é o diagrama de Ishikawa, ou espinha de peixe.</p></details></li>
+        <li><details><summary>A melhoria contínua busca aprimorar três características do SGSI. Quais?</summary><p><strong>Pertinência, adequação e eficácia.</strong> É a cláusula 10.1 na versão 2022.</p></details></li>
+        <li><details><summary>Na auditoria de certificação, qual é o foco do estágio um?</summary><p><strong>A documentação e a prontidão para o estágio dois.</strong> O auditor revê escopo, política, avaliação de riscos, SoA e confirma se já houve auditoria interna e análise crítica.</p></details></li>
+        <li><details><summary>E o foco do estágio dois?</summary><p><strong>A implementação e a eficácia do SGSI.</strong> É feito no local, com entrevistas, amostragem de registros e verificação de controles.</p></details></li>
+        <li><details><summary>O que caracteriza uma não conformidade maior?</summary><p><strong>Falha total de um requisito ou dúvida séria sobre a eficácia do SGSI.</strong> Por exemplo, não ter feito nenhuma auditoria interna. A não conformidade maior impede a certificação até ser resolvida.</p></details></li>
+        <li><details><summary>E uma não conformidade menor impede a certificação?</summary><p><strong>Não. Exige plano de ação corretiva.</strong> É uma falha pontual que não compromete o sistema. Várias menores sobre o mesmo requisito podem virar uma maior.</p></details></li>
+        <li><details><summary>Qual é a validade do certificado ISO 27001?</summary><p><strong>Três anos.</strong> Com auditorias de supervisão anuais e auditoria de recertificação antes do fim do terceiro ano.</p></details></li>
+        <li><details><summary>Como se chama a auditoria anual feita durante a validade do certificado?</summary><p><strong>Auditoria de supervisão, ou de manutenção.</strong> Ela cobre uma amostra do sistema e sempre olha auditoria interna, análise crítica, ações corretivas e mudanças.</p></details></li>
+        <li><details><summary>Até quando os certificados da versão 2013 precisavam migrar para a versão 2022?</summary><p><strong>Até trinta e um de outubro de 2025.</strong> Foram três anos de transição a partir da publicação da nova versão, em outubro de 2022.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-108">
+  <div class="card-header">
+    <div class="ep-num qa">P8</div>
+    <div class="card-meta">
+      <h2>Misto 2: implementação, monitoramento e melhoria</h2>
+      <div class="topics">Cenários de auditoria misturando suporte, operação, medição, auditoria interna, análise crítica e ação corretiva</div>
+    </div>
+    <div class="duration">8:26</div>
+  </div>
+  <div class="player" data-ep="108" data-label="P8" data-src="p08-misto-2.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P8">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P8">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-108',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-108',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-108',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-108',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag purple">Temas misturados · D4 D5 D6</span>
+    <span class="tag green">16 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-108',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-108">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>A única evidência do programa de conscientização é uma lista de presença de dois anos atrás. Qual é o problema principal?</summary><p><strong>Não há evidência de que as pessoas estão conscientes hoje.</strong> A cláusula 7.3 pede conscientização efetiva. O auditor testa isso entrevistando as pessoas.</p></details></li>
+        <li><details><summary>Na auditoria de certificação, descobre-se que a empresa nunca fez auditoria interna. Não conformidade maior ou menor?</summary><p><strong>Maior.</strong> É a ausência total de um requisito da cláusula 9.2.</p></details></li>
+        <li><details><summary>A direção discute segurança toda semana, mas não existe nenhum registro disso. Qual cláusula fica sem evidência?</summary><p><strong>A 9.3, análise crítica pela direção.</strong> Os resultados da análise crítica devem ser retidos como informação documentada.</p></details></li>
+        <li><details><summary>Um ex-funcionário ainda tinha acesso. A equipe bloqueia a conta na hora. Isso é correção ou ação corretiva?</summary><p><strong>Correção.</strong> A ação corretiva seria descobrir por que o processo de desligamento falhou e consertá-lo.</p></details></li>
+        <li><details><summary>A mesma não conformidade aparece em três auditorias internas seguidas. O que isso indica?</summary><p><strong>Que a causa raiz não foi eliminada.</strong> Também indica que a eficácia das ações corretivas não está sendo analisada, como pede a cláusula 10.2.</p></details></li>
+        <li><details><summary>O suporte do sistema principal é terceirizado e a empresa não faz nenhum acompanhamento do fornecedor. Qual cláusula é afetada?</summary><p><strong>A 8.1, controle de processos fornecidos externamente.</strong> No Anexo A, os controles de relacionamento com fornecedores reforçam o mesmo ponto.</p></details></li>
+        <li><details><summary>A empresa coleta vinte indicadores por mês e ninguém olha para eles. Qual parte da cláusula 9.1 falha?</summary><p><strong>A análise e avaliação dos resultados.</strong> A norma pede definir quando e por quem os resultados são analisados.</p></details></li>
+        <li><details><summary>O único auditor interno da empresa é o próprio gerente de segurança da informação. Como resolver sem contratar funcionário?</summary><p><strong>Usar um auditor de outra área ou um auditor externo contratado.</strong> O que importa é a independência em relação ao que é auditado.</p></details></li>
+        <li><details><summary>A última avaliação de riscos tem três anos e, desde então, a empresa migrou tudo para a nuvem. Qual requisito foi descumprido?</summary><p><strong>Refazer a avaliação quando há mudanças significativas.</strong> Cláusula 8.2: em intervalos planejados e a cada mudança significativa.</p></details></li>
+        <li><details><summary>O auditor da certificadora pede a SoA, a política e o relatório da auditoria interna, mas ainda não entrevista ninguém. Em que estágio ele está?</summary><p><strong>No estágio um.</strong> O estágio um avalia documentação e prontidão. As entrevistas e a amostragem vêm no estágio dois.</p></details></li>
+        <li><details><summary>O administrador de rede é ótimo, mas não existe nenhum registro de formação ou experiência dele. O que falta?</summary><p><strong>Evidência documentada de competência.</strong> Cláusula 7.2. A competência pode existir, mas sem evidência não é demonstrável.</p></details></li>
+        <li><details><summary>Circulam duas versões diferentes do mesmo procedimento. Qual subcláusula trata disso?</summary><p><strong>A 7.5.3, controle de informação documentada.</strong> Controle de alterações e de versão faz parte dela.</p></details></li>
+        <li><details><summary>A ação corretiva pertence a qual fase do PDCA?</summary><p><strong>Agir.</strong> A cláusula 10 é o agir. A 9 é o verificar.</p></details></li>
+        <li><details><summary>O retorno de clientes sobre segurança é entrada de qual atividade?</summary><p><strong>Da análise crítica pela direção.</strong> Retorno das partes interessadas é uma das entradas obrigatórias da 9.3.</p></details></li>
+        <li><details><summary>O auditor encontra seis não conformidades menores, todas sobre controle de acesso. O que ele pode fazer?</summary><p><strong>Agrupá-las em uma não conformidade maior.</strong> Muitas falhas pontuais no mesmo requisito indicam falha sistêmica.</p></details></li>
+        <li><details><summary>A empresa foi certificada há catorze meses e ainda não recebeu nenhuma visita da certificadora. Isso é normal?</summary><p><strong>Não. A supervisão é anual.</strong> A primeira auditoria de supervisão costuma ocorrer em até doze meses após a decisão de certificação.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-109">
+  <div class="card-header">
+    <div class="ep-num qa">P9</div>
+    <div class="card-meta">
+      <h2>Anexo A: estrutura, controles organizacionais e de pessoas</h2>
+      <div class="topics">93 controles · OPFT · Atributos · Novos controles 2022 · Tema organizacional A.5 · Tema pessoas A.6</div>
+    </div>
+    <div class="duration">7:59</div>
+  </div>
+  <div class="player" data-ep="109" data-label="P9" data-src="p09-anexo-a-estrutura-org-pessoas.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P9">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P9">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-109',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-109',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-109',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-109',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag ">D7 Anexo A 18%</span>
+    <span class="tag green">16 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-109',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-109">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>Quantos controles tem o Anexo A da ISO 27001 versão 2022?</summary><p><strong>Noventa e três.</strong> A versão 2013 tinha cento e catorze controles, em catorze domínios.</p></details></li>
+        <li><details><summary>Quais são os quatro temas do Anexo A? Use a sigla OPFT.</summary><p><strong>Organizacional, pessoas, físico e tecnológico.</strong> Correspondem às seções cinco, seis, sete e oito do Anexo A.</p></details></li>
+        <li><details><summary>Quantos controles tem cada tema, na ordem OPFT?</summary><p><strong>Trinta e sete, oito, catorze e trinta e quatro.</strong> Organizacional trinta e sete, pessoas oito, físico catorze, tecnológico trinta e quatro. Soma noventa e três.</p></details></li>
+        <li><details><summary>Quantos controles totalmente novos a versão 2022 trouxe?</summary><p><strong>Onze.</strong> Os demais foram mantidos, renomeados ou fundidos. Nenhum tema de segurança foi abandonado.</p></details></li>
+        <li><details><summary>A ISO 27002 de 2022 criou cinco atributos para classificar controles. Tipo de controle é um. Cite mais dois.</summary><p><strong>Propriedades de segurança da informação e conceitos de cibersegurança.</strong> Os outros dois são capacidades operacionais e domínios de segurança.</p></details></li>
+        <li><details><summary>O atributo conceitos de cibersegurança tem cinco valores. Quais?</summary><p><strong>Identificar, proteger, detectar, responder e recuperar.</strong> São as mesmas cinco funções do framework de cibersegurança do NIST.</p></details></li>
+        <li><details><summary>Qual controle novo trata de coletar e analisar informações sobre ameaças?</summary><p><strong>Inteligência de ameaças.</strong> É o controle 5.7, do tema organizacional.</p></details></li>
+        <li><details><summary>E qual controle novo trata de adquirir, usar e sair de serviços de terceiros pela internet?</summary><p><strong>Segurança da informação para uso de serviços em nuvem.</strong> É o controle 5.23. Inclui a estratégia de saída do provedor.</p></details></li>
+        <li><details><summary>Qual controle novo liga a TI à continuidade de negócios?</summary><p><strong>Prontidão de TIC para continuidade de negócios.</strong> Controle 5.30. É nele que entram os objetivos de tempo e de ponto de recuperação.</p></details></li>
+        <li><details><summary>Quem solicita um pagamento não pode ser quem aprova. Como se chama esse controle?</summary><p><strong>Segregação de funções.</strong> Controle 5.3, organizacional. Reduz o risco de fraude e de erro.</p></details></li>
+        <li><details><summary>Em que tema fica a classificação da informação?</summary><p><strong>No organizacional.</strong> Classificação é o controle 5.12 e rotulagem é o 5.13. Inventário de ativos e uso aceitável também são organizacionais.</p></details></li>
+        <li><details><summary>Gestão de incidentes de segurança fica em qual tema?</summary><p><strong>No organizacional.</strong> Dos controles 5.24 a 5.28: planejamento, avaliação de eventos, resposta, aprendizado e coleta de evidências.</p></details></li>
+        <li><details><summary>E o controle que obriga as pessoas a relatarem eventos de segurança, em qual tema está?</summary><p><strong>No tema pessoas.</strong> É o controle 6.8. A gestão do incidente é organizacional, mas o dever de relatar é das pessoas.</p></details></li>
+        <li><details><summary>Verificar antecedentes de um candidato antes de contratar é qual controle?</summary><p><strong>Seleção, do tema pessoas.</strong> Controle 6.1. Deve respeitar a lei e ser proporcional ao risco da função.</p></details></li>
+        <li><details><summary>Trabalho remoto é controle de qual tema?</summary><p><strong>Pessoas.</strong> Controle 6.7. Muita gente erra achando que é tecnológico.</p></details></li>
+        <li><details><summary>O tema pessoas tem oito controles. Cite quatro deles.</summary><p><strong>Seleção, termos de contratação, conscientização e treinamento, e processo disciplinar.</strong> Os outros são responsabilidades após o desligamento, acordos de confidencialidade, trabalho remoto e relato de eventos.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-110">
+  <div class="card-header">
+    <div class="ep-num qa">P10</div>
+    <div class="card-meta">
+      <h2>Anexo A: controles físicos e tecnológicos</h2>
+      <div class="topics">Tema físico A.7 · Tema tecnológico A.8 · Novos controles técnicos de 2022 · Classificação por tema e tipo</div>
+    </div>
+    <div class="duration">7:48</div>
+  </div>
+  <div class="player" data-ep="110" data-label="P10" data-src="p10-anexo-a-fisico-tecnologico.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P10">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P10">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-110',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-110',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-110',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-110',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag ">D7 Anexo A 18%</span>
+    <span class="tag green">16 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-110',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-110">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>Quantos controles tem o tema físico?</summary><p><strong>Catorze.</strong> Vão do 7.1, perímetros de segurança física, ao 7.14, descarte seguro de equipamentos.</p></details></li>
+        <li><details><summary>Mesa limpa e tela limpa é controle de qual tema?</summary><p><strong>Físico.</strong> Controle 7.7. Apesar de envolver comportamento, está no tema físico.</p></details></li>
+        <li><details><summary>O tema físico ganhou um único controle novo em 2022. Qual?</summary><p><strong>Monitoramento de segurança física.</strong> Controle 7.4: vigilância contínua das instalações, como câmeras e alarmes.</p></details></li>
+        <li><details><summary>Pen drives e discos externos são tratados por qual controle físico?</summary><p><strong>Mídias de armazenamento.</strong> Controle 7.10. Cobre o ciclo de vida: aquisição, uso, transporte e descarte.</p></details></li>
+        <li><details><summary>Antes de descartar ou reutilizar um equipamento, o que deve ser verificado?</summary><p><strong>Que dados sensíveis e software licenciado foram removidos ou sobrescritos.</strong> Controle 7.14, descarte seguro ou reutilização de equipamentos.</p></details></li>
+        <li><details><summary>Notebook usado fora da empresa é coberto por qual controle físico?</summary><p><strong>Segurança de ativos fora das instalações.</strong> Controle 7.9. Ele se combina com o controle tecnológico de dispositivos de usuário.</p></details></li>
+        <li><details><summary>Quantos controles tem o tema tecnológico?</summary><p><strong>Trinta e quatro.</strong> É o segundo maior tema, atrás do organizacional, que tem trinta e sete.</p></details></li>
+        <li><details><summary>Qual controle tecnológico restringe e gerencia contas de administrador?</summary><p><strong>Direitos de acesso privilegiado.</strong> Controle 8.2. Já a política de controle de acesso e a gestão de identidades são controles organizacionais.</p></details></li>
+        <li><details><summary>Sete dos onze controles novos são tecnológicos. Cite três.</summary><p><strong>Gestão de configuração, prevenção de vazamento de dados e codificação segura.</strong> Os outros quatro são exclusão de informações, mascaramento de dados, atividades de monitoramento e filtragem web.</p></details></li>
+        <li><details><summary>Exibir só os quatro últimos dígitos do cartão de crédito é exemplo de qual controle?</summary><p><strong>Mascaramento de dados.</strong> Controle 8.11, um dos novos. Inclui pseudonimização e anonimização.</p></details></li>
+        <li><details><summary>O que significa DLP?</summary><p><strong>Prevenção de vazamento de dados.</strong> Controle 8.12. Aplica-se a sistemas, redes e dispositivos que tratam informação sensível.</p></details></li>
+        <li><details><summary>Qual é a diferença entre o controle de registro de logs e o de atividades de monitoramento?</summary><p><strong>O log registra os eventos. O monitoramento analisa comportamento anômalo.</strong> Logs são o controle 8.15. Atividades de monitoramento são o 8.16, um dos novos.</p></details></li>
+        <li><details><summary>Por que existe um controle de sincronização de relógios?</summary><p><strong>Para que os logs de sistemas diferentes possam ser correlacionados.</strong> Controle 8.17. Sem horário confiável, a investigação de incidentes perde valor.</p></details></li>
+        <li><details><summary>Desenvolvimento, teste e produção devem estar como?</summary><p><strong>Separados.</strong> Controle 8.31. E o controle 8.33 pede proteção das informações usadas em testes.</p></details></li>
+        <li><details><summary>Aplicar atualizações de segurança faz parte de qual controle?</summary><p><strong>Gestão de vulnerabilidades técnicas.</strong> Controle 8.8. Envolve obter informação sobre as vulnerabilidades, avaliar a exposição e agir.</p></details></li>
+        <li><details><summary>Criptografia é controle preventivo, detectivo ou corretivo?</summary><p><strong>Preventivo.</strong> Controle 8.24. Protege confidencialidade e integridade antes que o incidente aconteça.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-111">
+  <div class="card-header">
+    <div class="ep-num qa">P11</div>
+    <div class="card-meta">
+      <h2>Misto final: todos os domínios</h2>
+      <div class="topics">Revisão geral em ritmo de prova · números-chave · cenários · pegadinhas clássicas</div>
+    </div>
+    <div class="duration">9:10</div>
+  </div>
+  <div class="player" data-ep="111" data-label="P11" data-src="p11-misto-final.mp3">
+    <button class="pp" aria-label="Tocar ou pausar P11">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição em P11">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-111',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-111',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-111',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-111',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag purple">Temas misturados · D1 a D7</span>
+    <span class="tag green">18 perguntas</span>
+    <span class="tag amber">6 revisões espaçadas</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-111',this)">📄 Transcrição — perguntas e respostas</button>
+  </div>
+  <div class="panel" id="resumo-111">
+    <div class="panel-inner">
+      <div class="resumo-title">Toque na pergunta para ver a resposta</div>
+      <ul class="resumo-list qa-list">
+        <li><details><summary>Quantos controles e quantos temas tem o Anexo A?</summary><p><strong>Noventa e três controles em quatro temas.</strong> Organizacional, pessoas, físico e tecnológico.</p></details></li>
+        <li><details><summary>Cite quatro informações documentadas que a ISO 27001 exige explicitamente.</summary><p><strong>Escopo, política, declaração de aplicabilidade e plano de tratamento de riscos.</strong> Também são exigidos: processo e resultados de avaliação de riscos, objetivos, evidências de competência, resultados de monitoramento, programa e resultados de auditoria, análise crítica e ações corretivas.</p></details></li>
+        <li><details><summary>Um ransomware cifra os servidores e também publica os dados roubados. Quais propriedades foram afetadas?</summary><p><strong>Disponibilidade e confidencialidade.</strong> A cifragem tira a disponibilidade. A publicação viola a confidencialidade.</p></details></li>
+        <li><details><summary>Qual é o primeiro passo de um projeto de implementação de SGSI?</summary><p><strong>Obter o comprometimento da alta direção.</strong> Sem patrocínio formal, recursos e autoridade, o projeto não se sustenta. Em seguida vêm contexto, escopo e análise de lacunas.</p></details></li>
+        <li><details><summary>Qual documento liga a avaliação de riscos aos controles do Anexo A?</summary><p><strong>A declaração de aplicabilidade.</strong> Ela lista os controles necessários, as justificativas, o estado de implementação e as exclusões.</p></details></li>
+        <li><details><summary>Qual é o papel do Lead Implementer em relação à auditoria de certificação?</summary><p><strong>Preparar a organização. Ele não audita o próprio trabalho.</strong> Quem implementou não tem imparcialidade para auditar o mesmo sistema.</p></details></li>
+        <li><details><summary>Aceitar um risco sem registrar a decisão é válido?</summary><p><strong>Não. A aceitação deve ser formal e pelo proprietário do risco.</strong> Aceitar é decisão consciente e documentada, dentro dos critérios de aceitação.</p></details></li>
+        <li><details><summary>A empresa não tem declaração de aplicabilidade. Não conformidade maior ou menor?</summary><p><strong>Maior.</strong> É a ausência de um requisito obrigatório inteiro.</p></details></li>
+        <li><details><summary>Em qual tema do Anexo A está o trabalho remoto?</summary><p><strong>Pessoas.</strong> Controle 6.7.</p></details></li>
+        <li><details><summary>Relacione as cláusulas ao PDCA: planejar, fazer, verificar e agir.</summary><p><strong>Planejar: quatro a sete. Fazer: oito. Verificar: nove. Agir: dez.</strong> Essa correspondência cai com frequência na prova.</p></details></li>
+        <li><details><summary>A política de segurança deve incluir os objetivos de segurança ou, pelo menos, o quê?</summary><p><strong>A estrutura para estabelecer os objetivos.</strong> Cláusula 5.2.</p></details></li>
+        <li><details><summary>Três atividades da norma acontecem em intervalos planejados. Quais?</summary><p><strong>Avaliação de riscos, auditoria interna e análise crítica pela direção.</strong> A norma nunca fixa um número de meses. Quem define o intervalo é a organização.</p></details></li>
+        <li><details><summary>Câmeras de vigilância com gravação são, principalmente, um controle de que tipo?</summary><p><strong>Detectivo.</strong> Elas também têm efeito dissuasório, mas pelo atributo tipo de controle da 27002 são detectivo e preventivo.</p></details></li>
+        <li><details><summary>Qual norma orienta a gestão de riscos e qual orienta os controles?</summary><p><strong>27005 para riscos e 27002 para controles.</strong> E a 27000 traz o vocabulário.</p></details></li>
+        <li><details><summary>A ação corretiva age sobre o quê?</summary><p><strong>Sobre a causa da não conformidade.</strong> A correção age sobre o efeito.</p></details></li>
+        <li><details><summary>Estágio um e estágio dois: qual olha documentos e qual olha eficácia?</summary><p><strong>O um olha documentos. O dois olha eficácia.</strong> Entre eles a organização corrige os pontos levantados no estágio um.</p></details></li>
+        <li><details><summary>Descreva o ciclo de certificação de três anos.</summary><p><strong>Certificação inicial, duas auditorias de supervisão anuais e recertificação.</strong> A recertificação acontece antes do vencimento do certificado.</p></details></li>
+        <li><details><summary>O que a versão 2022 acrescentou na cláusula 4.2, de partes interessadas?</summary><p><strong>Determinar quais requisitos serão tratados pelo SGSI.</strong> Não basta listar as partes e seus requisitos. É preciso decidir quais deles o SGSI vai endereçar.</p></details></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- QA:END -->
+
+<footer>ISO/IEC 27001:2022 · Curso aberto de estudo · <a href="https://github.com/rpagliuca/curso-aberto-audiobook-portugues-iso-27001-lead-implementer" style="color:#475569">código-fonte e transcrições no GitHub</a><br>Material independente, sem vínculo com ISO, PECB ou qualquer organismo de certificação.</footer>
+
+<div id="nowbar">
+  <div class="nb-title" id="nb-title">Toque em ▶ para começar</div>
+  <div class="nb-btns">
+    <button onclick="prevEpisode()" aria-label="Episódio anterior">⏮</button>
+    <button onclick="seekBy(-10)" aria-label="Voltar 10 segundos">−10</button>
+    <button class="main" id="nb-pp" onclick="toggle()" aria-label="Tocar ou pausar">▶</button>
+    <button onclick="seekBy(10)" aria-label="Avançar 10 segundos">+10</button>
+    <button onclick="nextEpisode()" aria-label="Próximo episódio">⏭</button>
+  </div>
+</div>
+<audio id="engine" preload="metadata"></audio>
+
+<script>
+// ─── Motor de áudio único + Media Session (botões do carro / Bluetooth) ─────
+// Um único <audio> para todos os episódios: trocar o src do MESMO elemento é o que permite
+// mudar de episódio sem toque na tela (tela bloqueada, comando vindo do carro), inclusive no iOS.
+const engine = document.getElementById('engine');
+const LS = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+const posKey = n => 'iso27001_audio-' + n;           // mesma chave de antes: posições antigas continuam valendo
+const parseDur = t => { const m = /(\d+):(\d+)/.exec(t || ''); return m ? +m[1] * 60 + +m[2] : 0; };
+const fmt = s => { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+
+const EPS = [...document.querySelectorAll('.player')].map(el => {
+  const card = el.closest('.card');
+  return { n: +el.dataset.ep, label: el.dataset.label || ('Ep. ' + el.dataset.ep), src: el.dataset.src, el, card,
+           title: card.querySelector('h2').textContent.trim(),
+           dur: parseDur(card.querySelector('.duration').textContent),
+           btn: el.querySelector('.pp'), seek: el.querySelector('.seek'), time: el.querySelector('.time') };
+});
+let cur = -1, pendingSeek = 0, pendingFromEnd = 0, lastSave = 0, scrubbing = false;
+const STEP = 10;   // segundos por toque nos botões avançar/voltar do carro ou do fone
+
+const durOf = i => (i === cur && isFinite(engine.duration) && engine.duration > 0) ? engine.duration : EPS[i].dur;
+const getPos = i => parseFloat(LS.get(posKey(EPS[i].n), '0')) || 0;
+function savePos() { if (cur >= 0 && engine.currentTime > 0 && !pendingSeek && !pendingFromEnd && !engine.ended) LS.set(posKey(EPS[cur].n), engine.currentTime.toFixed(1)); }
+
+function load(i, autoplay, at) {
+  if (i < 0 || i >= EPS.length) return;
+  if (i !== cur) {
+    savePos();
+    cur = i;
+    pendingSeek = 0; pendingFromEnd = 0;
+    if (at === undefined) { const sv = getPos(i); if (sv > 5 && sv < EPS[i].dur - 3) pendingSeek = sv; }
+    else if (at < 0) pendingFromEnd = -at;   // negativo = contado a partir do FIM (duração real só vem com o metadata)
+    else pendingSeek = at;
+    engine.src = EPS[i].src;
+    LS.set('iso27001_last', String(EPS[i].n));
+    updateMeta();
+  } else if (at !== undefined) { seekTo(at); }
+  if (autoplay) { const p = engine.play(); if (p && p.catch) p.catch(() => {}); }
+  refreshUI();
+}
+function applyPendingSeek(final) {
+  if (isFinite(engine.duration) && engine.duration > 0) {
+    if (pendingFromEnd > 0) { pendingSeek = Math.max(0, engine.duration - pendingFromEnd); pendingFromEnd = 0; }
+    const t = Math.min(pendingSeek, engine.duration - 0.5);
+    if (t > 0 && Math.abs(engine.currentTime - t) > 1.5) engine.currentTime = t;
+  }
+  if (final) { pendingSeek = 0; pendingFromEnd = 0; }
+}
+function seekTo(t) {
+  if (cur < 0) return;
+  t = Math.max(0, Math.min(durOf(cur) - 0.5, t));
+  if (engine.readyState >= 1) engine.currentTime = t; else pendingSeek = t;
+  refreshUI(); updatePositionState();
+}
+// Os 6 capítulos se comportam como UMA faixa contínua: voltar no começo de um capítulo cai no fim do
+// anterior; avançar no fim cai no começo do próximo. Mantém tocando se estava tocando.
+function seekBy(secs) {
+  if (cur < 0) load(lastEp(), false);
+  if (pendingFromEnd > 0) { pendingFromEnd = Math.max(0.5, pendingFromEnd - secs); refreshUI(); return; }  // toques em rajada durante a troca
+  const playing = !engine.paused, t = (pendingSeek || engine.currentTime) + secs, d = durOf(cur);
+  if (t < 0 && cur > 0) return load(cur - 1, playing, Math.min(t, -0.5));
+  if (d && t >= d - 0.3 && cur < EPS.length - 1) return load(cur + 1, playing, Math.max(0, t - d));
+  seekTo(t);
+}
+function toggle(i) {
+  if (i === undefined) i = cur < 0 ? lastEp() : cur;
+  if (i !== cur) return load(i, true);
+  if (engine.paused) { const p = engine.play(); if (p && p.catch) p.catch(() => {}); } else engine.pause();
+}
+function lastEp() { const n = +LS.get('iso27001_last', '1'); const i = EPS.findIndex(e => e.n === n); return i < 0 ? 0 : i; }
+
+// Botões −30/−5/+5/+30 dos cards (assinatura antiga preservada: skip('audio-3', -30))
+function skip(id, secs) {
+  const i = EPS.findIndex(e => e.n === +String(id).replace(/\D/g, ''));
+  if (i < 0) return;
+  if (i !== cur) load(i, false);
+  seekBy(secs);
+}
+
+// ─── Botões do carro / fone ─────────────────────────────────────────────────
+function nextEpisode() { if (cur < 0) return load(lastEp(), true); if (cur < EPS.length - 1) load(cur + 1, true); }
+function prevEpisode() {
+  if (cur < 0) return load(lastEp(), true);
+  // padrão de player: passou de 5 s, "voltar" reinicia o episódio; no comecinho, vai para o anterior
+  if (engine.currentTime > 5 || cur === 0) seekTo(0); else load(cur - 1, true, 0);
+  if (engine.paused) toggle(cur);
+}
+const ACTIONS = {
+  play:          () => { if (cur < 0) load(lastEp(), true); else if (engine.paused) toggle(cur); },
+  pause:         () => engine.pause(),
+  stop:          () => engine.pause(),
+  nexttrack:     () => seekBy(STEP),      // carro: ⏭ avança 10 s
+  previoustrack: () => seekBy(-STEP),     // carro: ⏮ volta 10 s
+  seekforward:   d => seekBy((d && d.seekOffset) || STEP),
+  seekbackward:  d => seekBy(-((d && d.seekOffset) || STEP)),
+  seekto:        d => { if (d && typeof d.seekTime === 'number') seekTo(d.seekTime); }
+};
+if ('mediaSession' in navigator) {
+  for (const [name, fn] of Object.entries(ACTIONS)) {
+    try { navigator.mediaSession.setActionHandler(name, fn); } catch (e) { /* ação não suportada neste navegador */ }
+  }
+}
+function updateMeta() {
+  if (!('mediaSession' in navigator) || cur < 0 || !window.MediaMetadata) return;
+  const e = EPS[cur];
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: e.label + ' — ' + e.title, artist: 'ISO 27001 Lead Implementer', album: 'Audiobook de estudo',
+    artwork: [{ src: 'artwork-192.png', sizes: '192x192', type: 'image/png' },
+              { src: 'artwork.png', sizes: '512x512', type: 'image/png' }]
+  });
+}
+function updatePositionState() {
+  if (!('mediaSession' in navigator) || !navigator.mediaSession.setPositionState) return;
+  if (!isFinite(engine.duration) || engine.duration <= 0) return;
+  try {
+    navigator.mediaSession.setPositionState({ duration: engine.duration, playbackRate: engine.playbackRate || 1,
+      position: Math.min(engine.currentTime, engine.duration) });
+  } catch (e) {}
+}
+
+// ─── UI ─────────────────────────────────────────────────────────────────────
+function refreshUI() {
+  EPS.forEach((e, i) => {
+    const active = i === cur, d = durOf(i);
+    const t = active ? (pendingSeek || engine.currentTime) : getPos(i);
+    e.card.classList.toggle('current', active);
+    e.btn.textContent = (active && !engine.paused) ? '⏸' : '▶';
+    if (!(active && scrubbing)) e.seek.value = d ? Math.round(t / d * 1000) : 0;
+    e.time.textContent = fmt(t) + ' / ' + fmt(d);
+  });
+  document.getElementById('nb-pp').textContent = (cur >= 0 && !engine.paused) ? '⏸' : '▶';
+  document.getElementById('nb-title').textContent = cur >= 0 ? EPS[cur].label + ' — ' + EPS[cur].title : 'Toque em ▶ para começar';
+}
+EPS.forEach((e, i) => {
+  e.btn.addEventListener('click', () => toggle(i));
+  e.seek.addEventListener('input', () => { scrubbing = true; e.time.textContent = fmt(e.seek.value / 1000 * durOf(i)) + ' / ' + fmt(durOf(i)); });
+  e.seek.addEventListener('change', () => { scrubbing = false; const t = e.seek.value / 1000 * durOf(i); if (i !== cur) load(i, false, t); else seekTo(t); });
+});
+
+engine.addEventListener('loadedmetadata', () => { applyPendingSeek(false); updatePositionState(); refreshUI(); });
+engine.addEventListener('canplay', () => { applyPendingSeek(true); updatePositionState(); });
+engine.addEventListener('timeupdate', () => {
+  refreshUI();
+  const now = Date.now();
+  if (now - lastSave > 2000) { lastSave = now; savePos(); updatePositionState(); }
+});
+['play', 'playing', 'pause', 'seeked', 'ratechange'].forEach(ev => engine.addEventListener(ev, () => {
+  if ('mediaSession' in navigator) navigator.mediaSession.playbackState = engine.paused ? 'paused' : 'playing';
+  if (ev === 'pause') savePos();
+  updatePositionState(); refreshUI();
+}));
+engine.addEventListener('ended', () => {
+  LS.set(posKey(EPS[cur].n), '0');                       // episódio concluído: da próxima vez começa do zero
+  if (cur < EPS.length - 1) load(cur + 1, true); else refreshUI();   // emenda no próximo (essencial dirigindo)
+});
+window.addEventListener('pagehide', savePos);
+document.addEventListener('visibilitychange', () => { if (document.hidden) savePos(); });
+
+load(lastEp(), false);   // deixa o último episódio pronto para "continuar de onde parei"
+
+// ─── Toggle panels ─────────────────────────────────────────────────────────
+function togglePanel(id, btn) {
+  const panel = document.getElementById(id);
+  const isOpen = panel.classList.contains('open');
+  // close siblings in same card
+  const card = btn.closest('.card');
+  card.querySelectorAll('.panel').forEach(p => p.classList.remove('open'));
+  card.querySelectorAll('.btn-toggle').forEach(b => b.classList.remove('active'));
+  if (!isOpen) {
+    panel.classList.add('open');
+    btn.classList.add('active');
+    // render quiz lazily
+    const qid = id.replace('quiz-', '');
+    if (id.startsWith('quiz-') && !panel.dataset.rendered) {
+      renderQuiz(qid);
+      panel.dataset.rendered = '1';
+    }
+  }
+}
+
+// ─── Quiz data ──────────────────────────────────────────────────────────────
+const QUIZZES = {
+  '1': [
+    {
+      q: 'Um atacante invade o banco de dados de clientes de uma empresa e lê informações confidenciais, mas não altera nenhum dado. Qual propriedade da tríade CIA foi violada?',
+      opts: ['Disponibilidade', 'Integridade', 'Confidencialidade', 'Autenticidade'],
+      a: 2,
+      exp: '<strong>Confidencialidade</strong> foi violada: a informação foi acessada por alguém sem autorização. A integridade não foi afetada (nenhum dado foi alterado) e a disponibilidade também não (o sistema continuou operando).'
+    },
+    {
+      q: 'Uma organização quer obter a certificação em segurança da informação. Contra qual norma ISO essa certificação é emitida?',
+      opts: ['ISO 27002', 'ISO 27005', 'ISO 27701', 'ISO 27001'],
+      a: 3,
+      exp: '<strong>ISO 27001</strong> é a norma de requisitos e a única certificável. A ISO 27002 é um guia de implementação dos controles — não existe certificação contra ela.'
+    },
+    {
+      q: 'Uma senha com menos de 6 caracteres em um sistema crítico é um exemplo de:',
+      opts: ['Ameaça', 'Risco', 'Impacto', 'Vulnerabilidade'],
+      a: 3,
+      exp: '<strong>Vulnerabilidade</strong> é uma fraqueza que pode ser explorada por uma ameaça. A senha fraca em si não causa dano — ela precisa ser explorada por uma ameaça (ex: ataque de força bruta) para se tornar um risco.'
+    },
+    {
+      q: 'Em qual fase do ciclo PDCA se encaixa a definição do escopo e a avaliação de riscos do SGSI?',
+      opts: ['Executar (Do)', 'Verificar (Check)', 'Planejar (Plan)', 'Agir (Act)'],
+      a: 2,
+      exp: '<strong>Planejar (Plan)</strong> — as cláusulas 4, 5 e 6 da ISO 27001 (contexto, liderança, planejamento de riscos) fazem parte da fase de planejamento do ciclo PDCA.'
+    },
+    {
+      q: 'Por que a segurança da informação é mais ampla do que segurança de TI?',
+      opts: ['Porque inclui apenas sistemas digitais de grande porte', 'Porque abrange informação em qualquer formato: digital, papel, falada ou memorizada', 'Porque é aplicável apenas a empresas de tecnologia', 'Porque exige conhecimento técnico de redes e sistemas'],
+      a: 1,
+      exp: '<strong>Segurança da informação</strong> cobre a informação em qualquer forma — um documento impresso, uma conversa em voz, uma anotação em papel. Segurança de TI foca apenas em sistemas e redes digitais.'
+    },
+    {
+      q: 'Qual das normas da família ISO 27000 trata especificamente da extensão do SGSI para gestão de privacidade, sendo relevante no contexto da LGPD?',
+      opts: ['ISO 27005', 'ISO 27017', 'ISO 27701', 'ISO 27018'],
+      a: 2,
+      exp: '<strong>ISO 27701</strong> estende o SGSI para incluir a gestão de informações de privacidade (SGPI). É a norma mais relevante para adequação à LGPD e ao GDPR no contexto de um SGSI certificado.'
+    }
+  ],
+  '2': [
+    {
+      q: 'Qual ferramenta é comumente usada para estruturar a análise do contexto externo de uma organização antes de implementar um SGSI?',
+      opts: ['Análise SWOT', 'Análise PESTLE', 'Diagrama de Ishikawa', 'Matriz RACI'],
+      a: 1,
+      exp: '<strong>Análise PESTLE</strong> (Política, Econômica, Social, Tecnológica, Legal, Ambiental) é usada para mapear o contexto externo. O SWOT combina interno e externo, mas PESTLE é a ferramenta específica para o contexto externo.'
+    },
+    {
+      q: 'A política de segurança da informação de uma empresa foi aprovada pela diretoria, mas a gestão decidiu não divulgá-la para funcionários operacionais. Isso está em conformidade com a ISO 27001?',
+      opts: ['Sim, a política é um documento restrito à alta gestão', 'Sim, desde que seja comunicada ao departamento de TI', 'Não, a norma exige que seja comunicada a toda a organização', 'Não, apenas se a empresa for de grande porte'],
+      a: 2,
+      exp: '<strong>Não está em conformidade.</strong> A ISO 27001 (cláusula 5.2) exige que a política de segurança da informação seja comunicada dentro da organização. Todos os funcionários precisam conhecê-la — ela não é um documento restrito.'
+    },
+    {
+      q: 'Uma empresa obteve a certificação ISO 27001 há 18 meses. O que acontece nos próximos 6 meses?',
+      opts: ['O certificado vence automaticamente aos 2 anos', 'Ela passa por uma auditoria de recertificação completa', 'Ela passa por um surveillance audit (auditoria de manutenção)', 'Nenhuma auditoria é necessária antes dos 3 anos'],
+      a: 2,
+      exp: '<strong>Surveillance audit</strong> (auditoria de manutenção). O certificado ISO 27001 é válido por 3 anos, com auditorias de manutenção anuais. Aos 18 meses (1,5 ano), ela já passou pelo primeiro e se aproxima do segundo surveillance audit.'
+    },
+    {
+      q: 'Uma empresa define seu escopo como "todos os sistemas de informação da organização" sem especificar unidades, localizações ou processos. Qual é o principal problema?',
+      opts: ['O escopo está errado porque deveria incluir apenas sistemas críticos', 'O escopo é vago e não permite auditoria objetiva', 'O escopo só é válido se aprovado pela certificadora previamente', 'O escopo não pode incluir sistemas — deve focar em pessoas'],
+      a: 1,
+      exp: '<strong>Escopo vago não é auditável.</strong> Um bom escopo especifica as unidades organizacionais, localizações físicas, processos e ativos cobertos. Um auditor externo precisa entender com clareza o que está e o que não está no SGSI.'
+    },
+    {
+      q: 'Quem são partes interessadas externas no contexto do SGSI?',
+      opts: ['Apenas acionistas e investidores', 'Apenas clientes e parceiros comerciais', 'Apenas reguladores governamentais', 'Clientes, reguladores, fornecedores e parceiros com requisitos relevantes para o SGSI'],
+      a: 3,
+      exp: '<strong>Partes interessadas externas</strong> incluem todos fora da organização com requisitos ou expectativas relevantes: clientes (proteção de dados), reguladores (conformidade legal), fornecedores (acesso a sistemas), parceiros (contratos). Todos devem ser identificados e seus requisitos considerados.'
+    },
+    {
+      q: 'Qual é a diferença entre conformidade e certificação ISO 27001?',
+      opts: ['São sinônimos — todo SGSI conforme é automaticamente certificado', 'Conformidade pode ser autodeclarada; certificação exige organismo independente acreditado', 'Certificação é autodeclarada; conformidade exige organismo externo', 'Conformidade exige mais rigor que a certificação'],
+      a: 1,
+      exp: '<strong>Conformidade</strong> pode ser autodeclarada pela organização ou verificada por um cliente. <strong>Certificação</strong> exige que um organismo de certificação independente e acreditado verifique formalmente e emita um certificado com validade de 3 anos.'
+    }
+  ],
+  '3': [
+    {
+      q: 'Qual sigla representa as quatro opções de tratamento de risco na ISO 27001?',
+      opts: ['PDCA', 'OPFT', 'CIA', 'MECA'],
+      a: 3,
+      exp: '<strong>MECA</strong>: Modificar (mitigar com controles), Evitar (eliminar a atividade), Compartilhar (transferir para terceiros), Aceitar (decisão formal de conviver com o risco). Grave esse mnemônico — é amplamente cobrado na prova.'
+    },
+    {
+      q: 'Uma empresa contrata um seguro cibernético para cobrir perdas financeiras em caso de ataque de ransomware. Qual opção MECA está sendo aplicada?',
+      opts: ['Modificar', 'Evitar', 'Aceitar', 'Compartilhar'],
+      a: 3,
+      exp: '<strong>Compartilhar (transferir).</strong> O seguro transfere parte do impacto financeiro do risco para a seguradora. A organização ainda está sujeita ao risco de sofrer o ataque, mas parte das consequências é mitigada pelo contrato de seguro.'
+    },
+    {
+      q: 'Uma organização quer excluir da SoA o controle de gestão de vulnerabilidades técnicas porque o time de TI não tem capacidade de implementá-lo agora. Isso é correto?',
+      opts: ['Sim, limitações de equipe são justificativas válidas', 'Sim, se aprovado pela alta direção', 'Não, a justificativa de exclusão precisa ser técnica (risco não aplicável ao escopo)', 'Não, nenhum controle pode ser excluído da SoA'],
+      a: 2,
+      exp: '<strong>Não.</strong> A justificativa para excluir um controle da SoA deve ser técnica: o risco associado não existe para o escopo do SGSI, ou a ameaça não é aplicável. Falta de capacidade ou tempo não é justificativa válida. O controle deve estar incluído, mesmo que em status "pendente de implementação".'
+    },
+    {
+      q: 'Qual é a diferença entre o apetite de risco e o critério de aceitação de risco?',
+      opts: ['São o mesmo conceito expresso de formas diferentes', 'Apetite é operacional (por risco); critério é estratégico (da organização)', 'Apetite é estratégico (posicionamento da org.); critério é operacional (nível tolerável por risco)', 'Apetite define os controles a implementar; critério define o impacto máximo'],
+      a: 2,
+      exp: '<strong>Apetite de risco</strong> é estratégico: a quantidade total de risco que a organização aceita em busca de seus objetivos. <strong>Critério de aceitação</strong> é operacional: o nível específico abaixo do qual um risco individual pode ser aceito sem tratamento. O apetite informa os critérios.'
+    },
+    {
+      q: 'Uma empresa identifica um risco de exposição de dados por um sistema legado crítico. O custo de substituir o sistema é muito alto, mas o impacto de um vazamento seria catastrófico. Qual opção MECA é mais adequada?',
+      opts: ['Aceitar, pois o custo de substituição é alto', 'Evitar, desativando o sistema legado', 'Modificar, implementando controles adicionais ao redor do sistema', 'Compartilhar, terceirizando o sistema para um fornecedor'],
+      a: 2,
+      exp: '<strong>Modificar (mitigar)</strong> é a mais adequada quando não é possível eliminar o ativo e o impacto potencial é alto. Controles compensatórios ao redor do sistema (segmentação de rede, monitoramento intensivo, acesso restrito) podem reduzir o risco a um nível aceitável sem substituição imediata.'
+    },
+    {
+      q: 'Com que frequência a avaliação de riscos deve ser realizada segundo a ISO 27001?',
+      opts: ['Uma única vez, na implementação inicial do SGSI', 'Apenas quando ocorre um incidente de segurança', 'Em intervalos planejados e sempre que ocorram mudanças significativas', 'Anualmente, em data fixa definida pela certificadora'],
+      a: 2,
+      exp: '<strong>Em intervalos planejados E quando ocorrem mudanças significativas.</strong> A norma (cláusula 8.2) exige que a avaliação de riscos seja executada periodicamente (frequência definida pela organização) e sempre que mudanças relevantes ocorram — novo sistema, aquisição, mudança regulatória, nova ameaça relevante.'
+    }
+  ],
+  '4': [
+    {
+      q: 'Um gerente de operações é responsável pela implantação e manutenção do sistema de controle de acesso físico da empresa. Ele pode ser designado como auditor interno para avaliar esse mesmo sistema?',
+      opts: ['Sim, pois ele é quem mais conhece o sistema', 'Sim, desde que use um checklist validado externamente', 'Não, pois auditores internos não podem auditar seu próprio trabalho', 'Não, pois auditorias internas só podem ser feitas por consultores externos'],
+      a: 2,
+      exp: '<strong>Não pode.</strong> A ISO 27001 exige imparcialidade nas auditorias internas — auditores não podem auditar áreas pelas quais são responsáveis. Ele poderia auditar outras áreas (ex: segurança lógica, RH), mas não o sistema sob sua responsabilidade.'
+    },
+    {
+      q: 'Qual é a diferença entre "documentos" e "registros" no contexto de informação documentada do SGSI?',
+      opts: ['Documentos são registros antigos; registros são documentos atuais', 'Documentos são usados internamente; registros, externamente', 'Documentos são informações mantidas e usadas (políticas, procedimentos); registros são evidências de atividades realizadas', 'São sinônimos na ISO 27001'],
+      a: 2,
+      exp: '<strong>Documentos</strong> são informações que a organização mantém e usa para guiar operações: políticas, procedimentos, SoA, PTR. <strong>Registros</strong> são evidências de que algo foi feito: comprovantes de treinamento, ata de revisão pela direção, relatório de auditoria, resultado de avaliação de riscos.'
+    },
+    {
+      q: 'Por que os documentos do processo de avaliação de riscos podem ser tratados como informação confidencial?',
+      opts: ['Porque a ISO 27001 classifica todos os documentos do SGSI como restritos', 'Porque reguladores proíbem a divulgação de informações de risco', 'Porque revelam quais ativos são mais vulneráveis, dando vantagem a atacantes', 'Porque documentos de planejamento nunca podem ser divulgados'],
+      a: 2,
+      exp: '<strong>Porque revelam vulnerabilidades.</strong> Um documento detalhado de avaliação de riscos lista ativos críticos, ameaças aplicáveis e vulnerabilidades identificadas. Se acessado por um atacante, fornece um mapa das fraquezas da organização. O SGSI aplica seus próprios princípios de segurança aos seus documentos.'
+    },
+    {
+      q: 'Uma empresa implanta um novo sistema de CRM com urgência, sem avaliação prévia de segurança. Qual risco essa prática representa para o SGSI?',
+      opts: ['Nenhum, pois sistemas de negócio são fora do escopo do SGSI', 'Pode introduzir novos riscos não identificados nem tratados no SGSI', 'Apenas representa risco se o sistema processar dados pessoais', 'Representa risco apenas se o sistema estiver conectado à internet'],
+      a: 1,
+      exp: '<strong>Pode introduzir riscos não mapeados.</strong> A cláusula 8 exige controle de mudanças: toda mudança significativa deve ser avaliada quanto ao impacto de segurança antes de ser implementada. Um sistema implantado sem avaliação pode abrir vulnerabilidades que ficam sem tratamento por meses.'
+    },
+    {
+      q: 'Qual das seguintes opções é um exemplo de competência exigível segundo a ISO 27001, e que deve ter evidência mantida?',
+      opts: ['O CISO ter opiniões sobre segurança', 'Um analista ter completado treinamento formal em gestão de riscos de SI, com certificado', 'O departamento de TI conhecer os sistemas da empresa', 'A alta direção aprovar orçamentos de segurança'],
+      a: 1,
+      exp: '<strong>Treinamento formal com certificado</strong> é uma evidência de competência. A norma exige que a organização determine as competências necessárias, garanta que as pessoas as possuem (via educação, treinamento ou experiência) e <em>mantenha informação documentada como evidência</em>.'
+    },
+    {
+      q: 'Uma empresa terceiriza o suporte de TI para uma empresa parceira que terá acesso a dados internos. O que a ISO 27001 exige nesse caso?',
+      opts: ['Que o parceiro obtenha sua própria certificação ISO 27001', 'Que a empresa transfira formalmente a responsabilidade pelo SGSI para o parceiro', 'Que acordos formais de segurança sejam estabelecidos e o processo terceirizado seja controlado', 'Que o parceiro seja auditado apenas no momento da contratação'],
+      a: 2,
+      exp: '<strong>Acordos formais de segurança e controle do processo.</strong> A organização continua responsável pelo seu SGSI mesmo quando terceiriza atividades. A cláusula 8.1 exige que processos terceirizados sejam controlados, e controles do Anexo A como A.5.19 (SI na cadeia de fornecimento) formalizam esse requisito.'
+    }
+  ],
+  '5': [
+    {
+      q: 'O que o MTTD mede no contexto de segurança da informação?',
+      opts: ['O número mensal de tentativas de invasão detectadas', 'O tempo médio que a organização leva para detectar um incidente de segurança', 'O tempo médio de treinamento de novos analistas de segurança', 'A taxa de detecção de malware pelo antivírus'],
+      a: 1,
+      exp: '<strong>MTTD = Mean Time To Detect</strong> — o tempo médio para a organização perceber que um incidente ocorreu. Um MTTD alto significa que atacantes ficam mais tempo sem ser detectados, causando mais dano. Seu complemento é o MTTR (Mean Time To Respond/Recover).'
+    },
+    {
+      q: 'Um analista de segurança recebe a tarefa de auditar internamente os controles de acesso lógico, pelos quais ele é responsável na operação diária. O que deve ser feito?',
+      opts: ['Ele pode auditar, desde que use um checklist aprovado pelo gestor', 'Ele pode auditar parcialmente, mas precisa de um segundo revisor', 'Outro profissional imparcial deve conduzir essa parte da auditoria', 'A auditoria deve ser cancelada e terceirizada externamente'],
+      a: 2,
+      exp: '<strong>Outro profissional deve auditar.</strong> A ISO 27001 exige imparcialidade: auditores não auditam seu próprio trabalho. Pode ser outro funcionário da organização (de departamento diferente) ou um auditor externo contratado — o que importa é a independência em relação ao processo auditado.'
+    },
+    {
+      q: 'A equipe de TI descobre que senhas de 3 sistemas estão configuradas abaixo do mínimo exigido pela política. Eles corrigem imediatamente. Em seguida, investigam por que o processo de implantação não verificou essa configuração. O que cada ação representa?',
+      opts: ['Ambas são ações corretivas, pois resolvem o problema', 'A correção das senhas é uma correção (sintoma); a investigação do processo é uma ação corretiva (causa raiz)', 'A investigação do processo é uma correção; a mudança de senhas é uma ação corretiva', 'Ambas são correções, pois a ação corretiva só ocorre após auditoria formal'],
+      a: 1,
+      exp: '<strong>Correção vs ação corretiva.</strong> Corrigir as senhas = <em>correção</em> (trata o sintoma imediato). Investigar por que o processo de implantação falhou em verificar configurações de segurança e eliminar essa falha = <em>ação corretiva</em> (elimina a causa raiz para que não se repita).'
+    },
+    {
+      q: 'Quem DEVE conduzir a revisão pela direção do SGSI, segundo a ISO 27001?',
+      opts: ['O CISO ou responsável de segurança', 'A equipe de auditoria interna', 'Um consultor externo especializado em ISO 27001', 'A alta direção da organização'],
+      a: 3,
+      exp: '<strong>A alta direção.</strong> A cláusula 9.3 é explícita: a revisão pela direção deve ser conduzida pela alta direção, não delegada ao CISO ou à equipe de segurança. É o momento em que os líderes da organização examinam criticamente o desempenho do SGSI e tomam decisões estratégicas de melhoria.'
+    },
+    {
+      q: 'Uma empresa descobre que o número de incidentes de phishing triplicou no último trimestre. Qual das seguintes seria uma ação corretiva (e não apenas uma correção)?',
+      opts: ['Redefinir as senhas das contas comprometidas', 'Bloquear os remetentes de phishing identificados no filtro de email', 'Investigar por que os treinamentos de conscientização não estão sendo eficazes e reformular o programa', 'Restaurar a partir do backup os arquivos afetados pelos ataques'],
+      a: 2,
+      exp: '<strong>Reformular o programa de treinamento</strong> é uma ação corretiva: ataca a causa raiz (treinamento ineficaz que permite que funcionários caiam em phishing). As outras opções são correções — tratam os sintomas imediatos de incidentes já ocorridos.'
+    },
+    {
+      q: 'Um cliente de grande porte decide auditar as práticas de segurança de seu fornecedor de serviços de TI antes de renovar o contrato. Que tipo de auditoria é essa?',
+      opts: ['Auditoria de primeira parte (interna)', 'Auditoria de segunda parte', 'Auditoria de terceira parte', 'Auditoria de certificação'],
+      a: 1,
+      exp: '<strong>Segunda parte</strong> — conduzida por uma parte com interesse direto na relação. O cliente audita seu fornecedor. Primeira parte = auditoria interna. Terceira parte = organismo independente acreditado (certificação). A auditoria de certificação é sempre de terceira parte.'
+    }
+  ],
+  '6': [
+    {
+      q: 'Quantos controles tem o Anexo A da ISO 27001:2022 (baseado na ISO 27002:2022)?',
+      opts: ['114', '77', '93', '134'],
+      a: 2,
+      exp: '<strong>93 controles</strong>, organizados em 4 temas. A versão anterior (2013) tinha 114 controles em 14 domínios. A versão 2022 consolidou e atualizou os controles, adicionando 11 novos e removendo ou incorporando outros.'
+    },
+    {
+      q: 'Qual sigla ajuda a memorizar os 4 temas do Anexo A da ISO 27002:2022?',
+      opts: ['MECA', 'PDCA', 'CIA', 'OPFT'],
+      a: 3,
+      exp: '<strong>OPFT</strong>: Organizacional (A.5, 37 controles), Pessoas (A.6, 8 controles), Físico (A.7, 14 controles), Tecnológico (A.8, 34 controles). Memorize essa sigla para não confundir a estrutura da versão 2022 com os 14 domínios da versão 2013.'
+    },
+    {
+      q: 'Qual tema do Anexo A tem o maior número de controles na versão 2022?',
+      opts: ['Tecnológico (A.8) com 34 controles', 'Físico (A.7) com 14 controles', 'Organizacional (A.5) com 37 controles', 'Pessoas (A.6) com 8 controles'],
+      a: 2,
+      exp: '<strong>Organizacional (A.5)</strong> com 37 controles é o maior. O Tecnológico (A.8) tem 34 — o segundo maior. Juntos, eles representam mais de 75% dos controles.'
+    },
+    {
+      q: 'Qual é o princípio de controle de acesso mais importante enfatizado no tema Organizacional do Anexo A?',
+      opts: ['Princípio da autenticação multifator obrigatória', 'Princípio do menor privilégio', 'Princípio da segregação de funções', 'Princípio do acesso por necessidade de conhecimento'],
+      a: 1,
+      exp: '<strong>Menor privilégio</strong>: cada pessoa, sistema ou processo deve ter acesso apenas ao que é necessário para realizar sua função. Esse princípio limita o raio de impacto de qualquer comprometimento — se uma conta é invadida, o atacante acessa apenas o que aquela conta tinha permissão de acessar.'
+    },
+    {
+      q: 'Quantos controles foram adicionados na versão 2022 da ISO 27002 em relação à versão de 2013?',
+      opts: ['7 novos controles', '11 novos controles', '21 novos controles', '15 novos controles'],
+      a: 1,
+      exp: '<strong>11 controles novos</strong>. Entre eles: inteligência de ameaças, SI para serviços em nuvem, preparação de TIC para continuidade, DLP (prevenção de vazamento de dados), codificação segura, mascaramento de dados, monitoramento de atividades, filtragem de conteúdo web e monitoramento de segurança física.'
+    },
+    {
+      q: 'Qual controle do tema Pessoas (A.6) é especialmente importante para a capacidade de detecção rápida de incidentes?',
+      opts: ['Triagem de candidatos antes da contratação (A.6.1)', 'Termos e condições de emprego (A.6.2)', 'Relato de eventos de segurança da informação (A.6.8)', 'Processo disciplinar (A.6.4)'],
+      a: 2,
+      exp: '<strong>Relato de eventos de segurança (A.6.8)</strong>. A detecção rápida de incidentes depende de que todos os funcionários saibam como e para quem reportar um evento suspeito. Um funcionário que recebe um phishing e não sabe que existe um canal de reporte representa uma falha crítica de detecção.'
+    }
+  ]
+};
+
+// ─── Quiz renderer ──────────────────────────────────────────────────────────
+function renderQuiz(epId) {
+  const questions = QUIZZES[epId];
+  const container = document.getElementById('quiz-' + epId + '-body');
+  const letters = ['A', 'B', 'C', 'D'];
+  let state = { current: 0, score: 0, answered: new Array(questions.length).fill(false) };
+
+  function render() {
+    container.innerHTML = '';
+
+    // Header
+    const hdr = document.createElement('div');
+    hdr.className = 'quiz-header';
+    hdr.innerHTML = `<div class="quiz-title">Questões de fixação</div>
+      <div class="quiz-progress">${state.current + 1} / ${questions.length}</div>`;
+    container.appendChild(hdr);
+
+    const q = questions[state.current];
+
+    const qBlock = document.createElement('div');
+    qBlock.className = 'question-block active';
+
+    const qText = document.createElement('div');
+    qText.className = 'question-text';
+    qText.textContent = q.q;
+    qBlock.appendChild(qText);
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+    q.opts.forEach((opt, i) => {
+      const o = document.createElement('div');
+      o.className = 'option';
+      o.innerHTML = `<span class="opt-letter">${letters[i]}</span><span>${opt}</span>`;
+      o.addEventListener('click', () => {
+        if (state.answered[state.current]) return;
+        state.answered[state.current] = true;
+
+        opts.querySelectorAll('.option').forEach(el => el.classList.add('disabled'));
+        o.classList.add(i === q.a ? 'correct' : 'wrong');
+        if (i !== q.a) {
+          opts.querySelectorAll('.option')[q.a].classList.add('correct');
+        } else {
+          state.score++;
+        }
+
+        // explanation
+        const exp = document.createElement('div');
+        exp.className = 'explanation';
+        exp.innerHTML = q.exp;
+        qBlock.appendChild(exp);
+
+        // nav
+        const nav = document.createElement('div');
+        nav.className = 'quiz-nav';
+        const btnNext = document.createElement('button');
+        btnNext.className = 'btn-next';
+        btnNext.style.display = 'block';
+
+        if (state.current < questions.length - 1) {
+          btnNext.textContent = 'Próxima →';
+          btnNext.onclick = () => { state.current++; render(); };
+        } else {
+          btnNext.textContent = 'Ver resultado';
+          btnNext.onclick = () => showResult();
+        }
+        nav.appendChild(btnNext);
+        qBlock.appendChild(nav);
+      });
+      opts.appendChild(o);
+    });
+    qBlock.appendChild(opts);
+    container.appendChild(qBlock);
+  }
+
+  function showResult() {
+    const pct = Math.round(state.score / questions.length * 100);
+    const pass = pct >= 70;
+    container.innerHTML = `
+      <div class="quiz-result ${pass ? 'pass' : 'fail'}">
+        <span class="score-big">${state.score}/${questions.length} — ${pct}%</span>
+        ${pass ? '✓ Bom domínio do conteúdo!' : '✗ Revise o episódio e tente novamente.'}
+      </div>
+      <div style="text-align:center">
+        <button class="btn-retry" onclick="resetQuiz('${epId}')">↺ Refazer quiz</button>
+      </div>`;
+  }
+
+  render();
+}
+
+function resetQuiz(epId) {
+  const panel = document.getElementById('quiz-' + epId);
+  panel.removeAttribute('data-rendered');
+  renderQuiz(epId);
+}
+</script>
+</body>
+</html>

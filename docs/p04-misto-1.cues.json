@@ -1,0 +1,174 @@
+{
+ "slug": "p04-misto-1",
+ "duracao": 474.9,
+ "cues": [
+  {
+   "id": "m-notebook",
+   "revisao": false,
+   "t_pergunta": 12.62,
+   "t_pausa": 20.03,
+   "pausa": 5.7,
+   "t_resposta": 25.02
+  },
+  {
+   "id": "m-sem-patch",
+   "revisao": false,
+   "t_pergunta": 36.84,
+   "t_pausa": 42.53,
+   "pausa": 5.6,
+   "t_resposta": 47.35
+  },
+  {
+   "id": "m-quem-aceita",
+   "revisao": false,
+   "t_pergunta": 57.54,
+   "t_pausa": 65.87,
+   "pausa": 8.2,
+   "t_resposta": 73.27
+  },
+  {
+   "id": "m-auditor-27002",
+   "revisao": false,
+   "t_pergunta": 84.66,
+   "t_pausa": 91.0,
+   "pausa": 10.0,
+   "t_resposta": 100.25
+  },
+  {
+   "id": "m-escopo-nuvem",
+   "revisao": false,
+   "t_pergunta": 112.38,
+   "t_pausa": 119.96,
+   "pausa": 6.7,
+   "t_resposta": 125.89
+  },
+  {
+   "id": "m-sem-patch",
+   "revisao": true,
+   "t_pergunta": 138.65,
+   "t_pausa": 144.34,
+   "pausa": 5.5,
+   "t_resposta": 149.09
+  },
+  {
+   "id": "m-politica-assina",
+   "revisao": false,
+   "t_pergunta": 152.56,
+   "t_pausa": 158.66,
+   "pausa": 7.9,
+   "t_resposta": 165.76
+  },
+  {
+   "id": "m-terceirizar",
+   "revisao": false,
+   "t_pergunta": 178.71,
+   "t_pausa": 185.21,
+   "pausa": 5.6,
+   "t_resposta": 190.03
+  },
+  {
+   "id": "m-ordem",
+   "revisao": false,
+   "t_pergunta": 198.33,
+   "t_pausa": 203.27,
+   "pausa": 6.2,
+   "t_resposta": 208.7
+  },
+  {
+   "id": "m-quem-aceita",
+   "revisao": true,
+   "t_pergunta": 220.68,
+   "t_pausa": 229.01,
+   "pausa": 6.7,
+   "t_resposta": 234.92
+  },
+  {
+   "id": "m-pdca-planejar",
+   "revisao": false,
+   "t_pergunta": 240.24,
+   "t_pausa": 244.08,
+   "pausa": 5.6,
+   "t_resposta": 248.9
+  },
+  {
+   "id": "m-clausulas-auditaveis",
+   "revisao": false,
+   "t_pergunta": 261.3,
+   "t_pausa": 266.02,
+   "pausa": 6.5,
+   "t_resposta": 271.82
+  },
+  {
+   "id": "m-excluir-clausula",
+   "revisao": false,
+   "t_pergunta": 282.08,
+   "t_pausa": 287.1,
+   "pausa": 6.6,
+   "t_resposta": 292.92
+  },
+  {
+   "id": "m-ordem",
+   "revisao": true,
+   "t_pergunta": 306.26,
+   "t_pausa": 311.2,
+   "pausa": 5.5,
+   "t_resposta": 315.95
+  },
+  {
+   "id": "m-criterios",
+   "revisao": false,
+   "t_pergunta": 319.85,
+   "t_pausa": 327.56,
+   "pausa": 8.2,
+   "t_resposta": 334.97
+  },
+  {
+   "id": "m-partes",
+   "revisao": false,
+   "t_pergunta": 348.63,
+   "t_pausa": 355.88,
+   "pausa": 8.5,
+   "t_resposta": 363.63
+  },
+  {
+   "id": "m-excluir-clausula",
+   "revisao": true,
+   "t_pergunta": 377.46,
+   "t_pausa": 382.48,
+   "pausa": 5.5,
+   "t_resposta": 387.23
+  },
+  {
+   "id": "m-detectivo",
+   "revisao": false,
+   "t_pergunta": 391.42,
+   "t_pausa": 396.27,
+   "pausa": 5.6,
+   "t_resposta": 401.09
+  },
+  {
+   "id": "m-integridade-hash",
+   "revisao": false,
+   "t_pergunta": 411.85,
+   "t_pausa": 420.01,
+   "pausa": 5.6,
+   "t_resposta": 424.83
+  },
+  {
+   "id": "m-clausulas-auditaveis",
+   "revisao": true,
+   "t_pergunta": 435.19,
+   "t_pausa": 439.92,
+   "pausa": 5.5,
+   "t_resposta": 444.67
+  },
+  {
+   "id": "m-criterios",
+   "revisao": true,
+   "t_pergunta": 448.84,
+   "t_pausa": 456.54,
+   "pausa": 6.7,
+   "t_resposta": 462.45
+  }
+ ]
+}

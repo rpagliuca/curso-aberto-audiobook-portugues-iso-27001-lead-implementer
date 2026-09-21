@@ -1,0 +1,182 @@
+{
+ "slug": "p09-anexo-a-estrutura-org-pessoas",
+ "duracao": 479.8,
+ "cues": [
+  {
+   "id": "total",
+   "revisao": false,
+   "t_pergunta": 12.54,
+   "t_pausa": 17.66,
+   "pausa": 5.6,
+   "t_resposta": 22.48
+  },
+  {
+   "id": "temas",
+   "revisao": false,
+   "t_pergunta": 31.42,
+   "t_pausa": 36.65,
+   "pausa": 8.6,
+   "t_resposta": 44.46
+  },
+  {
+   "id": "numeros",
+   "revisao": false,
+   "t_pergunta": 55.25,
+   "t_pausa": 59.21,
+   "pausa": 7.8,
+   "t_resposta": 66.25
+  },
+  {
+   "id": "novos",
+   "revisao": false,
+   "t_pergunta": 79.96,
+   "t_pausa": 84.31,
+   "pausa": 5.6,
+   "t_resposta": 89.13
+  },
+  {
+   "id": "temas",
+   "revisao": true,
+   "t_pergunta": 99.82,
+   "t_pausa": 105.05,
+   "pausa": 7.1,
+   "t_resposta": 111.36
+  },
+  {
+   "id": "atributos",
+   "revisao": false,
+   "t_pergunta": 116.97,
+   "t_pausa": 126.52,
+   "pausa": 9.2,
+   "t_resposta": 135.01
+  },
+  {
+   "id": "ciber-conceitos",
+   "revisao": false,
+   "t_pergunta": 145.94,
+   "t_pausa": 151.19,
+   "pausa": 9.4,
+   "t_resposta": 159.81
+  },
+  {
+   "id": "numeros",
+   "revisao": true,
+   "t_pergunta": 171.06,
+   "t_pausa": 175.02,
+   "pausa": 6.3,
+   "t_resposta": 180.55
+  },
+  {
+   "id": "novo-ameacas",
+   "revisao": false,
+   "t_pergunta": 185.61,
+   "t_pausa": 190.31,
+   "pausa": 6.3,
+   "t_resposta": 195.91
+  },
+  {
+   "id": "novo-nuvem",
+   "revisao": false,
+   "t_pergunta": 204.34,
+   "t_pausa": 210.08,
+   "pausa": 8.4,
+   "t_resposta": 217.72
+  },
+  {
+   "id": "novo-continuidade",
+   "revisao": false,
+   "t_pergunta": 229.52,
+   "t_pausa": 233.41,
+   "pausa": 7.9,
+   "t_resposta": 240.58
+  },
+  {
+   "id": "novos",
+   "revisao": true,
+   "t_pergunta": 252.73,
+   "t_pausa": 257.08,
+   "pausa": 5.5,
+   "t_resposta": 261.83
+  },
+  {
+   "id": "segregacao",
+   "revisao": false,
+   "t_pergunta": 265.3,
+   "t_pausa": 271.11,
+   "pausa": 6.3,
+   "t_resposta": 276.7
+  },
+  {
+   "id": "classificacao",
+   "revisao": false,
+   "t_pergunta": 287.2,
+   "t_pausa": 290.42,
+   "pausa": 5.7,
+   "t_resposta": 295.34
+  },
+  {
+   "id": "incidentes",
+   "revisao": false,
+   "t_pergunta": 308.77,
+   "t_pausa": 312.3,
+   "pausa": 5.7,
+   "t_resposta": 317.22
+  },
+  {
+   "id": "atributos",
+   "revisao": true,
+   "t_pergunta": 330.48,
+   "t_pausa": 340.03,
+   "pausa": 7.7,
+   "t_resposta": 347.01
+  },
+  {
+   "id": "relato-eventos",
+   "revisao": false,
+   "t_pergunta": 353.1,
+   "t_pausa": 358.38,
+   "pausa": 5.8,
+   "t_resposta": 363.4
+  },
+  {
+   "id": "selecao",
+   "revisao": false,
+   "t_pergunta": 374.91,
+   "t_pausa": 379.38,
+   "pausa": 6.8,
+   "t_resposta": 385.47
+  },
+  {
+   "id": "remoto",
+   "revisao": false,
+   "t_pergunta": 396.28,
+   "t_pausa": 399.28,
+   "pausa": 5.6,
+   "t_resposta": 404.11
+  },
+  {
+   "id": "pessoas-lista",
+   "revisao": false,
+   "t_pergunta": 413.45,
+   "t_pausa": 418.18,
+   "pausa": 10.0,
+   "t_resposta": 427.43
+  },
+  {
+   "id": "relato-eventos",
+   "revisao": true,
+   "t_pergunta": 443.26,
+   "t_pausa": 448.54,
+   "pausa": 5.5,
+   "t_resposta": 453.29
+  },
+  {
+   "id": "novo-nuvem",
+   "revisao": true,
+   "t_pergunta": 456.91,
+   "t_pausa": 462.64,
+   "pausa": 6.9,
+   "t_resposta": 468.78
+  }
+ ]
+}

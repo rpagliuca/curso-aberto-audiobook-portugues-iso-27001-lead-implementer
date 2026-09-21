@@ -1,0 +1,198 @@
+{
+ "slug": "p11-misto-final",
+ "duracao": 550.7,
+ "cues": [
+  {
+   "id": "f-93",
+   "revisao": false,
+   "t_pergunta": 9.66,
+   "t_pausa": 13.0,
+   "pausa": 7.2,
+   "t_resposta": 19.43
+  },
+  {
+   "id": "f-documentos",
+   "revisao": false,
+   "t_pergunta": 28.57,
+   "t_pausa": 34.01,
+   "pausa": 10.0,
+   "t_resposta": 43.26
+  },
+  {
+   "id": "f-ransomware",
+   "revisao": false,
+   "t_pergunta": 64.11,
+   "t_pausa": 71.26,
+   "pausa": 7.0,
+   "t_resposta": 77.53
+  },
+  {
+   "id": "f-primeiro-passo",
+   "revisao": false,
+   "t_pergunta": 88.36,
+   "t_pausa": 92.9,
+   "pausa": 7.3,
+   "t_resposta": 99.47
+  },
+  {
+   "id": "f-soa-liga",
+   "revisao": false,
+   "t_pergunta": 113.97,
+   "t_pausa": 118.25,
+   "pausa": 6.6,
+   "t_resposta": 124.11
+  },
+  {
+   "id": "f-documentos",
+   "revisao": true,
+   "t_pergunta": 135.14,
+   "t_pausa": 140.58,
+   "pausa": 9.4,
+   "t_resposta": 149.21
+  },
+  {
+   "id": "f-lead-implementer",
+   "revisao": false,
+   "t_pergunta": 156.48,
+   "t_pausa": 161.09,
+   "pausa": 9.4,
+   "t_resposta": 169.74
+  },
+  {
+   "id": "f-aceitar",
+   "revisao": false,
+   "t_pergunta": 180.69,
+   "t_pausa": 184.1,
+   "pausa": 10.0,
+   "t_resposta": 193.32
+  },
+  {
+   "id": "f-nc-maior",
+   "revisao": false,
+   "t_pergunta": 205.57,
+   "t_pausa": 211.33,
+   "pausa": 5.6,
+   "t_resposta": 216.16
+  },
+  {
+   "id": "f-primeiro-passo",
+   "revisao": true,
+   "t_pergunta": 223.3,
+   "t_pausa": 227.83,
+   "pausa": 5.8,
+   "t_resposta": 232.9
+  },
+  {
+   "id": "f-remoto",
+   "revisao": false,
+   "t_pergunta": 237.62,
+   "t_pausa": 240.88,
+   "pausa": 5.6,
+   "t_resposta": 245.7
+  },
+  {
+   "id": "f-pdca-map",
+   "revisao": false,
+   "t_pergunta": 252.1,
+   "t_pausa": 257.57,
+   "pausa": 10.0,
+   "t_resposta": 266.82
+  },
+  {
+   "id": "f-politica",
+   "revisao": false,
+   "t_pergunta": 280.49,
+   "t_pausa": 286.15,
+   "pausa": 7.4,
+   "t_resposta": 292.82
+  },
+  {
+   "id": "f-lead-implementer",
+   "revisao": true,
+   "t_pergunta": 300.63,
+   "t_pausa": 305.24,
+   "pausa": 7.9,
+   "t_resposta": 312.39
+  },
+  {
+   "id": "f-intervalos",
+   "revisao": false,
+   "t_pergunta": 318.6,
+   "t_pausa": 323.98,
+   "pausa": 9.6,
+   "t_resposta": 332.83
+  },
+  {
+   "id": "f-detectivo",
+   "revisao": false,
+   "t_pergunta": 345.68,
+   "t_pausa": 350.96,
+   "pausa": 5.6,
+   "t_resposta": 355.78
+  },
+  {
+   "id": "f-27005",
+   "revisao": false,
+   "t_pergunta": 366.81,
+   "t_pausa": 370.99,
+   "pausa": 9.4,
+   "t_resposta": 379.61
+  },
+  {
+   "id": "f-pdca-map",
+   "revisao": true,
+   "t_pergunta": 389.22,
+   "t_pausa": 394.69,
+   "pausa": 10.0,
+   "t_resposta": 403.94
+  },
+  {
+   "id": "f-causa",
+   "revisao": false,
+   "t_pergunta": 413.82,
+   "t_pausa": 416.41,
+   "pausa": 6.6,
+   "t_resposta": 422.31
+  },
+  {
+   "id": "f-estagios",
+   "revisao": false,
+   "t_pergunta": 429.57,
+   "t_pausa": 434.18,
+   "pausa": 8.8,
+   "t_resposta": 442.19
+  },
+  {
+   "id": "f-ciclo",
+   "revisao": false,
+   "t_pergunta": 452.86,
+   "t_pausa": 456.36,
+   "pausa": 10.0,
+   "t_resposta": 465.61
+  },
+  {
+   "id": "f-partes-2022",
+   "revisao": false,
+   "t_pergunta": 477.45,
+   "t_pausa": 483.48,
+   "pausa": 8.9,
+   "t_resposta": 491.59
+  },
+  {
+   "id": "f-intervalos",
+   "revisao": true,
+   "t_pergunta": 505.16,
+   "t_pausa": 510.54,
+   "pausa": 8.1,
+   "t_resposta": 517.89
+  },
+  {
+   "id": "f-aceitar",
+   "revisao": true,
+   "t_pergunta": 524.24,
+   "t_pausa": 527.65,
+   "pausa": 8.5,
+   "t_resposta": 535.37
+  }
+ ]
+}

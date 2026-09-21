@@ -1,0 +1,158 @@
+{
+ "slug": "p02-contexto-lideranca-escopo",
+ "duracao": 448.6,
+ "cues": [
+  {
+   "id": "gap",
+   "revisao": false,
+   "t_pergunta": 11.87,
+   "t_pausa": 18.21,
+   "pausa": 7.5,
+   "t_resposta": 24.94
+  },
+  {
+   "id": "fator-sucesso",
+   "revisao": false,
+   "t_pergunta": 37.7,
+   "t_pausa": 42.48,
+   "pausa": 6.9,
+   "t_resposta": 48.61
+  },
+  {
+   "id": "clausula4-1",
+   "revisao": false,
+   "t_pergunta": 61.12,
+   "t_pausa": 65.16,
+   "pausa": 7.6,
+   "t_resposta": 72.03
+  },
+  {
+   "id": "clausula4-2",
+   "revisao": false,
+   "t_pergunta": 86.97,
+   "t_pausa": 90.18,
+   "pausa": 7.5,
+   "t_resposta": 96.95
+  },
+  {
+   "id": "gap",
+   "revisao": true,
+   "t_pergunta": 114.68,
+   "t_pausa": 121.01,
+   "pausa": 6.0,
+   "t_resposta": 126.25
+  },
+  {
+   "id": "escopo-considerar",
+   "revisao": false,
+   "t_pergunta": 131.09,
+   "t_pausa": 140.26,
+   "pausa": 8.4,
+   "t_resposta": 147.9
+  },
+  {
+   "id": "escopo-documentado",
+   "revisao": false,
+   "t_pergunta": 161.35,
+   "t_pausa": 167.69,
+   "pausa": 5.6,
+   "t_resposta": 172.51
+  },
+  {
+   "id": "fator-sucesso",
+   "revisao": true,
+   "t_pergunta": 183.73,
+   "t_pausa": 188.5,
+   "pausa": 5.5,
+   "t_resposta": 193.25
+  },
+  {
+   "id": "hls",
+   "revisao": false,
+   "t_pergunta": 197.66,
+   "t_pausa": 204.57,
+   "pausa": 8.2,
+   "t_resposta": 211.98
+  },
+  {
+   "id": "politica-quem",
+   "revisao": false,
+   "t_pergunta": 225.29,
+   "t_pausa": 228.94,
+   "pausa": 5.6,
+   "t_resposta": 233.79
+  },
+  {
+   "id": "politica-requisitos",
+   "revisao": false,
+   "t_pergunta": 245.76,
+   "t_pausa": 254.54,
+   "pausa": 7.4,
+   "t_resposta": 261.14
+  },
+  {
+   "id": "clausula4-2",
+   "revisao": true,
+   "t_pergunta": 273.03,
+   "t_pausa": 276.25,
+   "pausa": 6.0,
+   "t_resposta": 281.52
+  },
+  {
+   "id": "politica-comunicacao",
+   "revisao": false,
+   "t_pergunta": 286.38,
+   "t_pausa": 293.49,
+   "pausa": 5.6,
+   "t_resposta": 298.31
+  },
+  {
+   "id": "papeis",
+   "revisao": false,
+   "t_pergunta": 309.55,
+   "t_pausa": 313.37,
+   "pausa": 8.3,
+   "t_resposta": 320.88
+  },
+  {
+   "id": "escopo-considerar",
+   "revisao": true,
+   "t_pergunta": 334.52,
+   "t_pausa": 343.69,
+   "pausa": 6.9,
+   "t_resposta": 349.83
+  },
+  {
+   "id": "delegar",
+   "revisao": false,
+   "t_pergunta": 355.32,
+   "t_pausa": 360.53,
+   "pausa": 9.3,
+   "t_resposta": 369.11
+  },
+  {
+   "id": "conformidade-vs-cert",
+   "revisao": false,
+   "t_pergunta": 383.74,
+   "t_pausa": 387.87,
+   "pausa": 9.9,
+   "t_resposta": 396.99
+  },
+  {
+   "id": "politica-quem",
+   "revisao": true,
+   "t_pergunta": 411.04,
+   "t_pausa": 414.69,
+   "pausa": 5.5,
+   "t_resposta": 419.44
+  },
+  {
+   "id": "hls",
+   "revisao": true,
+   "t_pergunta": 422.93,
+   "t_pausa": 429.85,
+   "pausa": 6.7,
+   "t_resposta": 435.75
+  }
+ ]
+}

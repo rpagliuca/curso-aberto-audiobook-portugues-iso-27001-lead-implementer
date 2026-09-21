@@ -1,0 +1,182 @@
+{
+ "slug": "p01-fundamentos",
+ "duracao": 475.8,
+ "cues": [
+  {
+   "id": "cia",
+   "revisao": false,
+   "t_pergunta": 29.25,
+   "t_pausa": 32.56,
+   "pausa": 8.4,
+   "t_resposta": 40.24
+  },
+  {
+   "id": "integridade-cenario",
+   "revisao": false,
+   "t_pergunta": 55.56,
+   "t_pausa": 66.5,
+   "pausa": 5.6,
+   "t_resposta": 71.33
+  },
+  {
+   "id": "vulnerabilidade",
+   "revisao": false,
+   "t_pergunta": 82.59,
+   "t_pausa": 87.08,
+   "pausa": 5.6,
+   "t_resposta": 91.9
+  },
+  {
+   "id": "ameaca",
+   "revisao": false,
+   "t_pergunta": 101.92,
+   "t_pausa": 105.86,
+   "pausa": 5.6,
+   "t_resposta": 110.68
+  },
+  {
+   "id": "cia",
+   "revisao": true,
+   "t_pergunta": 122.04,
+   "t_pausa": 125.36,
+   "pausa": 6.9,
+   "t_resposta": 131.53
+  },
+  {
+   "id": "risco",
+   "revisao": false,
+   "t_pergunta": 137.04,
+   "t_pausa": 140.96,
+   "pausa": 7.4,
+   "t_resposta": 147.59
+  },
+  {
+   "id": "certificavel",
+   "revisao": false,
+   "t_pergunta": 159.96,
+   "t_pausa": 163.88,
+   "pausa": 6.3,
+   "t_resposta": 169.4
+  },
+  {
+   "id": "iso27002",
+   "revisao": false,
+   "t_pergunta": 179.57,
+   "t_pausa": 182.85,
+   "pausa": 6.9,
+   "t_resposta": 189.02
+  },
+  {
+   "id": "vulnerabilidade",
+   "revisao": true,
+   "t_pergunta": 201.85,
+   "t_pausa": 206.33,
+   "pausa": 5.5,
+   "t_resposta": 211.08
+  },
+  {
+   "id": "iso27005",
+   "revisao": false,
+   "t_pergunta": 214.56,
+   "t_pausa": 219.4,
+   "pausa": 6.5,
+   "t_resposta": 225.17
+  },
+  {
+   "id": "sgsi",
+   "revisao": false,
+   "t_pergunta": 238.47,
+   "t_pausa": 241.59,
+   "pausa": 7.7,
+   "t_resposta": 248.53
+  },
+  {
+   "id": "risco",
+   "revisao": true,
+   "t_pergunta": 263.74,
+   "t_pausa": 267.65,
+   "pausa": 5.9,
+   "t_resposta": 272.78
+  },
+  {
+   "id": "pdca-fases",
+   "revisao": false,
+   "t_pergunta": 277.55,
+   "t_pausa": 280.93,
+   "pausa": 7.6,
+   "t_resposta": 287.74
+  },
+  {
+   "id": "pdca-auditoria",
+   "revisao": false,
+   "t_pergunta": 297.93,
+   "t_pausa": 301.38,
+   "pausa": 5.6,
+   "t_resposta": 306.2
+  },
+  {
+   "id": "certificavel",
+   "revisao": true,
+   "t_pergunta": 315.91,
+   "t_pausa": 319.82,
+   "pausa": 5.5,
+   "t_resposta": 324.57
+  },
+  {
+   "id": "tipos-controle",
+   "revisao": false,
+   "t_pergunta": 328.55,
+   "t_pausa": 335.2,
+   "pausa": 7.2,
+   "t_resposta": 341.66
+  },
+  {
+   "id": "backup-tipo",
+   "revisao": false,
+   "t_pergunta": 354.28,
+   "t_pausa": 358.33,
+   "pausa": 5.6,
+   "t_resposta": 363.15
+  },
+  {
+   "id": "iso27005",
+   "revisao": true,
+   "t_pergunta": 371.4,
+   "t_pausa": 376.24,
+   "pausa": 5.5,
+   "t_resposta": 380.99
+  },
+  {
+   "id": "si-vs-ti",
+   "revisao": false,
+   "t_pergunta": 385.14,
+   "t_pausa": 390.66,
+   "pausa": 5.6,
+   "t_resposta": 395.48
+  },
+  {
+   "id": "disponibilidade-cenario",
+   "revisao": false,
+   "t_pergunta": 409.75,
+   "t_pausa": 418.77,
+   "pausa": 5.6,
+   "t_resposta": 423.63
+  },
+  {
+   "id": "pdca-auditoria",
+   "revisao": true,
+   "t_pergunta": 436.36,
+   "t_pausa": 439.81,
+   "pausa": 5.5,
+   "t_resposta": 444.56
+  },
+  {
+   "id": "tipos-controle",
+   "revisao": true,
+   "t_pergunta": 448.04,
+   "t_pausa": 454.68,
+   "pausa": 5.7,
+   "t_resposta": 459.65
+  }
+ ]
+}
