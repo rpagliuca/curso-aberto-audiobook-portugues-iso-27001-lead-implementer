@@ -8,7 +8,7 @@ ws.onmessage=m=>{const d=JSON.parse(m.data);if(d.id&&pend.has(d.id)){pend.get(d.
 const send=(method,params={})=>new Promise(r=>{pend.set(++id,r);ws.send(JSON.stringify({id,method,params}))});
 const ev=async e=>{const r=await send('Runtime.evaluate',{expression:e,awaitPromise:true,returnByValue:true});if(r.result.exceptionDetails)throw new Error(e+' → '+JSON.stringify(r.result.exceptionDetails.exception?.description));return r.result.result.value};
 await send('Runtime.enable');await send('Page.enable');
-const URL='http://127.0.0.1:8742/index.html';
+const URL=process.env.SITE_URL||'http://127.0.0.1:8742/index.html';   // SITE_URL=https://... testa o site publicado
 await send('Page.navigate',{url:URL});await sleep(1500);
 await ev(`localStorage.clear()`);await send('Page.navigate',{url:URL});await sleep(1500);
 let fails=0;const ok=(n,c,x)=>{console.log((c?'PASS':'FAIL')+' '+n+(x!==undefined?'  ['+x+']':''));if(!c)fails++};

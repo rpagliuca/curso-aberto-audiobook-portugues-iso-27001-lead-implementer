@@ -72,6 +72,8 @@ Pronúncia: a voz é `pt-BR-AntonioNeural`. Siglas e termos em inglês são rees
 google-chrome --headless=new --remote-debugging-port=9333 --autoplay-policy=no-user-gesture-required \
   --mute-audio --user-data-dir=$(mktemp -d) about:blank &
 node testes/player-cdp-test.mjs
+# contra o site publicado:
+SITE_URL=https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/index.html node testes/player-cdp-test.mjs
 ```
 
 ## Aviso
