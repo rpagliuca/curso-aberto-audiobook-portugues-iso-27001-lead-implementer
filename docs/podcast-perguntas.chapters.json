@@ -1,0 +1,49 @@
+{
+ "version": "1.2.0",
+ "chapters": [
+  {
+   "startTime": 0.0,
+   "title": "P1 — Fundamentos de segurança da informação"
+  },
+  {
+   "startTime": 475.872,
+   "title": "P2 — Iniciação, contexto, liderança e escopo"
+  },
+  {
+   "startTime": 924.504,
+   "title": "P3 — Avaliação e tratamento de riscos, SoA e objetivos"
+  },
+  {
+   "startTime": 1403.448,
+   "title": "P4 — Misto 1: fundamentos, contexto e riscos"
+  },
+  {
+   "startTime": 1878.456,
+   "title": "P5 — Suporte e operação"
+  },
+  {
+   "startTime": 2374.224,
+   "title": "P6 — Monitoramento, auditoria interna e análise crítica"
+  },
+  {
+   "startTime": 2838.792,
+   "title": "P7 — Melhoria e processo de certificação"
+  },
+  {
+   "startTime": 3283.08,
+   "title": "P8 — Misto 2: implementação, monitoramento e melhoria"
+  },
+  {
+   "startTime": 3790.056,
+   "title": "P9 — Anexo A: estrutura, controles organizacionais e de pessoas"
+  },
+  {
+   "startTime": 4269.936,
+   "title": "P10 — Anexo A: controles físicos e tecnológicos"
+  },
+  {
+   "startTime": 4738.752,
+   "title": "P11 — Misto final: todos os domínios"
+  }
+ ]
+}

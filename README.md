@@ -11,6 +11,12 @@ Curso aberto, em português, para estudar para a certificação **ISO/IEC 27001 
 - **Simulado diagnóstico** — 20 questões de múltipla escolha com nota por domínio e revisão comentada dos erros.
 - **Player feito para dirigir** — os botões avançar/voltar do Bluetooth do carro ou do fone pulam 10 s e atravessam os capítulos como uma faixa contínua; ao terminar um capítulo o próximo começa sozinho; a posição é retomada ao reabrir a página.
 
+## Ouvir num app de podcast
+
+O feed `https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast.xml` tem dois episódios longos, **Conteúdo** (~58 min, 6 capítulos) e **Perguntas e respostas** (~88 min, 11 capítulos). Cada um é uma faixa só, para o ±10 s atravessar os capítulos; os capítulos vão no MP3 (ID3 CHAP) e em JSON (`podcast:chapters`).
+
+No Apple Podcasts: Biblioteca → ⋯ → Seguir um Programa por URL. Vale a pena no iPhone: com o player do site, o iOS congela a página depois de alguns minutos pausado e o play da tela de bloqueio para de responder; no app de podcast isso não acontece.
+
 ## O texto é o código-fonte
 
 Todo áudio é **artefato gerado a partir de texto versionado neste repositório**. Para revisar, corrigir ou contribuir com conteúdo, edite o texto — nunca o MP3.
@@ -57,6 +63,7 @@ Requer Python 3, `ffmpeg` e `pip install edge-tts`.
 ```bash
 python generate_perguntas.py p07      # regenera só o capítulo P7 (sem argumento = todos)
 python generate_audiobook.py          # regenera os 6 episódios do audiobook
+python generate_podcast.py            # remonta o feed de podcast (rode depois dos dois acima)
 python serve.py                       # serve docs/ em http://127.0.0.1:8742 com suporte a HTTP Range
 ```
 
