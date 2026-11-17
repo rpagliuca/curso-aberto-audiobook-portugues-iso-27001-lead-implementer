@@ -1,0 +1,29 @@
+{
+ "version": "1.2.0",
+ "chapters": [
+  {
+   "startTime": 0.0,
+   "title": "Episódio 1 — O que é Segurança da Informação e por que ela existe"
+  },
+  {
+   "startTime": 570.072,
+   "title": "Episódio 2 — Contexto, Liderança e Escopo"
+  },
+  {
+   "startTime": 1159.824,
+   "title": "Episódio 3 — Avaliação e Tratamento de Riscos"
+  },
+  {
+   "startTime": 1731.912,
+   "title": "Episódio 4 — Implementação: Suporte e Operação"
+  },
+  {
+   "startTime": 2302.056,
+   "title": "Episódio 5 — Monitoramento, Auditoria e Melhoria"
+  },
+  {
+   "startTime": 2898.84,
+   "title": "Episódio 6 — Anexo A: Os 93 Controles da ISO 27002:2022"
+  }
+ ]
+}
