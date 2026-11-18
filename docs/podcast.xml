@@ -6,8 +6,8 @@
   <link>https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/</link>
   <atom:link href="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast.xml" rel="self" type="application/rss+xml"/>
   <language>pt-BR</language>
-  <description>Curso aberto, em português, para estudar para a certificação ISO/IEC 27001 Lead Implementer ouvindo. Dois episódios longos, com capítulos: o conteúdo e as perguntas e respostas.</description>
-  <itunes:summary>Curso aberto, em português, para estudar para a certificação ISO/IEC 27001 Lead Implementer ouvindo. Dois episódios longos, com capítulos: o conteúdo e as perguntas e respostas.</itunes:summary>
+  <description>Curso aberto, em português, para estudar para a certificação ISO/IEC 27001 Lead Implementer ouvindo. Três episódios longos, com capítulos: o conteúdo, os capítulos extras e as perguntas e respostas.</description>
+  <itunes:summary>Curso aberto, em português, para estudar para a certificação ISO/IEC 27001 Lead Implementer ouvindo. Três episódios longos, com capítulos: o conteúdo, os capítulos extras e as perguntas e respostas.</itunes:summary>
   <itunes:author>rpagliuca</itunes:author>
   <itunes:image href="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-artwork.png"/>
   <image><url>https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-artwork.png</url><title>ISO 27001 Lead Implementer — curso em áudio</title><link>https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/</link></image>
@@ -61,6 +61,27 @@ Quizzes, simulado e roteiro: https://rpagliuca.github.io/curso-aberto-audiobook-
 
 Quizzes, simulado e roteiro: https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/</description>
    <podcast:chapters url="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-perguntas.chapters.json" type="application/json+chapters"/>
+   <itunes:explicit>false</itunes:explicit>
+  </item>
+  <item>
+   <title>Capítulos extras — o que o curso cobra além dos 7 domínios</title>
+   <itunes:title>Capítulos extras — o que o curso cobra além dos 7 domínios</itunes:title>
+   <itunes:episode>3</itunes:episode>
+   <itunes:episodeType>full</itunes:episodeType>
+   <guid isPermaLink="false">iso27001-lead-implementer-extras</guid>
+   <pubDate>Wed, 18 Nov 2026 12:00:00 +0000</pubDate>
+   <enclosure url="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-extras.mp3" length="8510996" type="audio/mpeg"/>
+   <itunes:duration>1418</itunes:duration>
+   <description>5 capítulos numa faixa só: o ±10 s atravessa os capítulos.
+
+0:00:00 Extra 1 — A família de normas e os marcos vizinhos
+0:04:43 Extra 2 — O projeto de implementação e quem decide
+0:09:28 Extra 3 — Contexto, escopo e política na prática
+0:14:16 Extra 4 — Documentos, treinamento, nuvem e inteligência artificial
+0:19:04 Extra 5 — Medição, auditoria, certificação e o dia da prova
+
+Quizzes, simulado e roteiro: https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/</description>
+   <podcast:chapters url="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-extras.chapters.json" type="application/json+chapters"/>
    <itunes:explicit>false</itunes:explicit>
   </item>
  </channel>

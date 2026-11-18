@@ -1,0 +1,25 @@
+{
+ "version": "1.2.0",
+ "chapters": [
+  {
+   "startTime": 0.0,
+   "title": "Extra 1 — A família de normas e os marcos vizinhos"
+  },
+  {
+   "startTime": 283.416,
+   "title": "Extra 2 — O projeto de implementação e quem decide"
+  },
+  {
+   "startTime": 568.488,
+   "title": "Extra 3 — Contexto, escopo e política na prática"
+  },
+  {
+   "startTime": 856.248,
+   "title": "Extra 4 — Documentos, treinamento, nuvem e inteligência artificial"
+  },
+  {
+   "startTime": 1143.984,
+   "title": "Extra 5 — Medição, auditoria, certificação e o dia da prova"
+  }
+ ]
+}
