@@ -29,6 +29,10 @@ SUMMARY = ("Curso aberto, em português, para estudar para a certificação ISO/
 PUB = {"conteudo": datetime(2026, 11, 17, 12, 0, tzinfo=timezone.utc),
        "perguntas": datetime(2026, 11, 17, 12, 1, tzinfo=timezone.utc),
        "extras": datetime(2026, 11, 18, 12, 0, tzinfo=timezone.utc)}
+# Versão da faixa: INCREMENTE quando uma faixa já publicada for regenerada. O app Podcasts guarda o
+# áudio pelo endereço do enclosure e continua tocando o antigo, mesmo removendo o download; o ?v=N
+# muda o endereço (do MP3 e do JSON de capítulos) sem mudar guid nem pubDate. Sem versão = sem query.
+VERSAO = {"extras": 2}
 
 
 def cards():
@@ -82,6 +86,7 @@ def build(slug, title, parts):
 
 def item(ep, n):
     esc = html.escape
+    q = f"?v={VERSAO[ep['slug']]}" if ep["slug"] in VERSAO else ""
     lines = "\n".join(f"{hms(c['startTime'])} {c['title']}" for c in ep["chapters"])
     desc = (f"{len(ep['chapters'])} capítulos numa faixa só: o ±10 s atravessa os capítulos.\n\n{lines}\n\n"
             f"Quizzes, simulado e roteiro: {SITE}")
@@ -92,10 +97,10 @@ def item(ep, n):
    <itunes:episodeType>full</itunes:episodeType>
    <guid isPermaLink="false">iso27001-lead-implementer-{ep['slug']}</guid>
    <pubDate>{email.utils.format_datetime(PUB[ep['slug']])}</pubDate>
-   <enclosure url="{SITE}{ep['file']}" length="{ep['bytes']}" type="audio/mpeg"/>
+   <enclosure url="{SITE}{ep['file']}{q}" length="{ep['bytes']}" type="audio/mpeg"/>
    <itunes:duration>{int(round(ep['duration']))}</itunes:duration>
    <description>{esc(desc)}</description>
-   <podcast:chapters url="{SITE}podcast-{ep['slug']}.chapters.json" type="application/json+chapters"/>
+   <podcast:chapters url="{SITE}podcast-{ep['slug']}.chapters.json{q}" type="application/json+chapters"/>
    <itunes:explicit>false</itunes:explicit>
   </item>"""
 

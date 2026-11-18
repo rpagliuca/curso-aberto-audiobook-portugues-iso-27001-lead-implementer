@@ -16,6 +16,8 @@ Curso aberto, em português, para estudar para a certificação **ISO/IEC 27001 
 
 O feed `https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast.xml` tem três episódios longos, **Conteúdo** (~58 min, 6 capítulos), **Perguntas e respostas** (~88 min, 11 capítulos) e **Capítulos extras** (~24 min, 5 capítulos). Cada um é uma faixa só, para o ±10 s atravessar os capítulos; os capítulos vão no MP3 (ID3 CHAP) e em JSON (`podcast:chapters`).
 
+Quando uma faixa já publicada é regenerada, incremente a versão dela em `VERSAO` no `generate_podcast.py`: o endereço do MP3 e do JSON ganha `?v=N` e o app Podcasts, que guarda o áudio pelo endereço, baixa o novo; `guid` e `pubDate` não mudam.
+
 No Apple Podcasts: Biblioteca → ⋯ → Seguir um Programa por URL. Vale a pena no iPhone: com o player do site, o iOS congela a página depois de alguns minutos pausado e o play da tela de bloqueio para de responder; no app de podcast isso não acontece.
 
 ## O texto é o código-fonte

@@ -70,7 +70,7 @@ Quizzes, simulado e roteiro: https://rpagliuca.github.io/curso-aberto-audiobook-
    <itunes:episodeType>full</itunes:episodeType>
    <guid isPermaLink="false">iso27001-lead-implementer-extras</guid>
    <pubDate>Wed, 18 Nov 2026 12:00:00 +0000</pubDate>
-   <enclosure url="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-extras.mp3" length="8504084" type="audio/mpeg"/>
+   <enclosure url="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-extras.mp3?v=2" length="8504084" type="audio/mpeg"/>
    <itunes:duration>1417</itunes:duration>
    <description>5 capítulos numa faixa só: o ±10 s atravessa os capítulos.
 
@@ -81,7 +81,7 @@ Quizzes, simulado e roteiro: https://rpagliuca.github.io/curso-aberto-audiobook-
 0:19:03 Extra 5 — Medição, auditoria, certificação e o dia da prova
 
 Quizzes, simulado e roteiro: https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/</description>
-   <podcast:chapters url="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-extras.chapters.json" type="application/json+chapters"/>
+   <podcast:chapters url="https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast-extras.chapters.json?v=2" type="application/json+chapters"/>
    <itunes:explicit>false</itunes:explicit>
   </item>
  </channel>
