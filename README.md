@@ -66,6 +66,7 @@ Requer Python 3, `ffmpeg` e `pip install edge-tts`.
 python generate_perguntas.py p07      # regenera só o capítulo P7 (sem argumento = todos)
 python generate_audiobook.py          # regenera os 6 episódios do audiobook
 python generate_audiobook.py extras   # regenera os 5 capítulos extras (docs/x01-… a x05-…)
+python generate_audiobook.py extras 2 # regenera só o Extra 2
 python generate_audiobook.py extras --texto   # só imprime o texto que vai para o TTS, para conferir a pronúncia
 python generate_podcast.py            # remonta o feed de podcast (rode depois dos geradores acima)
 python serve.py                       # serve docs/ em http://127.0.0.1:8742 com suporte a HTTP Range

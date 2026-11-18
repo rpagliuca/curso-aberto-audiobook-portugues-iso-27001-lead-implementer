@@ -4,6 +4,7 @@ Gera MP3s de um roteiro em Markdown usando edge-tts.
 
     python generate_audiobook.py           # os 6 episódios (iso27001-roteiro-audio.md)
     python generate_audiobook.py extras    # os 5 capítulos extras (iso27001-roteiro-extras.md)
+    python generate_audiobook.py extras 2  # só o Extra 2 (números dos capítulos a regenerar)
 
 Estratégia de pronúncia:
   - Siglas PT-BR → pontuadas (TI → T.I.) para soletramento.
@@ -49,7 +50,7 @@ ACRONYM_MAP = [
     (r'\bSaaS\b',  'sás'),
     (r'\bPaaS\b',  'pás'),
     (r'\bIaaS\b',  'i-ás'),
-    (r'\bCIO\b',   'ci-ai-ôu'),
+    (r'\bCIO\b',   'ci ai ou'),   # sem hífen e sem acento: com 'ôu' a voz soletra o acento
     (r'\bSGSI\b',  'S.G.S.I.'),
     (r'\bMTTD\b',  'M.T.T.D.'),
     (r'\bMTTR\b',  'M.T.T.R.'),
@@ -172,10 +173,12 @@ def parse_episodes(path: str, title_re: str = r"Episódio \d+ — .+",
     return episodes
 
 
-async def generate_all(episodes: list[tuple[str, str]], prefix: str = "") -> None:
+async def generate_all(episodes: list[tuple[str, str]], prefix: str = "", only: set[int] | None = None) -> None:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     tasks = []
     for i, (title, text) in enumerate(episodes, 1):
+        if only and i not in only:
+            continue
         slug = re.sub(r"[^a-z0-9]+", "-", title.lower())[:60].strip("-")
         filename = f"{prefix}{i:02d}-{slug}.mp3"
         output_path = os.path.join(OUTPUT_DIR, filename)
@@ -213,7 +216,8 @@ async def main() -> None:
             print(f"===== {title}\n{text}\n")
         return
     print(f"\nEncontrados {len(episodes)} episódios em {fonte}\n")
-    await generate_all(episodes, prefix)
+    only = {int(a) for a in sys.argv[2:] if a.isdigit()}
+    await generate_all(episodes, prefix, only)
 
 
 if __name__ == "__main__":
