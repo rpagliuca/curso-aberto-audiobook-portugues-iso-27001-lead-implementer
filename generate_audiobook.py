@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Gera MP3s do roteiro iso27001-roteiro-audio.md usando edge-tts.
+Gera MP3s de um roteiro em Markdown usando edge-tts.
+
+    python generate_audiobook.py           # os 6 episódios (iso27001-roteiro-audio.md)
+    python generate_audiobook.py extras    # os 5 capítulos extras (iso27001-roteiro-extras.md)
 
 Estratégia de pronúncia:
   - Siglas PT-BR → pontuadas (TI → T.I.) para soletramento.
@@ -20,14 +23,33 @@ except ImportError:
 
 VOICE = "pt-BR-AntonioNeural"
 RATE  = "+10%"
-SOURCE    = os.path.join(os.path.dirname(__file__), "iso27001-roteiro-audio.md")
-OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "docs")
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(BASE_DIR, "docs")
+# roteiro → (fonte, padrão do título "## ...", prefixo do arquivo, cláusula 7.5 lida "7 ponto 5")
+ROTEIROS = {
+    "audiobook": ("iso27001-roteiro-audio.md",  r"Episódio \d+ — .+", "",  False),
+    "extras":    ("iso27001-roteiro-extras.md", r"Extra \d+ — .+",    "x", True),
+}
 
 # ---------------------------------------------------------------------------
 # Siglas PT-BR — do mais longo ao mais curto para evitar substituições
 # parciais (SGSI antes de SI).
 # ---------------------------------------------------------------------------
 ACRONYM_MAP = [
+    # Sensível a maiúsculas e palavra inteira: "ia", "cio" e "pás" do português não casam.
+    (r'\bPCI DSS\b', 'P.C.I. D.S.S.'),
+    (r'\bCSA STAR\b', 'C.S.A. istár'),
+    (r'\b17021-1\b', '17021 parte 1'),
+    (r'\bPECB\b',  'P.E.C.B.'),
+    (r'\bIMS2\b',  'I.M.S. dois'),
+    # Siglas lidas como palavra, na pronúncia pedida pelo Rafael.
+    (r'\bCISO\b',  'cízo'),
+    (r'\bSWOT\b',  'suóti'),
+    (r'\bPEST\b',  'pésti'),
+    (r'\bSaaS\b',  'sás'),
+    (r'\bPaaS\b',  'pás'),
+    (r'\bIaaS\b',  'i-ás'),
+    (r'\bCIO\b',   'ci-ai-ôu'),
     (r'\bSGSI\b',  'S.G.S.I.'),
     (r'\bMTTD\b',  'M.T.T.D.'),
     (r'\bMTTR\b',  'M.T.T.R.'),
@@ -46,11 +68,13 @@ ACRONYM_MAP = [
     (r'\bACS\b',   'A.C.S.'),
     (r'\bSSL\b',   'S.S.L.'),
     (r'\bTLS\b',   'T.L.S.'),
+    (r'\bIAF\b',   'I.A.F.'),
     # ISO: TTS já pronuncia como palavra ("ízo") — sem pontos.
     (r'\bRH\b',    'R.H.'),
     (r'\bTI\b',    'T.I.'),
     (r'\bSI\b',    'S.I.'),
-    # CIA e CISO: TTS já pronuncia como palavra — sem pontos.
+    (r'\bIA\b',    'I.A.'),
+    # CIA: TTS já pronuncia como palavra — sem pontos.
 ]
 
 # ---------------------------------------------------------------------------
@@ -70,6 +94,9 @@ PHONETIC_MAP = [
     # Mais longos primeiro para evitar substituição parcial
     (r'\bstatement of applicability\b', 'istêiti-mênti ófi aplí-cabíliti'),
     (r'\bsurveillance audit\b',         'sãrvêilenci audíti'),
+    (r'\bLead Implementer\b',           'líd implemênter'),
+    (r'\bbusiness case\b',              'bíznes quêis'),
+    (r'\bKirkpatrick\b',     'Kêrk-pétrik'),
     (r'\bconfidentiality\b', 'confidênciáliti'),
     (r'\bavailability\b',    'avêilabíliti'),
     (r'\bransomware\b',      'rânsomuér'),
@@ -84,6 +111,14 @@ PHONETIC_MAP = [
     (r'\bpatches\b',         'pétches'),
     (r'\bbackup\b',          'bêcápi'),
     (r'\bpatch\b',           'pétch'),
+    (r'\bbackdoor\b',        'béc-dór'),
+    (r'\bPorter\b',          'Pórter'),
+    (r'\bshould\b',          'chúd'),
+    (r'\bshall\b',           'chél'),
+    (r'\blog\b',             'lóg'),
+    # Verbos da norma (Extra 4); palavra inteira, não existem em português.
+    (r'\bmay\b',             'mêi'),
+    (r'\bcan\b',             'quén'),
     # Correções de acentuação PT-BR
     (r'\bperceba\b',         'percêba'),
 ]
@@ -101,7 +136,7 @@ def apply_phonetics(text: str) -> str:
     return text
 
 
-def clean_for_tts(text: str) -> str:
+def clean_for_tts(text: str, clausula_com_ponto: bool = False) -> str:
     # 1. Strip markdown
     text = re.sub(r"^#{1,6}\s+(.+)$", r"\1.", text, flags=re.MULTILINE)
     text = re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
@@ -112,6 +147,8 @@ def clean_for_tts(text: str) -> str:
     text = re.sub(r"^[ \t]+$", "", text, flags=re.MULTILINE)
     text = re.sub(r"\n{3,}", "\n\n", text)
     text = text.strip()
+    if clausula_com_ponto:                                   # cláusula 7.5 → "7 ponto 5"
+        text = re.sub(r"(?<=\d)\.(?=\d)", " ponto ", text)
     # 2. Siglas PT-BR
     text = apply_acronyms(text)
     # 3. Fonética inglesa
@@ -119,27 +156,28 @@ def clean_for_tts(text: str) -> str:
     return text
 
 
-def parse_episodes(path: str) -> list[tuple[str, str]]:
+def parse_episodes(path: str, title_re: str = r"Episódio \d+ — .+",
+                   clausula_com_ponto: bool = False) -> list[tuple[str, str]]:
     raw = open(path, encoding="utf-8").read()
-    pattern = re.compile(r"^## (Episódio \d+ — .+)$", re.MULTILINE)
+    pattern = re.compile(rf"^## ({title_re})$", re.MULTILINE)
     positions = [(m.start(), m.group(1)) for m in pattern.finditer(raw)]
     episodes = []
     for i, (start, title) in enumerate(positions):
         end = positions[i + 1][0] if i + 1 < len(positions) else len(raw)
         body = raw[start:end]
         body = re.sub(r"^## .+\n", "", body, count=1)
-        body = clean_for_tts(body)
+        body = clean_for_tts(body, clausula_com_ponto)
         if body:
             episodes.append((title, body))
     return episodes
 
 
-async def generate_all(episodes: list[tuple[str, str]]) -> None:
+async def generate_all(episodes: list[tuple[str, str]], prefix: str = "") -> None:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     tasks = []
     for i, (title, text) in enumerate(episodes, 1):
         slug = re.sub(r"[^a-z0-9]+", "-", title.lower())[:60].strip("-")
-        filename = f"{i:02d}-{slug}.mp3"
+        filename = f"{prefix}{i:02d}-{slug}.mp3"
         output_path = os.path.join(OUTPUT_DIR, filename)
         print(f"  [{i:02d}] {filename}  ({len(text.split())} palavras)")
         tasks.append((i, output_path, text, title))
@@ -158,15 +196,24 @@ async def generate_all(episodes: list[tuple[str, str]]) -> None:
 
 
 async def main() -> None:
-    if not os.path.exists(SOURCE):
-        print(f"Arquivo não encontrado: {SOURCE}")
+    nome = sys.argv[1] if len(sys.argv) > 1 else "audiobook"
+    if nome not in ROTEIROS:
+        sys.exit(f"Roteiro desconhecido: {nome} (opções: {', '.join(ROTEIROS)})")
+    fonte, title_re, prefix, clausula = ROTEIROS[nome]
+    source = os.path.join(BASE_DIR, fonte)
+    if not os.path.exists(source):
+        print(f"Arquivo não encontrado: {source}")
         sys.exit(1)
-    episodes = parse_episodes(SOURCE)
+    episodes = parse_episodes(source, title_re, clausula)
     if not episodes:
         print("Nenhum episódio encontrado.")
         sys.exit(1)
-    print(f"\nEncontrados {len(episodes)} episódios em {os.path.basename(SOURCE)}\n")
-    await generate_all(episodes)
+    if "--texto" in sys.argv:          # só imprime o texto que vai para o TTS (conferência de pronúncia)
+        for title, text in episodes:
+            print(f"===== {title}\n{text}\n")
+        return
+    print(f"\nEncontrados {len(episodes)} episódios em {fonte}\n")
+    await generate_all(episodes, prefix)
 
 
 if __name__ == "__main__":

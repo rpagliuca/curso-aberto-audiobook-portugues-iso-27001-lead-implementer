@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Gera o feed de podcast (docs/podcast.xml) com duas faixas únicas: conteúdo e perguntas.
+"""Gera o feed de podcast (docs/podcast.xml) com três faixas únicas: conteúdo, extras e perguntas.
 
 Por que faixa única: num app de podcast, voltar 10 s no começo de um episódio não cai no fim do
 anterior. Juntando os capítulos num só MP3, o ±10 s atravessa os capítulos como no player do site,
 e cada capítulo vira um marcador (ID3 CHAP dentro do MP3 e podcast:chapters em JSON).
 
 Fonte: os MP3 já gerados em docs/ e os títulos dos cards do docs/index.html. Rode depois de
-generate_audiobook.py ou generate_perguntas.py. Requer ffmpeg/ffprobe.
+generate_audiobook.py (com ou sem "extras") ou generate_perguntas.py. Requer ffmpeg/ffprobe.
 
     python generate_podcast.py
 """
@@ -24,10 +24,11 @@ SITE = "https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-l
 TITLE = "ISO 27001 Lead Implementer — curso em áudio"
 AUTHOR = "rpagliuca"
 SUMMARY = ("Curso aberto, em português, para estudar para a certificação ISO/IEC 27001 Lead Implementer "
-           "ouvindo. Dois episódios longos, com capítulos: o conteúdo e as perguntas e respostas.")
+           "ouvindo. Três episódios longos, com capítulos: o conteúdo, os capítulos extras e as perguntas e respostas.")
 # Datas fixas: regenerar o feed não deve fazer o app achar que há episódio novo.
 PUB = {"conteudo": datetime(2026, 11, 17, 12, 0, tzinfo=timezone.utc),
-       "perguntas": datetime(2026, 11, 17, 12, 1, tzinfo=timezone.utc)}
+       "perguntas": datetime(2026, 11, 17, 12, 1, tzinfo=timezone.utc),
+       "extras": datetime(2026, 11, 18, 12, 0, tzinfo=timezone.utc)}
 
 
 def cards():
@@ -101,8 +102,12 @@ def item(ep, n):
 
 def main():
     cs = cards()
-    eps = [build("conteudo", "Conteúdo — os 7 domínios da prova", [c for c in cs if not c[0].startswith("p")]),
-           build("perguntas", "Perguntas e respostas — responda em voz alta", [c for c in cs if c[0].startswith("p")])]
+    # Prefixo do arquivo separa as faixas: pNN = perguntas, xNN = extras, o resto = conteúdo.
+    # A ordem da lista é o itunes:episode; o extras entra como 3 para não renumerar os dois primeiros.
+    eps = [build("conteudo", "Conteúdo — os 7 domínios da prova", [c for c in cs if c[0][0] not in "px"]),
+           build("perguntas", "Perguntas e respostas — responda em voz alta", [c for c in cs if c[0].startswith("p")]),
+           build("extras", "Capítulos extras — o que o curso cobra além dos 7 domínios",
+                 [c for c in cs if c[0].startswith("x")])]
     esc = html.escape
     feed = f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"

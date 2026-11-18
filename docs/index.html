@@ -95,6 +95,7 @@
   .section-head h2{font-size:1.1rem;color:#f8fafc}
   .section-head p{margin-top:6px;font-size:.8rem;color:#94a3b8;line-height:1.5}
   .ep-num.qa{background:#3b0764;color:#d8b4fe;font-size:.78rem}
+  .ep-num.extra{background:#14532d;color:#86efac;font-size:.78rem}
   .qa-list details summary{cursor:pointer;list-style:none;color:#cbd5e1}
   .qa-list details summary::-webkit-details-marker{display:none}
   .qa-list details p{margin:6px 0 4px;padding:8px 10px;background:#0f1a2e;border:1px solid #1e3a5f;border-radius:8px;color:#93c5fd;font-size:.8rem;line-height:1.55}
@@ -117,7 +118,7 @@
 </header>
 
 <p class="carhint">🚗 No carro ou no fone: ⏮ volta 10 s · ⏭ avança 10 s · atravessa os capítulos como faixa única</p>
-<p class="carhint">🎧 Prefere um app de podcast? No Apple Podcasts: Biblioteca → ⋯ → Seguir um Programa por URL → <code>https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast.xml</code>. Dois episódios longos com capítulos; o controle da tela de bloqueio continua funcionando mesmo depois de muito tempo pausado.</p>
+<p class="carhint">🎧 Prefere um app de podcast? No Apple Podcasts: Biblioteca → ⋯ → Seguir um Programa por URL → <code>https://rpagliuca.github.io/curso-aberto-audiobook-portugues-iso-27001-lead-implementer/podcast.xml</code>. Três episódios longos com capítulos; o controle da tela de bloqueio continua funcionando mesmo depois de muito tempo pausado.</p>
 
 <!-- ═══════════════════════════════════════ EP 1 ═══ -->
 <div class="card" id="card-1">
@@ -417,6 +418,226 @@
   <div class="panel" id="quiz-6">
     <div class="panel-inner">
       <div id="quiz-6-body"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-head">
+  <h2>➕ Capítulos extras</h2>
+  <p>Cinco capítulos curtos com o que o curso e a prova cobram além dos seis episódios. Cada um termina com duas perguntas para fixar, já no áudio.</p>
+</div>
+
+<!-- ═══════════════════════════════════════ EXTRA 1 ═══ -->
+<div class="card" id="card-201">
+  <div class="card-header">
+    <div class="ep-num extra">X1</div>
+    <div class="card-meta">
+      <h2>A família de normas e os marcos vizinhos</h2>
+      <div class="topics">ISO 27000 a 27007 e 27701 · Só a 27001 tem requisitos · PCI DSS · CSA STAR · GDPR e LGPD · Acreditação e certificação</div>
+    </div>
+    <div class="duration">4:43</div>
+  </div>
+  <div class="player" data-ep="201" data-label="Extra 1" data-src="x01-extra-1-a-fam-lia-de-normas-e-os-marcos-vizinhos.mp3">
+    <button class="pp" aria-label="Tocar ou pausar Extra 1">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no Extra 1">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-201',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-201',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-201',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-201',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag">D1 Fundamentos 12%</span>
+    <span class="tag amber">2 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-201',this)">📋 Resumo</button>
+  </div>
+  <div class="panel" id="resumo-201">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste capítulo</div>
+      <ul class="resumo-list">
+        <li><strong>Família ISO 27000:</strong> 27000 vocabulário; 27001 requisitos (a única certificável); 27002 controles; 27003 implementação; 27004 medição; 27005 riscos; 27701 privacidade; 27006 e 27007 para quem certifica e audita.</li>
+        <li><strong>Diretriz não cria obrigação:</strong> só a 27001 contém requisitos; não seguir uma orientação da 27003 não é não conformidade, a menos que a organização a tenha adotado como regra interna.</li>
+        <li><strong>PCI DSS:</strong> padrão do setor de cartões, 12 requisitos, obrigação contratual imposta pelas bandeiras, não lei.</li>
+        <li><strong>CSA STAR:</strong> garantia para provedores de nuvem: nível 1 autoavaliação publicada, nível 2 auditoria independente.</li>
+        <li><strong>Certificação não é conformidade automática:</strong> a ISO 27001 ajuda, mas não substitui GDPR, LGPD nem PCI DSS.</li>
+        <li><strong>Quem certifica quem:</strong> acreditação pela ISO 17011 (IAF); certificação de sistemas pela 17021-1, de pessoas pela 17024, de produtos pela 17065.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EXTRA 2 ═══ -->
+<div class="card" id="card-202">
+  <div class="card-header">
+    <div class="ep-num extra">X2</div>
+    <div class="card-meta">
+      <h2>O projeto de implementação e quem decide</h2>
+      <div class="topics">Projeto vs operação · Business case · Metodologia IMS2 · Patrocinador e equipe · CISO vs CIO · Comitês</div>
+    </div>
+    <div class="duration">4:45</div>
+  </div>
+  <div class="player" data-ep="202" data-label="Extra 2" data-src="x02-extra-2-o-projeto-de-implementa-o-e-quem-decide.mp3">
+    <button class="pp" aria-label="Tocar ou pausar Extra 2">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no Extra 2">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-202',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-202',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-202',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-202',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag">D2 Iniciação 10%</span>
+    <span class="tag amber">2 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-202',this)">📋 Resumo</button>
+  </div>
+  <div class="panel" id="resumo-202">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste capítulo</div>
+      <ul class="resumo-list">
+        <li><strong>Projeto vs operação:</strong> implementar tem começo, fim, orçamento e entregas (6 a 12 meses no porte médio); operar é rotina. O principal fator de esforço é o tamanho do escopo.</li>
+        <li><strong>Business case:</strong> justifica o investimento: benefícios, custos, riscos do projeto, consequências financeiras e medida de sucesso.</li>
+        <li><strong>Metodologia IMS2 da PECB:</strong> fases no ciclo PDCA; boa prática, não requisito; flexível e iterativa (inverter etapas não é não conformidade).</li>
+        <li><strong>Pessoas:</strong> patrocinador da alta direção, gerente de projeto e equipe multidisciplinar (TI, RH, jurídico, negócio).</li>
+        <li><strong>CISO vs CIO:</strong> segurança dentro da TI perde independência e gera conflito de interesse; é comum o CISO responder à alta direção.</li>
+        <li><strong>Comitês:</strong> a norma não exige nenhum pelo nome (cláusulas 5.3 e 9.3); na prática, comitê executivo, comitê de segurança e comitê diretor do projeto.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EXTRA 3 ═══ -->
+<div class="card" id="card-203">
+  <div class="card-header">
+    <div class="ep-num extra">X3</div>
+    <div class="card-meta">
+      <h2>Contexto, escopo e política na prática</h2>
+      <div class="topics">SWOT · PEST · Cinco Forças de Porter · Mudança climática (2024) · Matriz de poder e interesse · Limites do escopo · Níveis de política</div>
+    </div>
+    <div class="duration">4:48</div>
+  </div>
+  <div class="player" data-ep="203" data-label="Extra 3" data-src="x03-extra-3-contexto-escopo-e-pol-tica-na-pr-tica.mp3">
+    <button class="pp" aria-label="Tocar ou pausar Extra 3">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no Extra 3">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-203',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-203',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-203',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-203',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag">D2 Iniciação 10% · D3 cláusulas 4 e 5</span>
+    <span class="tag amber">2 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-203',this)">📋 Resumo</button>
+  </div>
+  <div class="panel" id="resumo-203">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste capítulo</div>
+      <ul class="resumo-list">
+        <li><strong>Cláusula 4.1, contexto:</strong> SWOT, PEST e as Cinco Forças de Porter ajudam; nenhuma é obrigatória, o exigido é conhecer o contexto.</li>
+        <li><strong>Emenda de 2024:</strong> determinar se a mudança climática é relevante; se não for, nada muda, mas convém registrar a conclusão.</li>
+        <li><strong>Cláusula 4.2, partes interessadas:</strong> matriz de poder e interesse; requisitos vêm de leis, normas, contratos e políticas internas; o jurídico apoia.</li>
+        <li><strong>Cláusula 4.3, escopo:</strong> limites organizacionais, de sistemas e físicos; documentado; nenhuma cláusula de 4 a 10 pode ser excluída, só controles do Anexo A.</li>
+        <li><strong>Cláusula 5.2, política:</strong> três níveis (geral, segurança da informação, por tema); diz por quê e o quê, o como fica para os procedimentos; não cita produtos.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EXTRA 4 ═══ -->
+<div class="card" id="card-204">
+  <div class="card-header">
+    <div class="ep-num extra">X4</div>
+    <div class="card-meta">
+      <h2>Documentos, treinamento, nuvem e inteligência artificial</h2>
+      <div class="topics">Shall, should, may, can · Ciclo de vida do documento · Comunicação · Modelo de Kirkpatrick · IaaS, PaaS, SaaS · Ameaças à IA</div>
+    </div>
+    <div class="duration">4:48</div>
+  </div>
+  <div class="player" data-ep="204" data-label="Extra 4" data-src="x04-extra-4-documentos-treinamento-nuvem-e-intelig-ncia-artifici.mp3">
+    <button class="pp" aria-label="Tocar ou pausar Extra 4">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no Extra 4">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-204',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-204',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-204',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-204',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag">D4 Implementação 18%</span>
+    <span class="tag amber">2 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-204',this)">📋 Resumo</button>
+  </div>
+  <div class="panel" id="resumo-204">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste capítulo</div>
+      <ul class="resumo-list">
+        <li><strong>Verbos da norma:</strong> shall = deve (requisito); should = convém (recomendação); may e can = pode. O “deve” de um procedimento interno vira requisito do SGSI.</li>
+        <li><strong>Cláusula 7.5, informação documentada:</strong> qualquer formato e mídia; ciclo de vida do documento; lista mestra; citar papéis, não nomes.</li>
+        <li><strong>Cláusula 7.4, comunicação:</strong> mensagens de crise preparadas e aprovadas com antecedência; não comunicar também custa (reputação).</li>
+        <li><strong>Cláusula 7.2, eficácia do treinamento:</strong> Kirkpatrick em 4 níveis: reação, aprendizado, comportamento, resultados. Pesquisa de satisfação mede só a reação.</li>
+        <li><strong>Nuvem:</strong> IaaS, PaaS e SaaS com responsabilidade compartilhada; mesmo no SaaS, dados e gestão de acessos ficam com o cliente.</li>
+        <li><strong>Inteligência artificial:</strong> no treinamento, envenenamento de dados e backdoor; em uso, exemplos adversariais, roubo do modelo e extração dos dados de treinamento.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ EXTRA 5 ═══ -->
+<div class="card" id="card-205">
+  <div class="card-header">
+    <div class="ep-num extra">X5</div>
+    <div class="card-meta">
+      <h2>Medição, auditoria, certificação e o dia da prova</h2>
+      <div class="topics">Desempenho vs eficácia · Auditoria de 1ª, 2ª e 3ª parte · Programa vs plano · Estágios 1 e 2 · Supervisão e recertificação · Regras do exame</div>
+    </div>
+    <div class="duration">4:34</div>
+  </div>
+  <div class="player" data-ep="205" data-label="Extra 5" data-src="x05-extra-5-medi-o-auditoria-certifica-o-e-o-dia-da-prova.mp3">
+    <button class="pp" aria-label="Tocar ou pausar Extra 5">▶</button>
+    <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posição no Extra 5">
+    <span class="time">0:00</span>
+  </div>
+  <div class="skip-row">
+    <button class="btn-skip" onclick="skip('audio-205',-30)">−30s</button>
+    <button class="btn-skip" onclick="skip('audio-205',-5)">−5s</button>
+    <button class="btn-skip" onclick="skip('audio-205',+5)">+5s</button>
+    <button class="btn-skip" onclick="skip('audio-205',+30)">+30s</button>
+  </div>
+  <div class="tags">
+    <span class="tag">D5 Monitoramento 14%</span>
+    <span class="tag">D6 Melhoria 10% · Certificação</span>
+    <span class="tag amber">2 fixações no áudio</span>
+  </div>
+  <div class="actions">
+    <button class="btn-toggle" onclick="togglePanel('resumo-205',this)">📋 Resumo</button>
+  </div>
+  <div class="panel" id="resumo-205">
+    <div class="panel-inner">
+      <div class="resumo-title">Tópicos cobertos neste capítulo</div>
+      <ul class="resumo-list">
+        <li><strong>Cláusula 9.1, medição:</strong> parte de uma necessidade de informação; medida de desempenho (o planejado foi feito) vs medida de eficácia (o efeito aconteceu); poucos indicadores.</li>
+        <li><strong>Cláusula 9.2, auditoria interna:</strong> primeira, segunda e terceira parte; ISO 19011 como referência; o auditor interno não audita o próprio trabalho.</li>
+        <li><strong>Programa vs plano:</strong> programa = conjunto das auditorias de um período; plano = uma auditoria específica. Critérios → evidências → constatações → conclusão.</li>
+        <li><strong>Certificação:</strong> estágio 1 avalia desenho e documentação; estágio 2, no local, implementação e eficácia; o auditor recomenda e o organismo decide.</li>
+        <li><strong>Depois do certificado:</strong> não conformidade maior impede a recomendação; supervisão ao menos anual; recertificação ao fim dos 3 anos.</li>
+        <li><strong>O exame da PECB:</strong> múltipla escolha com cenários, com consulta à norma e às anotações; IA e gravação de tela proibidas; confira as regras atualizadas.</li>
+      </ul>
     </div>
   </div>
 </div>
